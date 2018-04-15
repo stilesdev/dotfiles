@@ -47,8 +47,23 @@ The root-install.sh script will prompt you to decide whether to install all .deb
 * [Moka/Faba/Faba Mono Icons](https://snwh.org/moka/download)
 * [playerctl](https://github.com/acrisci/playerctl/releases)
 * [Synergy](https://symless.com/synergy/downloads)
+
+
+Manual installations
+--------------------
+
 * [PrivateInternetAccess](https://www.privateinternetaccess.com/installer/download_installer_linux)
+```
+tar -xzf pia*.tar.gz
+./pia-*-installer-linux.sh
+```
+
 * [JetBrains Toolbox](https://www.jetbrains.com/toolbox/app/)
+```
+tar -xzf jetbrains-toolbox*.tar.gz
+cd jetbrains-toolbox*
+./jetbrains-toolbox
+```
 
 
 Fonts
