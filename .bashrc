@@ -117,6 +117,7 @@ if ! shopt -oq posix; then
 fi
 
 alias i3c='vim ~/.config/i3/config'
+alias gpg=gpg2
 export GPG_TTY=`tty`
 pkill ssh-agent
 pkill gpg-agent
