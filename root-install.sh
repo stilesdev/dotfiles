@@ -28,9 +28,19 @@ if ask "Install all .deb files in ${dir}/debfiles?" N; then
 	packages="${packages} ${dir}/debfiles/*.deb"
 fi
 
+if ask "Run Synergy on startup?" Y; then
+	read -p "Enter default IP/Hostname to connect to on startup: " REPLY </dev/tty
+	echo "[Seat:*]
+greeter-setup-script=/usr/bin/synergyc --enable-crypto $REPLY" > /etc/lightdm/lightdm.conf.d/20-ubuntu.conf
+fi
+
+if ask "Disable apt HTTP Pipelining?" Y; then
+	echo "Acquire::http::Pipeline-Depth "0";" > /etc/apt/apt.conf.d/99-disable-piplelining
+fi
 
 
 
 
+udevadm control --reload
 apt update
 apt install -y $packages
