@@ -21,6 +21,14 @@ uninstall() {
 	if [ -e ${HOME}/Scripts/toggle-touchpad.sh.original ]; then
 		mv ${HOME}/Scripts/toggle-touchpad.sh.original ${HOME}/Scripts/toggle-touchpad.sh
 	fi
+	
+	if [ -e ${HOME}/Scripts/lock.sh.original ]; then
+		mv ${HOME}/Scripts/lock.sh.original ${HOME}/Scripts/lock.sh
+	fi
+	
+	if [ -e ${HOME}/Scripts/lock-icon.png.original ]; then
+		mv ${HOME}/Scripts/lock-icon.png.original ${HOME}/Scripts/lock-icon.png
+	fi
 }
 
 if ask "Restore all original files?" N; then

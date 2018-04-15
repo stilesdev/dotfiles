@@ -16,6 +16,8 @@ install() {
 		ln -sfb -S .original ${dir}/.config/i3/i3blocks.conf ${HOME}/.config/i3/i3blocks.conf
 		mkdir -p ${HOME}/Scripts
 		ln -sfb -S .original ${dir}/Scripts/toggle-touchpad.sh ${HOME}/Scripts/toggle-touchpad.sh
+		ln -sfb -S .original ${dir}/Scripts/lock.sh ${HOME}/Scripts/lock.sh
+		ln -sfb -S .original ${dir}/Scripts/lock-icon.png ${HOME}/Scripts/lock-icon.png
 	fi
 }
 
