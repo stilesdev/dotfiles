@@ -51,6 +51,17 @@ The root-install.sh script will prompt you to decide whether to install all .deb
 * [JetBrains Toolbox](https://www.jetbrains.com/toolbox/app/)
 
 
+Fonts
+-----
+
+Extract .ttf or .otf files to `~/.fonts`.
+
+* [Overpass](http://overpassfont.org/)
+* [Source Code Pro](https://github.com/adobe-fonts/source-code-pro/releases)
+* [Hasklig](https://github.com/i-tu/Hasklig/releases)
+* [Fira Code](https://github.com/tonsky/FiraCode/releases)
+
+
 Automatic setup scripts
 -----------------------
 * Run `root-install.sh` as root to install packages and set up system-wide settings.
