@@ -3,7 +3,7 @@
 set -x
 dir=$(pwd)
 euid=$(id -u)
-packages="vim i3 arandr lxappearance thunar gnome-icon-theme-full rofi compton i3blocks xbacklight pactl"
+packages="vim i3 arandr lxappearance thunar gnome-icon-theme-full rofi compton i3blocks xbacklight pactl scrot"
 
 source "${dir}/utils.sh"
 
@@ -30,14 +30,33 @@ fi
 
 if ask "Run Synergy on startup?" Y; then
 	read -p "Enter default IP/Hostname to connect to on startup: " REPLY </dev/tty
-	echo "[Seat:*]
-greeter-setup-script=/usr/bin/synergyc --enable-crypto $REPLY" > /etc/lightdm/lightdm.conf.d/20-ubuntu.conf
+	cp ${dir}/etc/20-ubuntu.conf /etc/lightdm/lightdm.conf.d/20-ubuntu.conf
+	echo $REPLY >> /etc/lightdm/lightdm.conf.d/20-ubuntu.conf
+	chown root:root /etc/lightdm/lightdm.conf.d/20-ubuntu.conf
+	chmod 644 /etc/lightdm/lightdm.conf.d/20-ubuntu.conf
 fi
 
 if ask "Disable apt HTTP Pipelining?" Y; then
-	echo "Acquire::http::Pipeline-Depth "0";" > /etc/apt/apt.conf.d/99-disable-piplelining
+	cp ${dir}/etc/99-disable-pipelining /etc/apt/apt.conf.d/99-disable-piplelining
+	chown root:root /etc/apt/apt.conf.d/99-disable-piplelining
+	chmod 644 /etc/apt/apt.conf.d/99-disable-piplelining
 fi
 
+if ask "Install video output switching script?" Y; then
+	cp ${dir}/etc/90-video-output.rules /etc/udev/rules.d/90-video-output.rules
+	chown root:root /etc/udev/rules.d/90-video-output.rules
+	chmod 644 /etc/udev/rules.d/90-video-output.rules
+	
+	cp ${dir}/etc/video-output.sh /usr/local/bin/video-output.sh
+	chown root:root /usr/local/bin/video-output.sh
+	chmod 744 /usr/local/bin/video-output.sh
+fi
+
+if ask "Install touchpad settings?" Y; then
+	cp ${dir}/etc/70-synaptics.conf /etc/X11/xorg.conf.d/70-synaptics.conf
+	chown root:root /etc/X11/xorg.conf.d/70-synaptics.conf
+	chmod 644 /etc/X11/xorg.conf.d/70-synaptics.conf
+fi
 
 
 
