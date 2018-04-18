@@ -21,6 +21,10 @@ if ask "Install symlink for .bashrc and .profile?" Y; then
 	link_file ".profile"
 fi
 
+if ask "Install symlink for .gitconfig?" Y; then
+	link_file ".gitconfig"
+fi
+
 if ask "Install symlinks for i3 files?" Y; then
 	mkdir -p $HOME/.config/i3
 	mkdir -p $HOME/Scripts

@@ -28,6 +28,7 @@ unlink_file() {
 if ask "Restore all original files?" N; then
 	unlink_file ".bashrc"
 	unlink_file ".profile"
+	unlink_file ".gitconfig"
 	unlink_file ".config/i3/config"
 	unlink_file ".config/i3/i3blocks.conf"
 	unlink_file "Scripts/toggle-touchpad.sh"

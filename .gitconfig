@@ -1,0 +1,10 @@
+[user]
+	name = Matthew Stiles
+	email = mstiles92@gmail.com
+	signingkey = C0AC1B5B
+[push]
+	default = simple
+[commit]
+	gpgsign = true
+[gpg]
+	program = /usr/bin/gpg2
