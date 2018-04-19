@@ -50,3 +50,8 @@ if [ -e /opt/pia/run.sh ]; then
 		link_file ".local/bin/pia" "/opt/pia/run.sh"
 	fi
 fi
+
+if ask "Install nvm?" Y; then
+	nvm_version=$(curl -sS https://api.github.com/repos/creationix/nvm/releases/latest | jq -r '.tag_name')
+	curl -sS -o- https://raw.githubusercontent.com/creationix/nvm/$nvm_version/install.sh | bash
+fi
