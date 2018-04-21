@@ -181,7 +181,7 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 assign [class="Google-chrome"] $workspace1
 assign [class="jetbrains-webstorm"] $workspace3
 assign [class="qBittorrent"] $workspace9
-for_window [class="Spotify"] $workspace10 # (Workaround for Spotify not immediately setting the window class)
+for_window [class="Spotify"] move to workspace $workspace10 # (Workaround for Spotify not immediately setting the window class)
 
 # Force applications to open in floating mode
 for_window [class="Lxappearance"] floating enable
