@@ -37,6 +37,21 @@ if ask "Install symlinks for i3 files?" Y; then
 	link_file "Scripts/lock-icon.png"
 fi
 
+if ask "Set GTK theme to Arc-Dark?" Y; then
+	sed -i 's/gtk-theme-name.*$/gtk-theme-name="Arc-Dark"/g' $HOME/.gtkrc-2.0
+	sed -i 's/gtk-theme-name.*$/gtk-theme-name=Arc-Dark/g' $HOME/.config/gtk-3.0/settings.ini
+fi
+
+if ask "Set GTK icon theme to Arc?" Y; then
+	sed -i 's/gtk-icon-theme-name.*$/gtk-icon-theme-name="Arc"/g' $HOME/.gtkrc-2.0
+	sed -i 's/gtk-icon-theme-name.*$/gtk-icon-theme-name=Arc/g' $HOME/.config/gtk-3.0/settings.ini
+fi
+
+if ask "Set GTK font to Overpass 10?" Y; then
+	sed -i 's/gtk-font-name.*$/gtk-font-name="Overpass 10"/g' $HOME/.gtkrc-2.0
+	sed -i 's/gtk-font-name.*$/gtk-font-name=Overpass 10/g' $HOME/.config/gtk-3.0/settings.ini
+fi
+
 if [ -e $HOME/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox ]; then
 	if ask "Install symlink to ~/.local/bin for JetBrains Toolbox?" Y; then
 		mkdir -p $HOME/.local/bin
