@@ -28,6 +28,13 @@ if ask "Install all .deb files in ${dir}/debfiles?" N; then
 	packages="${packages} ${dir}/debfiles/*.deb"
 fi
 
+if ask "Install Arc Icon Theme?" Y; then
+	wget -O /tmp/arc-icons.zip https://github.com/horst3180/arc-icon-theme/archive/master.zip
+	unzip /tmp/arc-icons.zip
+	mv /tmp/arc-icon-theme-master/Arc /usr/share/icons/Arc
+	rm -rf /tmp/arc-icon*
+fi
+
 if ask "Run Synergy on startup?" Y; then
 	read -p "Enter default IP/Hostname to connect to on startup: " REPLY </dev/tty
 	cp ${dir}/etc/20-ubuntu.conf /etc/lightdm/lightdm.conf.d/20-ubuntu.conf
