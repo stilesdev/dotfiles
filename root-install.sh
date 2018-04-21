@@ -38,7 +38,7 @@ fi
 if ask "Run Synergy on startup?" Y; then
 	read -p "Enter default IP/Hostname to connect to on startup: " REPLY </dev/tty
 	cp ${dir}/etc/20-ubuntu.conf /etc/lightdm/lightdm.conf.d/20-ubuntu.conf
-	echo $REPLY >> /etc/lightdm/lightdm.conf.d/20-ubuntu.conf
+	sed -i "$ s/$/$REPLY/" /etc/lightdm/lightdm.conf.d/20-ubuntu.conf
 	chown root:root /etc/lightdm/lightdm.conf.d/20-ubuntu.conf
 	chmod 644 /etc/lightdm/lightdm.conf.d/20-ubuntu.conf
 fi
