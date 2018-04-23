@@ -32,7 +32,7 @@ Add the following to the end of `~/.bashrc` and restart the terminal
 export GPG_TTY=`tty`
 pkill ssh-agent
 pkill gpg-agent
-eval $(gpg-agent --daemon --enable-ssh-support --log-file ~/.gnupg/gpg-agent.log)" >> ~/.bashrc
+eval $(gpg-agent --daemon --enable-ssh-support --log-file ~/.gnupg/gpg-agent.log)
 ```
 
 
