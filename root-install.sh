@@ -20,7 +20,7 @@ fi
 
 if ask "Install Google Chrome?" Y; then
 	curl -L https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-	echo deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main | tee /etc/apt/sources.list.d/google.list
+	echo deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main | tee /etc/apt/sources.list.d/google-chrome.list
 	packages="${packages} google-chrome-stable"
 fi
 
@@ -30,7 +30,7 @@ fi
 
 if ask "Install Arc Icon Theme?" Y; then
 	wget -O /tmp/arc-icons.zip https://github.com/horst3180/arc-icon-theme/archive/master.zip
-	unzip /tmp/arc-icons.zip
+	unzip /tmp/arc-icons.zip -d /tmp
 	mv /tmp/arc-icon-theme-master/Arc /usr/share/icons/Arc
 	rm -rf /tmp/arc-icon*
 fi
