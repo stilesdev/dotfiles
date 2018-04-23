@@ -75,6 +75,7 @@ Extract .ttf or .otf files to `~/.fonts`.
 * [Source Code Pro](https://github.com/adobe-fonts/source-code-pro/releases)
 * [Hasklig](https://github.com/i-tu/Hasklig/releases)
 * [Fira Code](https://github.com/tonsky/FiraCode/releases)
+* [Font Awesome](https://github.com/FortAwesome/Font-Awesome/releases)
 
 
 Automatic setup scripts
