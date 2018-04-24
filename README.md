@@ -8,7 +8,7 @@ YubiKey GPG Setup
 -----------------
 
 ```
-sudo apt install git gnupg2 gnupg-agent pinentry-gnome3 scdaemon pcscd libusb-1.0.0-dev
+sudo apt install git gnupg2 gnupg-agent pinentry-gnome3 scdaemon pcscd libusb-1.0.0-dev curl
 alias gpg=gpg2
 gpg --keyserver keys.gnupg.net --recv C0AC1B5B
 
