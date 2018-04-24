@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -x
+#set -x
 dir=$(pwd)
 
 source "${dir}/utils.sh"
