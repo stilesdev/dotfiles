@@ -3,7 +3,7 @@
 #set -x
 dir=$(pwd)
 euid=$(id -u)
-packages="vim i3 arandr lxappearance thunar gnome-icon-theme-full rofi compton i3blocks xbacklight scrot curl jq"
+packages="vim i3 arandr lxappearance thunar gnome-icon-theme-full rofi feh compton i3blocks xbacklight scrot curl jq"
 
 source "${dir}/utils.sh"
 
