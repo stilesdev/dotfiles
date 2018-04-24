@@ -60,6 +60,7 @@ if ask "Install video output switching script?" Y; then
 fi
 
 if ask "Install touchpad settings?" Y; then
+	mkdir -p /etc/X11/xorg.conf.d
 	cp ${dir}/etc/70-synaptics.conf /etc/X11/xorg.conf.d/70-synaptics.conf
 	chown root:root /etc/X11/xorg.conf.d/70-synaptics.conf
 	chmod 644 /etc/X11/xorg.conf.d/70-synaptics.conf
