@@ -34,6 +34,8 @@ if ask "Restore all original files?" N; then
 	unlink_file "Scripts/toggle-touchpad.sh"
 	unlink_file "Scripts/lock.sh"
 	unlink_file "Scripts/lock-icon.png"
+	unlink_file ".config/gtk-3.0/settings.ini"
+	unlink_file ".gtkrc-2.0"
 	unlink_file ".local/bin/jetbrains-toolbox" "$HOME/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox"
 	unlink_file ".local/bin/pia" "/opt/pia/run.sh"
 	rm -rf $HOME/.nvm
