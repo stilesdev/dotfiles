@@ -52,8 +52,9 @@ fi
 
 if [ -e /opt/pia/run.sh ]; then
 	if ask "Install symlink to ~/.local/bin for PrivateInternetAccess?" Y; then
+		link_file "Scripts/pia.sh"
 		mkdir -p $HOME/.local/bin
-		link_file ".local/bin/pia" "/opt/pia/run.sh"
+		link_file ".local/bin/pia" "$HOME/Scripts/pia.sh"
 	fi
 fi
 
