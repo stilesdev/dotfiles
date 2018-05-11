@@ -223,6 +223,9 @@ bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 480 -opaci
 # Start i3lock to lock the system
 bindsym $mod+shift+x exec ~/Scripts/lock.sh
 
+# Take a screenshot of the entire screen with scrot
+bindsym Print exec scrot ~/Pictures/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
+
 
 
 # Media and function keys
