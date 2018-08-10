@@ -185,6 +185,7 @@ for_window [class="Spotify"] move to workspace $workspace10 # (Workaround for Sp
 
 # Force applications to open in floating mode
 for_window [class="Lxappearance"] floating enable
+for_window [class="jetbrains-toolbox"] floating enable
 
 
 
