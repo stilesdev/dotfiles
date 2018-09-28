@@ -259,3 +259,4 @@ exec_always compton -f
 exec_always feh --bg-scale ~/Pictures/wallpaper.jpg
 exec google-chrome
 exec spotify
+exec_always bash ~/Scripts/gpg-restart.sh

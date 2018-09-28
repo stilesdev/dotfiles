@@ -35,6 +35,8 @@ if ask "Install symlinks for i3 files?" Y; then
 	link_file "Scripts/lock.sh"
 	chmod u+x $dir/Scripts/lock.sh
 	link_file "Scripts/lock-icon.png"
+	link_file "Scripts/gpg-restart.sh"
+	chmod u+x $dir/Scripts/gpg-restart.sh
 fi
 
 if ask "Install symlinks for GTK settings?" Y; then

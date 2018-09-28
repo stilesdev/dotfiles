@@ -119,9 +119,7 @@ fi
 alias i3c='vim ~/.config/i3/config'
 alias gpg=gpg2
 export GPG_TTY=`tty`
-pkill ssh-agent
-pkill gpg-agent
-eval $(gpg-agent --daemon --enable-ssh-support --log-file ~/.gnupg/gpg-agent.log)
+export SSH_AUTH_SOCK=/home/matthew/.gnupg/S.gpg-agent.ssh
 
 if [ -d $HOME/.nvm ]; then
     export NVM_DIR="$HOME/.nvm"
