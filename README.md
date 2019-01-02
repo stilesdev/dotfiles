@@ -1,53 +1,30 @@
-Dotfiles
-========
+# Dotfiles #
+A current snapshot of my personal dotfiles from Arch Linux.
 
-A snapshot of my personal dotfiles, used to set up new Linux installations.
+## Installation Instructions ##
+Note: Make sure Yubikey is plugged in for later GPG configuration.
 
-
-YubiKey GPG Setup
------------------
-
+### Install yay AUR helper ###
 ```
-sudo pacman -S git gnupg2 pinentry pcsclite ccid libusb-compat gcr
-systemctl --user mask --now gpg-agent.service gpg-agent.socket gpg-agent-ssh.socket gpg-agent-extra.socket gpg-agent-browser.socket
-systemctl enable pcscd
-gpg --keyserver keys.gnupg.net --recv C0AC1B5B
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
 ```
 
-Create `~/.gnupg/gpg-agent.conf` with the contents:
+### Install yadm (Yet Another Dotfiles Manager) ###
 ```
-enable-ssh-support
-pinentry-program /usr/bin/pinentry-gnome3
-default-cache-ttl 60
-max-cache-ttl 120
+yay -S yadm
 ```
 
-Insert YubiKey
+### Clone this dotfiles repository (automatically runs bootstrap script) ###
 ```
-gpg --card-status
-gpg --edit-key C0AC1B5B
-```
-
-Enter `trust`, then `5` to trust the key ultimately, then finally `quit` to exit.
-
-```
-export GPG_TTY=`tty`
-pkill ssh-agent
-pkill gpg-agent
-eval $(gpg-agent --daemon --enable-ssh-support --log-file ~/.gnupg/gpg-agent.log)
+yadm clone https://github.com/mstiles92/dotfiles.git
 ```
 
-Manual installations
---------------------
+## Manual Installations ##
 
 * [PrivateInternetAccess](https://www.privateinternetaccess.com/installer/download_installer_linux)
 ```
 tar -xzf pia*.tar.gz
 ./pia-*-installer-linux.sh
 ```
-
-Automatic setup scripts
------------------------
-* Run `root-install.sh` as root to install packages and set up system-wide settings.
-* Run `install.sh` to set up symlinks to config files for the current user.
-* Run `uninstall.sh` to remove symlinks to this repo and restore original config files.
