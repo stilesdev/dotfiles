@@ -81,13 +81,12 @@ mount /dev/nvme0n1p2 /mnt/boot
 
 ### Download an updated pacman mirror list ###
 ```
-curl "https://www.archlinux.org/mirrorlist/?country=US&protocol=https&ip_version=4&use_mirror_status=on" > /etc/pacman.d/mirrorlist
+curl "https://www.archlinux.org/mirrorlist/?country=US&protocol=https&ip_version=4&use_mirror_status=on" | cut -c2- > /etc/pacman.d/mirrorlist
 ```
-Edit the downloaded mirrorlist file and uncomment all included mirrors.
 
 ### Install base packages ###
 ```
-pacstrap /mnt base
+pacstrap /mnt base base-devel vim git
 ```
 
 ### Generate fstab file ###
@@ -140,6 +139,9 @@ netctl enable <profile>
 ```
 passwd
 ```
+
+### Enable 32-bit packages ###
+Edit `/etc/pacman.conf` and uncomment the `multilib` section.
 
 ### Install Intel microcode updates ###
 ```
