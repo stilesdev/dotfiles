@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+PKG_YUBIKEY=gnupg2 pinentry pcsclite ccid libusb-compat gcr
+PKG_DESKTOP=xorg-server i3-gaps polybar compton rofi rxvt-unicode zsh lightdm lightdm-slick-greeter
+PKG_NVIDIA=nvidia nvidia-utils lib32-nvidia-utils
+PKG_INTEL=xf86-video-intel mesa lib32-mesa
+
+case $(hostname) in
+bismuth*)
+    PACKAGES=$PKG_YUBIKEY $PKG_DESKTOP $PKG_NVIDIA
+    ;;
+arjia* | gallium*)
+    PACKAGES=$PKG_YUBIKEY $PKG_DESKTOP $PKG_INTEL
+    ;;
+esac
+
+echo "Installing packages"
+yay --noconfirm -S $PACKAGES
+
+echo "Configuring lightdm to use slick-greeter"
+sudo sed -i "s/^\#\(greeter\-session=\).*$/\1lightdm\-slick\-greeter/" /etc/lightdm/lightdm.conf
+
+echo "Enabling lightdm to start at boot"
+sudo systemctl enable lightdm.service
+
+echo "Setting up GPG key"
+systemctl --user mask --now gpg-agent.service gpg-agent.socket gpg-agent-ssh.socket gpg-agent-extra.socket gpg-agent-browser.socket
+sudo systemctl enable pcscd
+sudo systemctl start pcscd
+if ! gpg --card-status; then
+    echo "Failed to detect YubiKey. Plug in the YubiKey and try running the bootstrap script again"
+else if ! gpg --keyserver keys.gnupg.net --recv C0AC1B5B; then
+    echo "Failed to retrieve key from keyserver. Check internet connectivity and try running the bootstrap script again"
+else
+    echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key COAC1B5B trust
+fi
+
+echo "Updating the yadm repo origin URL"
+yadm remote set-url origin "git@github.com:mstiles92/dotfiles.git"
