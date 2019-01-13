@@ -11,5 +11,5 @@ PS1='[\u@\h \W]\$ '
 
 export TERMINAL=/usr/bin/urxvt
 
-GPG_TTY=`tty`
-SSH_AUTH_SOCK=/run/user/$(id -u)/gnupg/S.gpg-agent.ssh
+export GPG_TTY=`tty`
+export SSH_AUTH_SOCK=/run/user/$(id -u)/gnupg/S.gpg-agent.ssh
