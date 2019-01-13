@@ -22,7 +22,7 @@ yay -S yadm
 
 ### Clone this dotfiles repository (automatically runs bootstrap script) ###
 ```
-yadm clone https://github.com/mstiles92/dotfiles.git
+yadm clone https://github.com/mstiles92/dotfiles.git --bootstrap
 ```
 
 ## Manual Installations ##
