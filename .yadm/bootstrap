@@ -31,10 +31,10 @@ sudo systemctl enable pcscd
 sudo systemctl start pcscd
 if ! gpg --card-status; then
     echo "Failed to detect YubiKey. Plug in the YubiKey and try running the bootstrap script again"
-else if ! gpg --keyserver keys.gnupg.net --recv C0AC1B5B; then
+elif ! gpg --keyserver keys.gnupg.net --recv C0AC1B5B; then
     echo "Failed to retrieve key from keyserver. Check internet connectivity and try running the bootstrap script again"
 else
-    echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key COAC1B5B trust
+    echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key C0AC1B5B trust
 fi
 
 echo "Updating the yadm repo origin URL"
