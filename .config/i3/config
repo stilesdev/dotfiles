@@ -266,7 +266,7 @@ bindsym XF86AudioPrev exec playerctl previous
 exec_always --no-startup-id compton -f
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec chromium
+exec google-chrome-stable
 exec spotify
 exec_always ~/Scripts/gpg-agent-restart.sh
 exec synergy
