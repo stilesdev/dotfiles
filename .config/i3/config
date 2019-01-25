@@ -225,9 +225,9 @@ bindsym $mod+Return exec urxvt
 
 # Start rofi to launch other programs (v0.15.11)
 #bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 480 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Overpass 18"
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
 # Start rofi to launch other programs (v1.3.1)
-#bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -bw 0 -font "Overpass 18"
+bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -bw 0 -font "Overpass 18"
 
 # Start i3lock to lock the system
 #bindsym $mod+shift+x exec ~/Scripts/lock.sh
