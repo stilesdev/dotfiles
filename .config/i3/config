@@ -230,7 +230,8 @@ bindsym $mod+d exec dmenu_run
 #bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -bw 0 -font "Overpass 18"
 
 # Start i3lock to lock the system
-bindsym $mod+shift+x exec ~/Scripts/lock.sh
+#bindsym $mod+shift+x exec ~/Scripts/lock.sh
+bindsym $mod+shift+x exec betterlockscreen --lock dimblur
 
 # Take a screenshot of the entire screen with scrot
 bindsym Print exec scrot ~/Pictures/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
@@ -264,7 +265,9 @@ bindsym XF86AudioPrev exec playerctl previous
 # ---------------------------------------------------------
 
 exec_always --no-startup-id compton -f
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
+#exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
+exec_always --no-startup-id betterlockscreen --update ~/Pictures/Wallpapers --blur 2
+exec_always --no-startup-id betterlockscreen --wall
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec google-chrome-stable
 exec spotify
