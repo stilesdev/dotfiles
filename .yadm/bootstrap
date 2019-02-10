@@ -23,6 +23,10 @@ echo "Installing nvm"
 nvm_version=$(curl -sS https://api.github.com/repos/creationix/nvm/releases/latest | jq -r '.tag_name')
 curl -sS -o- https://raw.githubusercontent.com/creationix/nvm/$nvm_version/install.sh | bash
 
+echo "Configuring sshd"
+sudo sed -i "s/^\#\?\(PermitRootLogin\).*$/\1 no/" /etc/ssh/sshd_config
+sudo systemctl enable sshd.service
+
 echo "Configuring lightdm to use slick-greeter"
 sudo sed -i "s/^\#\?\(greeter\-session=\).*$/\1lightdm\-slick\-greeter/" /etc/lightdm/lightdm.conf
 
