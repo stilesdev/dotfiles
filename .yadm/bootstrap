@@ -29,6 +29,11 @@ sudo sed -i "s/^\#\?\(greeter\-session=\).*$/\1lightdm\-slick\-greeter/" /etc/li
 echo "Enabling lightdm to start at boot"
 sudo systemctl enable lightdm.service
 
+echo "Configuring synergy client to start on login screen"
+if ! grep "^greeter-setup-script=/usr/bin/synergyc" /etc/lightdm/lightdm.conf; then
+    echo -e "\n[SeatDefaults]\ngreeter-setup-script=/usr/bin/synergyc --enable-crypto argon.stiles.me" | sudo tee -a /etc/lightdm/lightdm.conf
+fi
+
 echo "Creating wallpapers directory and generating placeholder wallpaper"
 mkdir -p ~/Pictures/Wallpapers
 convert -size 1920x1080 xc:black ~/Pictures/Wallpapers/placeholder.jpg
