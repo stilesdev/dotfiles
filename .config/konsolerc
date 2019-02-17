@@ -1,2 +1,14 @@
 [Desktop Entry]
 DefaultProfile=Profile 1.profile
+
+[Favorite Profiles]
+Favorites=
+
+[KonsoleWindow]
+SaveGeometryOnExit=false
+ShowMenuBarByDefault=false
+
+[MainWindow]
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAAA5YAAAPXAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
