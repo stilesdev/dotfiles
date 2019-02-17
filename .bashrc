@@ -9,7 +9,7 @@ alias ls='ls --color=auto'
 alias ll='ls -lAh'
 PS1='[\u@\h \W]\$ '
 
-export TERMINAL=/usr/bin/urxvt
+export TERMINAL=/usr/bin/konsole
 
 export GPG_TTY=`tty`
 export SSH_AUTH_SOCK=/run/user/$(id -u)/gnupg/S.gpg-agent.ssh
