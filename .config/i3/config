@@ -270,6 +270,6 @@ exec_always --no-startup-id betterlockscreen --update ~/Pictures/Wallpapers --bl
 exec_always --no-startup-id betterlockscreen --wall
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec google-chrome-stable
-exec spotify
-exec_always ~/Scripts/gpg-agent-restart.sh
+exec --no-startup-id spotify
+exec_always --no-startup-id ~/Scripts/gpg-agent-restart.sh
 #exec synergy

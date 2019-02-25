@@ -1,5 +1,5 @@
 #!/bin/sh
 
-xrdb -merge ~/.Xresources
+#xrdb -merge ~/.Xresources
 
 exec i3

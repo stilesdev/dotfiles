@@ -17,7 +17,7 @@ arjia* | gallium*)
 esac
 
 echo "Installing packages"
-yay --noconfirm -S $PACKAGES
+yay --noconfirm --needed -S $PACKAGES
 
 echo "Installing nvm"
 nvm_version=$(curl -sS https://api.github.com/repos/creationix/nvm/releases/latest | jq -r '.tag_name')
