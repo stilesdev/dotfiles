@@ -17,7 +17,7 @@ arjia* | gallium*)
 esac
 
 echo "Installing packages"
-yay --noconfirm --needed -S $PACKAGES
+yay --noconfirm --needed -S $PACKAGES || exit $?
 
 echo "Downloading and installing Nerd Fonts"
 CWD=$(pwd)
