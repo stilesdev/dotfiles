@@ -2,22 +2,44 @@
 
 PKG_YUBIKEY="gnupg2 pinentry pcsclite ccid libusb-compat gcr"
 PKG_DESKTOP="xorg-server xorg-xrdb i3-gaps polybar compton feh rofi lightdm lightdm-slick-greeter betterlockscreen"
-PKG_FONTS="otf-overpass adobe-source-code-pro-fonts otf-hasklig otf-fira-code otf-font-awesome"
-PKG_APPS="jetbrains-toolbox code synergy qt5-base openssh zsh konsole thunar moka-icon-theme faba-icon-theme scrot imagemagick spotify jq systemd-boot-pacman-hook google-chrome"
+PKG_APPS="zip unzip jetbrains-toolbox code synergy qt5-base openssh zsh konsole thunar moka-icon-theme faba-icon-theme scrot imagemagick spotify jq systemd-boot-pacman-hook google-chrome"
 PKG_NVIDIA="nvidia nvidia-utils lib32-nvidia-utils"
 PKG_INTEL="xf86-video-intel mesa lib32-mesa"
+NERD_FONTS='"FiraCode","Hack","Hasklig","Overpass","SourceCodePro"'
 
 case $(hostname) in
 bismuth*)
-    PACKAGES="$PKG_YUBIKEY $PKG_DESKTOP $PKG_FONTS $PKG_APPS $PKG_NVIDIA"
+    PACKAGES="$PKG_YUBIKEY $PKG_DESKTOP $PKG_APPS $PKG_NVIDIA"
     ;;
 arjia* | gallium*)
-    PACKAGES="$PKG_YUBIKEY $PKG_DESKTOP $PKG_FONTS $PKG_APPS $PKG_INTEL"
+    PACKAGES="$PKG_YUBIKEY $PKG_DESKTOP $PKG_APPS $PKG_INTEL"
     ;;
 esac
 
 echo "Installing packages"
 yay --noconfirm --needed -S $PACKAGES
+
+echo "Downloading and installing Nerd Fonts"
+CWD=$(pwd)
+mkdir -p /tmp/fonts && cd /tmp/fonts
+for FONT_URL in $(curl -Ss "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r ".assets[] | select(.name | contains($NERD_FONTS)) | .browser_download_url"); do
+    curl -LOJ "$FONT_URL"
+done
+for FONT_ZIP in /tmp/fonts/*.zip; do
+    FONT_NAME=$(basename $FONT_ZIP .zip)
+    sudo rm -r "/usr/share/fonts/$FONT_NAME"
+    unzip -q "$FONT_ZIP"
+    sudo install -o root -g root -d "/usr/share/fonts/$FONT_NAME"
+    if ls /tmp/fonts/*Complete.otf > /dev/null 2>&1; then
+        sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *Complete.otf
+    else
+        sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *Complete.ttf
+    fi
+    rm -f /tmp/fonts/*.otf /tmp/fonts/*.ttf
+done
+cd "$CWD"
+rm -r /tmp/fonts
+fc-cache -v
 
 echo "Installing nvm"
 nvm_version=$(curl -sS https://api.github.com/repos/creationix/nvm/releases/latest | jq -r '.tag_name')

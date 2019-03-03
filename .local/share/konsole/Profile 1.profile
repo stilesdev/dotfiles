@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=DarkPastels
-Font=Monospace,10,-1,5,50,0,0,0,0,0
+Font=Hasklig Medium,10,-1,5,57,0,0,0,0,0,Regular
 
 [General]
 Name=Profile 1
