@@ -60,6 +60,9 @@ if ! grep "^greeter-setup-script=/usr/bin/synergyc" /etc/lightdm/lightdm.conf; t
     echo -e "\n[SeatDefaults]\ngreeter-setup-script=/usr/bin/synergyc --enable-crypto argon.stiles.me" | sudo tee -a /etc/lightdm/lightdm.conf
 fi
 
+echo "Creating screenshots directory"
+mkdir -p ~/Pictures/Screenshots
+
 echo "Creating wallpapers directory and generating placeholder wallpaper"
 if ! [ "$(ls -A $HOME/Pictures/Wallpapers 2>/dev/null)" ]; then
     mkdir -p ~/Pictures/Wallpapers
