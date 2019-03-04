@@ -2,7 +2,7 @@
 
 PKG_YUBIKEY="gnupg2 pinentry pcsclite ccid libusb-compat gcr"
 PKG_DESKTOP="xorg-server xorg-xrdb i3-gaps polybar compton feh rofi lightdm lightdm-slick-greeter betterlockscreen alsa-utils pulseaudio pavucontrol xclip"
-PKG_APPS="zip unzip jetbrains-toolbox code synergy qt5-base openssh zsh konsole powerline-go thunar moka-icon-theme faba-icon-theme scrot imagemagick spotify jq systemd-boot-pacman-hook google-chrome"
+PKG_APPS="cronie zip unzip jetbrains-toolbox code synergy qt5-base openssh zsh konsole powerline-go thunar moka-icon-theme faba-icon-theme scrot imagemagick spotify jq systemd-boot-pacman-hook google-chrome"
 PKG_NVIDIA="nvidia nvidia-utils lib32-nvidia-utils"
 PKG_INTEL="xf86-video-intel mesa lib32-mesa"
 NERD_FONTS='"FiraCode","Hack","Hasklig","Overpass","SourceCodePro"'
@@ -44,6 +44,9 @@ fc-cache -v
 echo "Installing nvm"
 nvm_version=$(curl -sS https://api.github.com/repos/creationix/nvm/releases/latest | jq -r '.tag_name')
 curl -sS -o- https://raw.githubusercontent.com/creationix/nvm/$nvm_version/install.sh | bash
+
+echo "Configuring cronie"
+sudo systemctl enable cronie.service
 
 echo "Configuring sshd"
 sudo sed -i "s/^\#\?\(PermitRootLogin\).*$/\1 no/" /etc/ssh/sshd_config
