@@ -1,5 +1,5 @@
 [Appearance]
-ColorScheme=DarkPastels
+ColorScheme=One Dark
 Font=Hasklig Medium,10,-1,5,57,0,0,0,0,0,Regular
 
 [General]
