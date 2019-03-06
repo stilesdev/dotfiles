@@ -35,6 +35,9 @@ fi
 alias ls='ls --color=auto'
 alias ll='ls -lAh'
 
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+
 export GPG_TTY=`tty`
 export SSH_AUTH_SOCK=/run/user/$(id -u)/gnupg/S.gpg-agent.ssh
 
