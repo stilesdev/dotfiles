@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=One Dark
-Font=Hasklig Medium,10,-1,5,57,0,0,0,0,0,Regular
+Font=Hasklig Medium,9,-1,5,57,0,0,0,0,0
 
 [General]
 Command=/bin/zsh
