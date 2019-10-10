@@ -35,8 +35,15 @@ fi
 alias ls='ls --color=auto'
 alias ll='ls -lAh'
 
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
+bindkey "^H" backward-delete-word     # Ctrl+Backspace
+bindkey "^[[3~" delete-char           # Del
+bindkey "^[[3;5~" delete-word         # Ctrl+Del
+bindkey "^[[H" beginning-of-line      # Home
+bindkey "^[[F" end-of-line            # End
+bindkey "^[[5~" beginning-of-history  # PgUp
+bindkey "^[[6~" end-of-history        # PgDown
+bindkey "^[[1;5C" forward-word        # Ctrl+Right
+bindkey "^[[1;5D" backward-word       # Ctrl+Left
 
 export GPG_TTY=`tty`
 export SSH_AUTH_SOCK=/run/user/$(id -u)/gnupg/S.gpg-agent.ssh
