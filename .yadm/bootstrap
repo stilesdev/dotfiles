@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 PKG_YUBIKEY="gnupg pinentry pcsclite ccid libusb-compat gcr libu2f-host"
-PKG_DESKTOP="xorg-server xorg-xrdb i3-gaps polybar compton feh rofi lightdm lightdm-slick-greeter betterlockscreen alsa-utils pulseaudio pavucontrol xclip blueman"
-PKG_APPS="cronie htop zip unzip jetbrains-toolbox code synergy qt5-base openssh zsh konsole powerline-go thunar moka-icon-theme faba-icon-theme scrot imagemagick spotify jq systemd-boot-pacman-hook pacman-contrib google-chrome"
+PKG_DESKTOP="xorg-server xorg-xrdb i3-gaps polybar compton feh rofi lightdm lightdm-slick-greeter betterlockscreen alsa-utils pulseaudio pavucontrol pulseaudio-equalizer-ladspa xclip blueman"
+PKG_APPS="cronie htop zip unzip jetbrains-toolbox code synergy qt5-base openssh zsh konsole powerline-go thunar moka-icon-theme faba-icon-theme scrot imagemagick spotify jq systemd-boot-pacman-hook pacman-contrib google-chrome thermald tlp"
 PKG_NVIDIA="nvidia nvidia-utils lib32-nvidia-utils"
 PKG_INTEL="xf86-video-intel mesa lib32-mesa"
 NERD_FONTS='"FiraCode","Hack","Hasklig","Overpass","SourceCodePro"'
@@ -52,11 +52,17 @@ echo "Configuring sshd"
 sudo sed -i "s/^\#\?\(PermitRootLogin\).*$/\1 no/" /etc/ssh/sshd_config
 sudo systemctl enable sshd.service
 
-echo "Configuring lightdm to use slick-greeter"
+echo "Configuring lightdm"
 sudo sed -i "s/^\#\?\(greeter\-session=\).*$/\1lightdm\-slick\-greeter/" /etc/lightdm/lightdm.conf
-
-echo "Enabling lightdm to start at boot"
 sudo systemctl enable lightdm.service
+
+echo "Configuring thermald"
+sudo systemctl enable thermald.service
+
+echo "Configuring tlp"
+sudo systemctl enable tlp.service
+sudo systemctl mask systemd-rfkill.service
+sudo systemctl mask systemd-rfkill.socket
 
 echo "Configuring synergy client to start on login screen"
 if ! grep "^greeter-setup-script=/usr/bin/synergyc" /etc/lightdm/lightdm.conf; then
