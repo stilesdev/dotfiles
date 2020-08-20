@@ -34,6 +34,7 @@ fi
 
 alias ls='ls --color=auto'
 alias ll='ls -lAh'
+alias dc='docker-compose'
 
 bindkey "^H" backward-delete-word     # Ctrl+Backspace
 bindkey "^[[3~" delete-char           # Del
