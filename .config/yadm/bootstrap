@@ -42,7 +42,7 @@ rm -r /tmp/fonts
 fc-cache -v
 
 echo "Installing nvm"
-nvm_version=$(curl -sS https://api.github.com/repos/creationix/nvm/releases/latest | jq -r '.tag_name')
+nvm_version=$(curl -sS https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
 curl -sS -o- https://raw.githubusercontent.com/creationix/nvm/$nvm_version/install.sh | bash
 
 echo "Configuring cronie"
