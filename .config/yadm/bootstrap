@@ -1,45 +1,75 @@
 #!/usr/bin/env bash
 
-PKG_YUBIKEY="gnupg pinentry pcsclite ccid libusb-compat gcr libu2f-host yubioath-desktop"
-PKG_DESKTOP="xorg-server xorg-xrdb i3-gaps polybar compton feh rofi lightdm lightdm-slick-greeter betterlockscreen alsa-utils pulseaudio pavucontrol pulseaudio-equalizer-ladspa xclip blueman"
-PKG_APPS="cronie htop zip unzip jetbrains-toolbox code synergy qt5-base openssh zsh konsole powerline-go thunar moka-icon-theme faba-icon-theme scrot imagemagick spotify jq systemd-boot-pacman-hook pacman-contrib google-chrome thermald tlp smbclient"
-PKG_NVIDIA="nvidia nvidia-utils lib32-nvidia-utils"
-PKG_INTEL="xf86-video-intel mesa lib32-mesa"
+PKG_BASE="systemd-boot-pacman-hook pacman-contrib zip unzip htop openssh zsh imagemagick jq smbclient cronie"
+PKG_GRAPHICS_NVIDIA="nvidia nvidia-utils lib32-nvidia-utils"
+PKG_GRAPHICS_INTEL="xf86-video-intel mesa lib32-mesa"
+PKG_BLUETOOTH="blueman"
+PKG_LAPTOP="thermald tlp xf86-input-libinput"
+PKG_DOCKER="docker docker-compose"
+PKG_GUI_BASE="xorg-server xorg-xrdb i3-gaps polybar picom feh rofi lightdm lightdm-slick-greeter betterlockscreen qt5-base moka-icon-theme faba-icon-theme"
+PKG_GUI_APPS="konsole powerline-go thunar scrot google-chrome jetbrains-toolbox code synergy yubioath-desktop spotify xclip"
+PKG_AUDIO="alsa-utils pulseaudio pavucontrol pulseaudio-equalizer-ladspa"
+PKG_YUBIKEY="gnupg pinentry pcsclite ccid libusb-compat gcr libu2f-host"
+
 NERD_FONTS='"FiraCode","Hack","Hasklig","Overpass","SourceCodePro"'
 
 case $(hostname) in
 bismuth*)
-    PACKAGES="$PKG_YUBIKEY $PKG_DESKTOP $PKG_APPS $PKG_NVIDIA"
+    GRAPHICS='nvidia'
+    HAS_BLUETOOTH=false
+    IS_LAPTOP=false
+    IS_DOCKER_HOST=true
+    USE_GUI=true
     ;;
-arjia* | gallium* | arcade*)
-    PACKAGES="$PKG_YUBIKEY $PKG_DESKTOP $PKG_APPS $PKG_INTEL"
+arjia* | gallium*) # TODO: is this still in use?
+    GRAPHICS='intel'
+    HAS_BLUETOOTH=false
+    IS_LAPTOP=true
+    IS_DOCKER_HOST=false
+    USE_GUI=true
+    ;;
+arcade*)
+    GRAPHICS='intel'
+    HAS_BLUETOOTH=true
+    IS_LAPTOP=true
+    IS_DOCKER_HOST=true
+    USE_GUI=true
+    ;;
+*)
+    GRAPHICS='intel'
+    HAS_BLUETOOTH=false
+    IS_LAPTOP=false
+    IS_DOCKER_HOST=false
+    USE_GUI=false
     ;;
 esac
 
+PACKAGES="$PKG_BASE"
+
+if [ "$GRAPHICS" = 'intel' ]; then
+    PACKAGES="$PACKAGES $PKG_GRAPHICS_INTEL"
+elif [ "$GRAPHICS" = 'nvidia' ]; then
+    PACKAGES="$PACKAGES $PKG_GRAPHICS_NVIDIA"
+fi
+
+if ($HAS_BLUETOOTH); then
+    PACKAGES="$PACKAGES $PKG_BLUETOOTH"
+fi
+
+if ($IS_LAPTOP); then
+    PACKAGES="$PACKAGES $PKG_LAPTOP"
+fi
+
+if ($IS_DOCKER_HOST); then
+    PACKAGES="$PACKAGES $PKG_DOCKER"
+fi
+
+if ($USE_GUI); then
+    PACKAGES="$PACKAGES $PKG_GUI_BASE $PKG_GUI_APPS $PKG_AUDIO $PKG_YUBIKEY"
+fi
+
 echo "Installing packages"
 yay --noconfirm --needed -S $PACKAGES || exit $?
-
-echo "Downloading and installing Nerd Fonts"
-CWD=$(pwd)
-mkdir -p /tmp/fonts && cd /tmp/fonts
-for FONT_URL in $(curl -Ss "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r ".assets[] | select(.name | contains($NERD_FONTS)) | .browser_download_url"); do
-    curl -LOJ "$FONT_URL"
-done
-for FONT_ZIP in /tmp/fonts/*.zip; do
-    FONT_NAME=$(basename $FONT_ZIP .zip)
-    sudo rm -r "/usr/share/fonts/$FONT_NAME"
-    unzip -q "$FONT_ZIP"
-    sudo install -o root -g root -d "/usr/share/fonts/$FONT_NAME"
-    if ls /tmp/fonts/*Complete.otf > /dev/null 2>&1; then
-        sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *Complete.otf
-    else
-        sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *Complete.ttf
-    fi
-    rm -f /tmp/fonts/*.otf /tmp/fonts/*.ttf
-done
-cd "$CWD"
-rm -r /tmp/fonts
-fc-cache -v
 
 echo "Installing nvm"
 nvm_version=$(curl -sS https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
@@ -47,48 +77,92 @@ curl -sS -o- https://raw.githubusercontent.com/creationix/nvm/$nvm_version/insta
 
 echo "Configuring cronie"
 sudo systemctl enable cronie.service
+sudo systemctl start cronie.service
 
 echo "Configuring sshd"
 sudo sed -i "s/^\#\?\(PermitRootLogin\).*$/\1 no/" /etc/ssh/sshd_config
 sudo systemctl enable sshd.service
 
-echo "Configuring lightdm"
-sudo sed -i "s/^\#\?\(greeter\-session=\).*$/\1lightdm\-slick\-greeter/" /etc/lightdm/lightdm.conf
-sudo systemctl enable lightdm.service
+if ($IS_LAPTOP); then
+    echo "Configuring thermald"
+    sudo systemctl enable thermald.service
 
-echo "Configuring thermald"
-sudo systemctl enable thermald.service
+    echo "Configuring tlp"
+    sudo systemctl enable tlp.service
+    sudo systemctl mask systemd-rfkill.service
+    sudo systemctl mask systemd-rfkill.socket
 
-echo "Configuring tlp"
-sudo systemctl enable tlp.service
-sudo systemctl mask systemd-rfkill.service
-sudo systemctl mask systemd-rfkill.socket
-
-echo "Configuring synergy client to start on login screen"
-if ! grep "^greeter-setup-script=/usr/bin/synergyc" /etc/lightdm/lightdm.conf; then
-    echo -e "\n[SeatDefaults]\ngreeter-setup-script=/usr/bin/synergyc --enable-crypto argon.stiles.me" | sudo tee -a /etc/lightdm/lightdm.conf
+    echo "Configuring touchpad"
+    sudo cp $HOME/.config/yadm/30-touchpad.conf /etc/X11/xorg.conf.d/
+    sudo chown root:root /etc/X11/xorg.conf.d/30-touchpad.conf
+    sudo chmod 644 /etc/X11/xorg.conf.d/30-touchpad.conf
 fi
 
-echo "Creating screenshots directory"
-mkdir -p ~/Pictures/Screenshots
-
-echo "Creating wallpapers directory and generating placeholder wallpaper"
-if ! [ "$(ls -A $HOME/Pictures/Wallpapers 2>/dev/null)" ]; then
-    mkdir -p ~/Pictures/Wallpapers
-    convert -size 1920x1080 xc:black ~/Pictures/Wallpapers/placeholder.jpg
+if ($IS_DOCKER_HOST); then
+    echo "Configuring docker"
+    sudo systemctl enable docker
+    sudo systemctl start docker
+    sudo usermod -a -G docker $USER
 fi
 
-echo "Setting up GPG key"
-systemctl --user mask --now gpg-agent.service gpg-agent.socket gpg-agent-ssh.socket gpg-agent-extra.socket gpg-agent-browser.socket
-sudo systemctl enable pcscd
-sudo systemctl start pcscd
-if ! gpg --card-status; then
-    echo "Failed to detect YubiKey. Plug in the YubiKey and try running the bootstrap script again"
-elif ! gpg --keyserver keys.gnupg.net --recv C0AC1B5B; then
-    echo "Failed to retrieve key from keyserver. Check internet connectivity and try running the bootstrap script again"
-else
-    echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key C0AC1B5B trust
+if ($USE_GUI); then
+    echo "Downloading and installing Nerd Fonts"
+    CWD=$(pwd)
+    mkdir -p /tmp/fonts && cd /tmp/fonts
+    for FONT_URL in $(curl -Ss "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r ".assets[] | select(.name | contains($NERD_FONTS)) | .browser_download_url"); do
+        curl -LOJ "$FONT_URL"
+    done
+    for FONT_ZIP in /tmp/fonts/*.zip; do
+        FONT_NAME=$(basename $FONT_ZIP .zip)
+        sudo rm -r "/usr/share/fonts/$FONT_NAME"
+        unzip -q "$FONT_ZIP"
+        sudo install -o root -g root -d "/usr/share/fonts/$FONT_NAME"
+        if ls /tmp/fonts/*Complete.otf > /dev/null 2>&1; then
+            sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *Complete.otf
+        else
+            sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *Complete.ttf
+        fi
+        rm -f /tmp/fonts/*.otf /tmp/fonts/*.ttf
+    done
+    cd "$CWD"
+    rm -r /tmp/fonts
+    fc-cache -v
+
+    echo "Configuring lightdm"
+    sudo sed -i "s/^\#\?\(greeter\-session=\).*$/\1lightdm\-slick\-greeter/" /etc/lightdm/lightdm.conf
+    sudo systemctl enable lightdm.service
+
+    echo "Configuring synergy client to start on login screen"
+    if ! grep "^greeter-setup-script=/usr/bin/synergyc" /etc/lightdm/lightdm.conf; then
+        echo -n "Default Synergy server hostname: "
+        read synergy_host
+        echo -e "\n[SeatDefaults]\ngreeter-setup-script=/usr/bin/synergyc --enable-crypto $synergy_host" | sudo tee -a /etc/lightdm/lightdm.conf
+    fi
+
+    echo "Creating screenshots directory"
+    mkdir -p ~/Pictures/Screenshots
+
+    echo "Creating wallpapers directory and generating placeholder wallpaper"
+    if ! [ "$(ls -A $HOME/Pictures/Wallpapers 2>/dev/null)" ]; then
+        mkdir -p ~/Pictures/Wallpapers
+        convert -size 1920x1080 xc:black ~/Pictures/Wallpapers/placeholder.jpg
+        betterlockscreen -u $HOME/Pictures/Wallpapers/placeholder.jpg
+    fi
+
+    echo "Setting up GPG key"
+    systemctl --user mask --now gpg-agent.service gpg-agent.socket gpg-agent-ssh.socket gpg-agent-extra.socket gpg-agent-browser.socket
+    sudo systemctl enable pcscd
+    sudo systemctl start pcscd
+    if ! gpg --card-status; then
+        echo "Failed to detect YubiKey. Plug in the YubiKey and try running the bootstrap script again"
+    elif ! gpg --keyserver keys.gnupg.net --recv C0AC1B5B; then
+        echo "Failed to retrieve key from keyserver. Check internet connectivity and try running the bootstrap script again"
+    else
+        echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key C0AC1B5B trust
+    fi
+
+    echo "Updating the yadm repo origin URL"
+    yadm remote set-url origin "git@github.com:mstiles92/dotfiles.git"
 fi
 
-echo "Updating the yadm repo origin URL"
-yadm remote set-url origin "git@github.com:mstiles92/dotfiles.git"
+echo "Bootstrap complete. If this is the first time this has run on a new install, reboot to load all new services."
