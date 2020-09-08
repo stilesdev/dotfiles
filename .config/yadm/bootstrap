@@ -11,36 +11,29 @@ PKG_GUI_APPS="konsole powerline-go thunar scrot google-chrome jetbrains-toolbox 
 PKG_AUDIO="alsa-utils pulseaudio pavucontrol pulseaudio-equalizer-ladspa"
 PKG_YUBIKEY="gnupg pinentry pcsclite ccid libusb-compat gcr libu2f-host"
 
-NERD_FONTS='"FiraCode","Hack","Hasklig","Overpass","SourceCodePro"'
+NERD_FONTS='"Hack","Hasklig","Overpass","SourceCodePro","Cousine","iA-Writer"' #iMWritingQuattroS
+
+GRAPHICS='intel'
+HAS_BLUETOOTH=false
+IS_LAPTOP=false
+IS_DOCKER_HOST=false
+USE_GUI=false
 
 case $(hostname) in
 bismuth*)
     GRAPHICS='nvidia'
-    HAS_BLUETOOTH=false
-    IS_LAPTOP=false
     IS_DOCKER_HOST=true
     USE_GUI=true
     ;;
 arjia* | gallium*) # TODO: is this still in use?
-    GRAPHICS='intel'
-    HAS_BLUETOOTH=false
     IS_LAPTOP=true
-    IS_DOCKER_HOST=false
     USE_GUI=true
     ;;
 arcade*)
-    GRAPHICS='intel'
     HAS_BLUETOOTH=true
     IS_LAPTOP=true
     IS_DOCKER_HOST=true
     USE_GUI=true
-    ;;
-*)
-    GRAPHICS='intel'
-    HAS_BLUETOOTH=false
-    IS_LAPTOP=false
-    IS_DOCKER_HOST=false
-    USE_GUI=false
     ;;
 esac
 
@@ -116,17 +109,19 @@ if ($USE_GUI); then
     CWD=$(pwd)
     mkdir -p /tmp/fonts && cd /tmp/fonts
     for FONT_URL in $(curl -Ss "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r ".assets[] | select(.name | contains($NERD_FONTS)) | .browser_download_url"); do
+        echo "Downloading $FONT_URL"
         curl -LOJ "$FONT_URL"
     done
     for FONT_ZIP in /tmp/fonts/*.zip; do
         FONT_NAME=$(basename $FONT_ZIP .zip)
+        echo "Installing $FONT_NAME"
         sudo rm -r "/usr/share/fonts/$FONT_NAME"
         unzip -q "$FONT_ZIP"
         sudo install -o root -g root -d "/usr/share/fonts/$FONT_NAME"
-        if ls /tmp/fonts/*Complete.otf > /dev/null 2>&1; then
-            sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *Complete.otf
-        else
+        if ls /tmp/fonts/*Complete.ttf > /dev/null 2>&1; then
             sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *Complete.ttf
+        else
+            sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *Complete.otf
         fi
         rm -f /tmp/fonts/*.otf /tmp/fonts/*.ttf
     done
