@@ -36,6 +36,14 @@ alias ls='ls --color=auto'
 alias ll='ls -lAh'
 alias dc='docker-compose'
 
+if which autossh > /dev/null; then
+    alias localtun='AUTOSSH_POLL=300 AUTOSSH_FIRST_POLL=10 AUTOSSH_GATETIME=5 autossh -M 20000 -N -p 2222 -R 8080:localhost:80 -R 8081:localhost:8081 tun.stiles.me'
+fi
+
+if [ -f '/opt/cisco/anyconnect/bin/vpn' ]; then
+    alias vpn='/opt/cisco/anyconnect/bin/vpn'
+fi
+
 bindkey "^H" backward-delete-word     # Ctrl+Backspace
 bindkey "^[[3~" delete-char           # Del
 bindkey "^[[3;5~" delete-word         # Ctrl+Del

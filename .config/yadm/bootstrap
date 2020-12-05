@@ -6,10 +6,11 @@ PKG_GRAPHICS_INTEL="xf86-video-intel mesa lib32-mesa"
 PKG_BLUETOOTH="blueman"
 PKG_LAPTOP="thermald tlp xf86-input-libinput"
 PKG_DOCKER="docker docker-compose"
-PKG_GUI_BASE="xorg-server xorg-xrdb i3-gaps polybar picom feh rofi lightdm lightdm-slick-greeter betterlockscreen qt5-base moka-icon-theme faba-icon-theme"
-PKG_GUI_APPS="konsole powerline-go thunar scrot google-chrome jetbrains-toolbox code synergy yubioath-desktop xclip"
+PKG_GUI_BASE="xorg-server xorg-xrdb i3-gaps polybar picom feh rofi lightdm lightdm-slick-greeter betterlockscreen qt5-base moka-icon-theme-git faba-icon-theme-git"
+PKG_GUI_APPS="arandr konsole powerline-go thunar scrot google-chrome jetbrains-toolbox code synergy yubioath-desktop xclip"
 PKG_AUDIO="alsa-utils pulseaudio pavucontrol pulseaudio-equalizer-ladspa"
 PKG_YUBIKEY="gnupg pinentry pcsclite ccid libusb-compat gcr libu2f-host"
+PKG_WORK_APPS="autossh freerdp remmina subversion teams vlc"
 
 NERD_FONTS='"Hack","Hasklig","Overpass","SourceCodePro"'
 
@@ -18,15 +19,12 @@ HAS_BLUETOOTH=false
 IS_LAPTOP=false
 IS_DOCKER_HOST=false
 USE_GUI=false
+IS_WORK_MACHINE=false
 
 case $(hostname) in
 bismuth*)
     GRAPHICS='nvidia'
     IS_DOCKER_HOST=true
-    USE_GUI=true
-    ;;
-arjia* | gallium*) # TODO: is this still in use?
-    IS_LAPTOP=true
     USE_GUI=true
     ;;
 arcade*)
@@ -35,6 +33,19 @@ arcade*)
     IS_DOCKER_HOST=true
     USE_GUI=true
     ;;
+worktest*)
+    HAS_BLUETOOTH=true
+    IS_LAPTOP=true
+    IS_DOCKER_HOST=true
+    USE_GUI=true
+    IS_WORK_MACHINE=true
+    ;;
+JSTILES-ARCHLINUX*)
+    GRAPHICS='nvidia'
+    HAS_BLUETOOTH=true
+    IS_DOCKER_HOST=true
+    USE_GUI=true
+    IS_WORK_MACHINE=true
 esac
 
 PACKAGES="$PKG_BASE"
@@ -61,8 +72,20 @@ if ($USE_GUI); then
     PACKAGES="$PACKAGES $PKG_GUI_BASE $PKG_GUI_APPS $PKG_AUDIO $PKG_YUBIKEY"
 fi
 
+if ($IS_WORK_MACHINE); then
+    PACKAGES="$PACKAGES $PKG_WORK_APPS"
+fi
+
 echo "Installing packages"
 yay --noconfirm --needed -S $PACKAGES || exit $?
+
+echo "Processing yadm alternates and templates"
+if ($IS_WORK_MACHINE); then
+    yadm config local.class Work
+else
+    yadm config local.class Personal
+fi
+yadm alt
 
 echo "Installing Spotify (workaround for GPG importing issue)"
 if ! yay --noconfirm --needed -S spotify; then
