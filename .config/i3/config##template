@@ -28,8 +28,8 @@ set $urgent-bg-color     #E53935
 set $rofi-color	         #9575cd
 
 {% if yadm.class == "Work" %}
-set $monitor1 DP-0
-set $monitor2 HDMI-0
+set $monitor1 DP-3
+set $monitor2 DP-0.8
 {% endif %}
 
 
@@ -221,10 +221,14 @@ bindsym $mod+Control+Right move workspace to output right
 assign [class="Google-chrome"] $workspace1
 {% if yadm.class == "Work" %}
 assign [class="jetbrains-phpstorm"] $workspace3
+assign [class="org.remmina.Remmina"] $workspace7
+assign [class="Microsoft Teams - Preview"] $workspace8
+assign [class="superProductivity"] $workspace9
+for_window [class="Spotify"] move scratchpad
 {% else %}
 assign [class="jetbrains-webstorm"] $workspace3
-{% endif %}
 for_window [class="Spotify"] move to workspace $workspace10 # (Workaround for Spotify not immediately setting the window class)
+{% endif %}
 
 # Force applications to open in floating mode
 for_window [class="Lxappearance"] floating enable
@@ -236,7 +240,11 @@ for_window [class="Cisco AnyConnect Secure Mobility Client"] floating enable
 # Force workspaces to specific monitors
 {% if yadm.class == "Work" %}
 workspace $workspace1 output $monitor1
-# TODO: other workspaces
+workspace $workspace2 output $monitor1
+workspace $workspace3 output $monitor2
+workspace $workspace7 output $monitor1
+workspace $workspace8 output $monitor1
+workspace $workspace9 output $monitor1
 {% endif %}
 
 
@@ -309,32 +317,51 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec ~/Scripts/toggle-touchpad.sh
+# bindsym XF86TouchpadToggle exec --no-startup-id ~/Scripts/toggle-touchpad.sh
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+{% if yadm.class == "Work" %}
+# F13 = Microphone mute
+bindsym XF86Tools exec --no-startup-id pactl set-source-mute alsa_input.usb-C-Media_Electronics_Inc._InnoGear_UC016-00.multichannel-input toggle
+{% endif %}
+
+
+
+# Set screen layout for multiple monitors
+# ---------------------------------------------------------
+{% if yadm.class == "Work" %}
+exec_always --no-startup-id $HOME/.scripts/screen-layout.sh
+{% endif %}
 
 
 
 # Run programs at startup
 # ---------------------------------------------------------
 
-exec_always --no-startup-id compton -f
-#exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
 exec_always --no-startup-id betterlockscreen --update ~/Pictures/Wallpapers --blur 2
 exec_always --no-startup-id betterlockscreen --wall
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec google-chrome-stable
-exec --no-startup-id spotify
 exec_always --no-startup-id ~/Scripts/gpg-agent-restart.sh
-#exec synergy
+
+exec google-chrome-stable
 {% if yadm.class == "Work" %}
-# TODO: work programs to autostart
+exec --no-startup-id i3-msg 'workspace $workspace2; exec konsole'
+exec ~/.scripts/phpstorm
+exec remmina -c ~/.local/share/remmina/*.remmina
+exec teams
+exec superproductivity
+{% else %}
+
 {% endif %}
+exec --no-startup-id spotify
+
+exec_always --no-startup-id picom -f --unredir-if-possible --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil --fade-delta=3 --frame-opacity=1.0

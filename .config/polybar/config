@@ -58,8 +58,8 @@ font-1 = "fixed:pixelsize=10;1"
 ;font-2 = siji:pixelsize=10;1
 
 modules-left = i3
-modules-center = 
-modules-right = xbacklight alsa pulseaudio filesystem memory cpu temperature wlan eth vpn battery date
+modules-center = spotify
+modules-right = microphone pulseaudio xbacklight filesystem memory cpu temperature wlan eth vpn battery date
 
 tray-position = right
 tray-padding = 2
@@ -172,6 +172,13 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 ; Separator in between workspaces
 ; label-separator = |
 
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = python ~/.scripts/polybar-modules/spotify-status.py -f '{play_pause} {song} - {artist} - {album}' -q -t 80
+format-underline = #1db954
 
 [module/mpd]
 type = internal/mpd
@@ -202,6 +209,12 @@ bar-fill-foreground = #9f78e1
 bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
+
+[module/microphone]
+type = custom/script
+interval = 1
+format = <label>
+exec = bash ~/.scripts/polybar-modules/microphone-mute.sh 'InnoGear_UC016'
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -317,33 +330,33 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
-# [module/alsa]
-# type = internal/alsa
+[module/alsa]
+type = internal/alsa
 
-# format-volume = <label-volume> <bar-volume>
-# label-volume = VOL
-# label-volume-foreground = ${root.foreground}
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL
+label-volume-foreground = ${root.foreground}
 
-# format-muted-prefix = " "
-# format-muted-foreground = ${colors.foreground-alt}
-# label-muted = sound muted
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
 
-# bar-volume-width = 10
-# bar-volume-foreground-0 = #55aa55
-# bar-volume-foreground-1 = #55aa55
-# bar-volume-foreground-2 = #55aa55
-# bar-volume-foreground-3 = #55aa55
-# bar-volume-foreground-4 = #55aa55
-# bar-volume-foreground-5 = #f5a70a
-# bar-volume-foreground-6 = #ff5555
-# bar-volume-gradient = false
-# bar-volume-indicator = |
-# bar-volume-indicator-font = 2
-# bar-volume-fill = ─
-# bar-volume-fill-font = 2
-# bar-volume-empty = ─
-# bar-volume-empty-font = 2
-# bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery

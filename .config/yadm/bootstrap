@@ -4,13 +4,13 @@ PKG_BASE="systemd-boot-pacman-hook pacman-contrib zip unzip htop openssh zsh ima
 PKG_GRAPHICS_NVIDIA="nvidia nvidia-utils lib32-nvidia-utils"
 PKG_GRAPHICS_INTEL="xf86-video-intel mesa lib32-mesa"
 PKG_BLUETOOTH="blueman"
-PKG_LAPTOP="thermald tlp xf86-input-libinput"
+PKG_LAPTOP="thermald tlp xf86-input-libinput xorg-xbacklight"
 PKG_DOCKER="docker docker-compose"
 PKG_GUI_BASE="xorg-server xorg-xrdb xorg-xev xorg-xmodmap i3-gaps polybar picom feh rofi lightdm lightdm-slick-greeter betterlockscreen qt5-base moka-icon-theme-git faba-icon-theme-git"
 PKG_GUI_APPS="arandr konsole powerline-go thunar scrot google-chrome jetbrains-toolbox code synergy yubioath-desktop xclip superproductivity-bin"
-PKG_AUDIO="alsa-utils pulseaudio pavucontrol pulseaudio-equalizer-ladspa"
+PKG_AUDIO="alsa-utils pulseaudio pavucontrol pulseaudio-equalizer-ladspa playerctl python-dbus"
 PKG_YUBIKEY="gnupg pinentry pcsclite ccid libusb-compat gcr libu2f-host"
-PKG_WORK_APPS="autossh freerdp remmina subversion teams vlc"
+PKG_WORK_APPS="autossh freerdp libreoffice-still remmina subversion teams vlc"
 
 NERD_FONTS='"Hack","Hasklig","Overpass","SourceCodePro"'
 
