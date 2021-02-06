@@ -293,7 +293,7 @@ bindsym $mod+Return exec konsole
 #bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 480 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Overpass 18"
 #bindsym $mod+d exec dmenu_run
 # Start rofi to launch other programs (v1.3.1)
-bindsym $mod+d exec rofi -show drun -lines 3 -eh 2 -width 100 -padding 700 -bw 0 -font "Overpass Nerd Font 18"
+bindsym $mod+d exec rofi -show drun -lines 5 -eh 2 -width 100 -padding 300 -fullscreen -bw 0 -font "Overpass Nerd Font 18"
 
 # Start i3lock to lock the system
 #bindsym $mod+shift+x exec ~/Scripts/lock.sh
