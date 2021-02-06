@@ -324,10 +324,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20
 # bindsym XF86TouchpadToggle exec --no-startup-id ~/Scripts/toggle-touchpad.sh
 
 # Media player controls
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id "playerctl --player=vlc,spotify,%any play-pause"
+bindsym XF86AudioPause exec --no-startup-id "playerctl --player=vlc,spotify,%any play-pause"
+bindsym XF86AudioNext exec --no-startup-id "playerctl --player=vlc,spotify,%any next"
+bindsym XF86AudioPrev exec --no-startup-id "playerctl --player=vlc,spotify,%any previous"
 
 {% if yadm.class == "Work" %}
 # F13 = Microphone mute
