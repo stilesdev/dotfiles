@@ -300,12 +300,16 @@ bindsym $mod+d exec rofi -show drun -lines 3 -eh 2 -width 100 -padding 700 -bw 0
 bindsym $mod+shift+x exec betterlockscreen --lock dimblur
 
 # Take a screenshot using scrot - PrtScr = entire screen, Ctrl+PrtScr = selection, Alt+PrtScr = active window
-# Could also copy to the clipboard, but Synergy doesn't currently transfer the copied image correctly, and hangs when large files exist on the clipboard.
-# For future reference, if this gets fixed: --exec 'xclip -selection clipboard -t image/png -i $f'
+# Synergy doesn't currently transfer the copied image correctly, and hangs when large files exist on the clipboard, so only copy image to clipboard on work machine.
+{% if yadm.class == "Work" %}
+bindsym Print exec scrot --silent --exec 'xclip -selection clipboard -t image/png -i $f' "$HOME/Pictures/Screenshots/%Y-%m-%d_%H:%M:%S.png"
+bindsym Ctrl+Print exec sleep 0.2 && scrot --silent --select --freeze --exec 'xclip -selection clipboard -t image/png -i $f' "$HOME/Pictures/Screenshots/%Y-%m-%d_%H:%M:%S.png"
+bindsym Mod1+Print exec scrot --silent --focused --exec 'xclip -selection clipboard -t image/png -i $f' "$HOME/Pictures/Screenshots/%Y-%m-%d_%H:%M:%S.png"
+{% else %}
 bindsym Print exec scrot --silent "$HOME/Pictures/Screenshots/%Y-%m-%d_%H:%M:%S.png"
-bindsym Ctrl+Print exec sleep 0.1 && scrot --silent --select "$HOME/Pictures/Screenshots/%Y-%m-%d_%H:%M:%S.png"
-bindsym Alt+Print exec scrot --silent --focused "$HOME/Pictures/Screenshots/%Y-%m-%d_%H:%M:%S.png"
-
+bindsym Ctrl+Print exec sleep 0.2 && scrot --silent --select "$HOME/Pictures/Screenshots/%Y-%m-%d_%H:%M:%S.png"
+bindsym Mod1+Print exec scrot --silent --focused "$HOME/Pictures/Screenshots/%Y-%m-%d_%H:%M:%S.png"
+{% endif %}
 
 
 # Media and function keys
