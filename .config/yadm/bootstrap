@@ -33,13 +33,6 @@ arcade*)
     IS_DOCKER_HOST=true
     USE_GUI=true
     ;;
-worktest*)
-    HAS_BLUETOOTH=true
-    IS_LAPTOP=true
-    IS_DOCKER_HOST=true
-    USE_GUI=true
-    IS_WORK_MACHINE=true
-    ;;
 JSTILES-ARCHLINUX*)
     GRAPHICS='nvidia'
     HAS_BLUETOOTH=true
