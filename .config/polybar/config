@@ -175,9 +175,9 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 [module/spotify]
 type = custom/script
 interval = 1
-format-prefix = " "
+;format-prefix = " "
 format = <label>
-exec = python ~/.scripts/polybar-modules/spotify-status.py -f '{play_pause} {song} - {artist} - {album}' -q -t 80
+exec = python ~/.scripts/polybar-modules/spotify-status.py -f '{play_pause}  {song}          ﴁ {artist}           {album}' -q -t 120
 format-underline = #1db954
 
 [module/mpd]
@@ -212,9 +212,9 @@ bar-empty-foreground = ${colors.foreground-alt}
 
 [module/microphone]
 type = custom/script
-interval = 1
+interval = 0.5
 format = <label>
-exec = bash ~/.scripts/polybar-modules/microphone-mute.sh 'InnoGear_UC016'
+exec = bash ~/.scripts/polybar-modules/microphone-mute.sh 'InnoGear'
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -289,12 +289,12 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
-date =
+date = " %Y-%m-%d"
 date-alt = " %Y-%m-%d"
 
-time = %H:%M
+time = %H:%M:%S
 time-alt = %H:%M:%S
 
 format-prefix = " "

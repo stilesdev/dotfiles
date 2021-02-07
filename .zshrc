@@ -36,6 +36,10 @@ alias ls='ls --color=auto'
 alias ll='ls -lAh'
 alias dc='docker-compose'
 
+if which psql > /dev/null; then
+    alias pg="psql -U postgre -d distributed -h localhost"
+fi
+
 if which autossh > /dev/null; then
     alias localtun='AUTOSSH_POLL=300 AUTOSSH_FIRST_POLL=10 AUTOSSH_GATETIME=5 autossh -M 20000 -N -p 2222 -R 8080:localhost:80 -R 8081:localhost:8081 tun.stiles.me'
 fi
