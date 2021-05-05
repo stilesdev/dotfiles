@@ -368,7 +368,7 @@ exec google-chrome-stable
 {% if yadm.class == "Work" %}
 exec --no-startup-id i3-msg 'workspace $workspace2; exec konsole'
 exec ~/.scripts/phpstorm
-exec remmina -c ~/.local/share/remmina/*.remmina
+exec remmina -c ~/.local/share/remmina/auto_*.remmina
 exec teams
 exec --no-startup-id spotify
 {% else %}
