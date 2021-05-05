@@ -12,6 +12,8 @@ PKG_AUDIO="alsa-utils pulseaudio pavucontrol pulseaudio-equalizer-ladspa playerc
 PKG_YUBIKEY="gnupg pinentry pcsclite ccid libusb-compat gcr libfido2"
 PKG_WORK_APPS="autossh freerdp libreoffice-still postgresql-client remmina storageexplorer subversion teams vlc"
 
+PKG_RETIRED="superproductivity-bin libu2f-host rofi"
+
 NERD_FONTS='"Hack","Hasklig","Overpass","SourceCodePro"'
 
 GRAPHICS='intel'
@@ -71,6 +73,9 @@ fi
 
 echo "Installing packages"
 yay --noconfirm --needed -S $PACKAGES || exit $?
+
+echo "Removing retired packages"
+yay --noconfirm -Rs $PKG_RETIRED
 
 echo "Processing yadm alternates and templates"
 if ($IS_WORK_MACHINE); then
