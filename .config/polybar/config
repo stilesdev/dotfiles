@@ -108,6 +108,11 @@ mount-0 = /
 mount-1 = /home
 mount-2 = /var
 
+; Potential icons to be used when PR #1668 makes it into a release https://github.com/polybar/polybar/pull/1668
+;label-mounted-0 = "   "
+;label-mounted-1 = "    "
+;label-mounted-2 = "     "
+
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 #label-unmounted = %mountpoint% not mounted
 label-unmounted =
