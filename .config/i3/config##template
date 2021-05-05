@@ -29,7 +29,7 @@ set $rofi-color	         #9575cd
 
 {% if yadm.class == "Work" %}
 set $monitor1 DP-3
-set $monitor2 DP-0.8
+set $monitor2 DP-0
 {% endif %}
 
 
@@ -170,8 +170,8 @@ set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7 "
 set $workspace8 "8 "
-set $workspace9 "9 "
-set $workspace10 "10 "
+set $workspace9 "9"
+set $workspace10 "10"
 {% else %}
 set $workspace1 "1 "
 set $workspace2 "2 "
@@ -228,6 +228,13 @@ for_window [class="Spotify"] move scratchpad
 assign [class="jetbrains-webstorm"] $workspace3
 for_window [class="Spotify"] move to workspace $workspace10 # (Workaround for Spotify not immediately setting the window class)
 {% endif %}
+
+# Force popups, etc to open in floating mode
+for_window [window_role="pop-up"] floating enable
+for_window [window_type="splash"] floating enable
+for_window [window_type="popup_menu"] floating enable
+for_window [window_type="notification"] floating enable
+
 
 # Force applications to open in floating mode
 for_window [class="Lxappearance"] floating enable
