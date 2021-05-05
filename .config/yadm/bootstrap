@@ -71,6 +71,9 @@ if ($IS_WORK_MACHINE); then
     PACKAGES="$PACKAGES $PKG_WORK_APPS"
 fi
 
+echo "Configuring yay"
+yay --removemake --sudoloop --save
+
 echo "Installing packages"
 yay --noconfirm --needed -S $PACKAGES || exit $?
 
