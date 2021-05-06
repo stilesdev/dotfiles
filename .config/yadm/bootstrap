@@ -184,7 +184,7 @@ if ($USE_GUI); then
     echo "Creating wallpapers directory and generating placeholder wallpaper"
     if ! [ "$(ls -A $HOME/Pictures/Wallpapers 2>/dev/null)" ]; then
         mkdir -p ~/Pictures/Wallpapers
-        convert -size 1920x1080 xc:black ~/Pictures/Wallpapers/placeholder.jpg
+        convert -size 1920x1080 xc:#393f4c ~/Pictures/Wallpapers/placeholder.jpg
         betterlockscreen -u $HOME/Pictures/Wallpapers/placeholder.jpg
     fi
 

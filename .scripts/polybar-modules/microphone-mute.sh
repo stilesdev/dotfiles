@@ -9,11 +9,11 @@ fi
 # echo $mute
 
 if [ -z "$mute" ]; then
-    echo "%{F#444}%{F-}"
+    echo "%{F#393f4c}%{F-}"
 else
     if [ -z "${mute##*yes}" ]; then
-        echo "%{F#f00}%{F-}"
+        echo "%{F#cc575d}%{F-}"
     else
-        echo "%{F#0f0}%{F-}"
+        echo "%{F#55aa55}%{F-}"
     fi
 fi

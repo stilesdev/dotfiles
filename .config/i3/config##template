@@ -249,7 +249,6 @@ workspace $workspace2 output $monitor1
 workspace $workspace3 output $monitor2
 workspace $workspace7 output $monitor1
 workspace $workspace8 output $monitor1
-workspace $workspace9 output $monitor1
 {% endif %}
 
 
@@ -350,6 +349,7 @@ exec_always --no-startup-id $HOME/.scripts/screen-layout.sh
 # Run programs at startup
 # ---------------------------------------------------------
 
+exec_always yadm alt
 exec_always --no-startup-id betterlockscreen --update ~/Pictures/Wallpapers --blur 2
 exec_always --no-startup-id betterlockscreen --wall
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
