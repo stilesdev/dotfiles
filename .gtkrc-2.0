@@ -1,0 +1,6 @@
+gtk-icon-theme-name = "Arc"
+gtk-theme-name = "Arc-Dark"
+gtk-enable-primary-paste = false
+gtk-cursor-theme-name = "Neutral"
+gtk-application-prefer-dark-theme = true
+gtk-font-name = "Cantarell 9"

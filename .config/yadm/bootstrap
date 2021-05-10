@@ -6,13 +6,13 @@ PKG_GRAPHICS_INTEL="xf86-video-intel mesa lib32-mesa"
 PKG_BLUETOOTH="blueman"
 PKG_LAPTOP="thermald tlp xf86-input-libinput xorg-xbacklight"
 PKG_DOCKER="docker docker-compose"
-PKG_GUI_BASE="xorg-server xorg-xrdb xorg-xev xorg-xmodmap xcursor-neutral i3-gaps polybar picom feh ulauncher lightdm lightdm-slick-greeter betterlockscreen qt5-base moka-icon-theme-git faba-icon-theme-git"
+PKG_GUI_BASE="xorg-server xorg-xrdb xorg-xev xorg-xmodmap xcursor-neutral i3-gaps polybar picom feh ulauncher lightdm lightdm-slick-greeter betterlockscreen qt5-base arc-gtk-theme arc-icon-theme gnome-themes-extra gtk-engine-murrine qt5-styleplugins"
 PKG_GUI_APPS="arandr konsole kcalc powerline-go thunar tumbler ffmpegthumbnailer scrot google-chrome jetbrains-toolbox code synergy yubioath-desktop xclip insomnia"
 PKG_AUDIO="alsa-utils pulseaudio pavucontrol pulseaudio-equalizer-ladspa playerctl python-dbus"
 PKG_YUBIKEY="gnupg pinentry pcsclite ccid libusb-compat gcr libfido2"
 PKG_WORK_APPS="autossh freerdp libreoffice-still postgresql-client remmina storageexplorer subversion teams vlc"
 
-PKG_RETIRED="superproductivity-bin libu2f-host rofi"
+PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git"
 
 NERD_FONTS='"Hack","Hasklig","Overpass","SourceCodePro"'
 
@@ -96,7 +96,7 @@ fi
 
 echo "Installing nvm"
 nvm_version=$(curl -sS https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
-curl -sS -o- https://raw.githubusercontent.com/creationix/nvm/$nvm_version/install.sh | bash
+curl -sS -o- https://raw.githubusercontent.com/nvm-sh/nvm/$nvm_version/install.sh | bash
 
 echo "Configuring cronie"
 sudo systemctl enable cronie.service
@@ -170,6 +170,9 @@ if ($USE_GUI); then
     echo "Configuring lightdm"
     sudo sed -i "s/^\#\?\(greeter\-session=\).*$/\1lightdm\-slick\-greeter/" /etc/lightdm/lightdm.conf
     sudo systemctl enable lightdm.service
+
+    echo "Configuring icon theme"
+    dconf write /org/gnome/desktop/interface/icon-theme "'Arc'"
 
     echo "Configuring synergy client to start on login screen"
     if ! grep "^greeter-setup-script=/usr/bin/synergyc" /etc/lightdm/lightdm.conf; then
