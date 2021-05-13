@@ -349,13 +349,13 @@ exec_always --no-startup-id $HOME/.scripts/screen-layout.sh
 # Run programs at startup
 # ---------------------------------------------------------
 
-exec_always yadm alt
+exec_always --no-startup-id yadm alt
 exec_always --no-startup-id betterlockscreen --update ~/Pictures/Wallpapers --blur 2
 exec_always --no-startup-id betterlockscreen --wall
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id ~/Scripts/gpg-agent-restart.sh
 exec_always --no-startup-id bash -c 'sleep 5 && picom -f --backend xr_glx_hybrid --vsync --use-damage --glx-no-stencil --fade-delta=3 --frame-opacity=1.0'
-exec ulauncher --hide-window --no-window-shadow
+exec --no-startup-id ulauncher --hide-window --no-window-shadow
 
 exec google-chrome-stable
 
@@ -363,7 +363,7 @@ exec google-chrome-stable
 exec --no-startup-id i3-msg 'workspace $workspace2; exec konsole'
 exec ~/.scripts/phpstorm
 exec remmina -c ~/.local/share/remmina/auto_*.remmina
-exec teams
+exec --no-startup-id teams
 exec --no-startup-id spotify
 {% else %}
 
