@@ -16,6 +16,8 @@ PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-ico
 
 NERD_FONTS='"Hack","Hasklig","Overpass","SourceCodePro"'
 
+VSCODE_EXTENSIONS="formulahendry.auto-close-tag ms-azuretools.vscode-docker octref.vetur ph-hawkins.arc-plus PKief.material-icon-theme"
+
 GRAPHICS='intel'
 HAS_BLUETOOTH=false
 IS_LAPTOP=false
@@ -190,6 +192,16 @@ if ($USE_GUI); then
         convert -size 1920x1080 xc:#393f4c ~/Pictures/Wallpapers/placeholder.jpg
         betterlockscreen -u $HOME/Pictures/Wallpapers/placeholder.jpg
     fi
+
+    echo "Installing VSCode extensions"
+    for ext in $VSCODE_EXTENSIONS; do
+        if code --list-extensions | grep "$ext" > /dev/null; then
+            echo "    $ext already installed"
+        else
+            echo "    installing $ext"
+            code --install-extension "$ext"
+        fi
+    done
 
     echo "Setting up GPG key"
     systemctl --user mask --now gpg-agent.service gpg-agent.socket gpg-agent-ssh.socket gpg-agent-extra.socket gpg-agent-browser.socket
