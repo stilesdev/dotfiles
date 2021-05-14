@@ -150,7 +150,7 @@ if ($USE_GUI); then
             echo "  Removing incorrect glyphs from $FONT_NAME"
             mkdir /tmp/fonts/patched
             for input in *Complete.otf; do
-                python $HOME/Scripts/remove-incorrect-nerd-font-glyphs.py "$input" "/tmp/fonts/patched/$input" > /dev/null 2>&1
+                python $HOME/.scripts/remove-incorrect-nerd-font-glyphs.py "$input" "/tmp/fonts/patched/$input" > /dev/null 2>&1
             done
             rm -f /tmp/fonts/*.otf
             mv /tmp/fonts/patched/*.otf /tmp/fonts

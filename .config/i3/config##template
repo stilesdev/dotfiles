@@ -306,7 +306,8 @@ bindsym Mod1+Print exec flameshot screen --clipboard --path "$HOME/Pictures/Scre
 {% else %}
 bindsym Print exec flameshot full --path "$HOME/Pictures/Screenshots"
 bindsym Control+Print exec flameshot gui --path "$HOME/Pictures/Screenshots"
-bindsym Mod1+Print exec flameshot screen --path "$HOME/Pictures/Screenshots"{% endif %}
+bindsym Mod1+Print exec flameshot screen --path "$HOME/Pictures/Screenshots"
+{% endif %}
 
 
 # Media and function keys
@@ -352,7 +353,7 @@ exec_always --no-startup-id yadm alt
 exec_always --no-startup-id betterlockscreen --update ~/Pictures/Wallpapers --blur 2
 exec_always --no-startup-id betterlockscreen --wall
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id ~/Scripts/gpg-agent-restart.sh
+exec_always --no-startup-id ~/.scripts/gpg-agent-restart.sh
 exec_always --no-startup-id bash -c 'sleep 10 && picom'
 exec --no-startup-id ulauncher --hide-window --no-window-shadow
 
