@@ -2,6 +2,7 @@
 
 PKG_BASE="systemd-boot-pacman-hook pacman-contrib zip unzip htop openssh zsh imagemagick jq smbclient cronie"
 PKG_GRAPHICS_NVIDIA="nvidia nvidia-utils lib32-nvidia-utils"
+PKG_GRAPHICS_AMD="xf86-video-amdgpu mesa lib32-mesa vulkan-radeon"
 PKG_GRAPHICS_INTEL="xf86-video-intel mesa lib32-mesa"
 PKG_BLUETOOTH="blueman"
 PKG_LAPTOP="thermald tlp xf86-input-libinput xorg-xbacklight"
@@ -43,6 +44,12 @@ JSTILES-ARCHLINUX*)
     IS_DOCKER_HOST=true
     USE_GUI=true
     IS_WORK_MACHINE=true
+    ;;
+jstiles-linux*)
+    GRAPHICS='amd'
+    IS_DOCKER_HOST=true
+    USE_GUI=true
+    IS_WORK_MACHINE=true
 esac
 
 PACKAGES="$PKG_BASE"
@@ -51,6 +58,8 @@ if [ "$GRAPHICS" = 'intel' ]; then
     PACKAGES="$PACKAGES $PKG_GRAPHICS_INTEL"
 elif [ "$GRAPHICS" = 'nvidia' ]; then
     PACKAGES="$PACKAGES $PKG_GRAPHICS_NVIDIA"
+elif [ "$GRAPHICS" = 'amd' ]; then
+    PACKAGES="$PACKAGES $PKG_GRAPHICS_AMD"
 fi
 
 if ($HAS_BLUETOOTH); then
