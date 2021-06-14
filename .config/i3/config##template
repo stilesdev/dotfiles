@@ -295,7 +295,7 @@ bindsym $mod+Return exec konsole
 
 # Start i3lock to lock the system
 #bindsym $mod+shift+x exec ~/Scripts/lock.sh
-bindsym $mod+shift+x exec betterlockscreen --lock dimblur
+bindsym $mod+shift+x exec betterlockscreen --lock dimblur && $HOME/.scripts/screen-layout.sh
 
 # Take a screenshot - PrtScr = entire screen, Ctrl+PrtScr = selection, Alt+PrtScr = active window
 # Synergy doesn't currently transfer the copied image correctly, and hangs when large files exist on the clipboard, so only copy image to clipboard on work machine.
