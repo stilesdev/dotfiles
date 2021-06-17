@@ -27,8 +27,8 @@ set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 
 {% if yadm.class == "Work" %}
-set $monitor1 DP-3
-set $monitor2 DP-0
+set $monitor1 DisplayPort-0
+set $monitor2 DisplayPort-1
 {% endif %}
 
 

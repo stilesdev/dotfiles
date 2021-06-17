@@ -5,17 +5,14 @@ if [ $(xrandr | grep " connected" | wc -l) -eq 1 ]; then
     echo "Auto"
     xrandr --auto
 else
-    if ((xrandr | grep "DP-0" | grep "1920x1200" >> /dev/null) || (xrandr | grep "DP-0" | grep "1200x1920" >> /dev/null)) && (xrandr | grep "DP-3" | grep "2560x1080" >> /dev/null); then
-        # Home office setup
+    if (xrandr | grep "DisplayPort-0" -A1 | grep "2560x1080" >> /dev/null) && (xrandr | grep "DisplayPort-1" | grep "1920x1200" >> /dev/null); then
         echo "Home Office"
         while (xrandr | grep "panning" >> /dev/null); do
             # Make sure panning is fully disabled
-            # xrandr --output DP-3 --auto --panning 0x0+0+0/0x0+0+0/0/0/0/0
-            # sleep 4
-            xrandr --output DP-0 --auto --panning 0x0+0+0/0x0+0+0/0/0/0/0 --output DP-3 --auto --panning 0x0+0+0/0x0+0+0/0/0/0/0
+            xrandr --output DisplayPort-0 --auto --panning 0x0+0+0/0x0+0+0/0/0/0/0 --output DisplayPort-1 --auto --panning 0x0+0+0/0x0+0+0/0/0/0/0
             sleep 3
         done
-        xrandr --output DP-3 --primary --mode 2560x1080 --rate 85 --pos 1200x460 --rotate normal --output DP-0 --mode 1920x1200 --pos 0x0 --rotate left --output DVI-D-0 --off --output HDMI-0 --off --output HDMI-1 --off --output DP-1 --off --output DP-2 --off
+        xrandr --output DisplayPort-0 --primary --mode 2560x1080 --rate 85 --pos 1200x460 --rotate normal --output DisplayPort-1 --mode 1920x1200 --pos 0x0 --rotate left --output DisplayPort-2 --off --output DisplayPort-3 --off
     elif xrandr | grep "DP-0" | grep "3440x1440" >> /dev/null && xrandr | grep "HDMI-0" | grep "3440x1440" >> /dev/null; then
         # Ultrawide monitor picture-by-picture
         echo "Ultrawide PBP"

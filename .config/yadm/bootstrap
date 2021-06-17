@@ -38,14 +38,7 @@ arcade*)
     IS_DOCKER_HOST=true
     USE_GUI=true
     ;;
-JSTILES-ARCHLINUX*)
-    GRAPHICS='nvidia'
-    HAS_BLUETOOTH=true
-    IS_DOCKER_HOST=true
-    USE_GUI=true
-    IS_WORK_MACHINE=true
-    ;;
-jstiles-linux*)
+jstiles-archlinux*)
     GRAPHICS='amd'
     IS_DOCKER_HOST=true
     USE_GUI=true
