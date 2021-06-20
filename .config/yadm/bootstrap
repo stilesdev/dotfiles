@@ -19,7 +19,7 @@ NERD_FONTS='"Hack","Hasklig","Overpass","SourceCodePro"'
 
 VSCODE_EXTENSIONS="formulahendry.auto-close-tag ms-azuretools.vscode-docker octref.vetur ph-hawkins.arc-plus PKief.material-icon-theme"
 
-GRAPHICS='intel'
+GRAPHICS='none'
 HAS_BLUETOOTH=false
 IS_LAPTOP=false
 IS_DOCKER_HOST=false
@@ -27,14 +27,15 @@ USE_GUI=false
 IS_WORK_MACHINE=false
 
 case $(hostname) in
-bismuth*)
-    GRAPHICS='nvidia'
+arcade*)
+    GRAPHICS='intel'
+    HAS_BLUETOOTH=true
+    IS_LAPTOP=true
     IS_DOCKER_HOST=true
     USE_GUI=true
     ;;
-arcade*)
-    HAS_BLUETOOTH=true
-    IS_LAPTOP=true
+bismuth*)
+    GRAPHICS='nvidia'
     IS_DOCKER_HOST=true
     USE_GUI=true
     ;;
@@ -43,6 +44,10 @@ jstiles-archlinux*)
     IS_DOCKER_HOST=true
     USE_GUI=true
     IS_WORK_MACHINE=true
+    ;;
+tun*)
+    IS_DOCKER_HOST=true
+    ;;
 esac
 
 PACKAGES="$PKG_BASE"
