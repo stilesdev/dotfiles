@@ -1,0 +1,10 @@
+output eDP1
+off
+output VIRTUAL1
+off
+output HDMI1
+crtc 0
+mode 3440x1440
+pos 0x0
+primary
+rate 50.00

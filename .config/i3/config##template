@@ -295,7 +295,7 @@ bindsym $mod+Return exec konsole
 
 # Start i3lock to lock the system
 #bindsym $mod+shift+x exec ~/Scripts/lock.sh
-bindsym $mod+shift+x exec betterlockscreen --lock dimblur && $HOME/.scripts/screen-layout.sh
+bindsym $mod+shift+x exec betterlockscreen --lock dimblur && autorandr
 
 # Take a screenshot - PrtScr = entire screen, Ctrl+PrtScr = selection, Alt+PrtScr = active window
 # Synergy doesn't currently transfer the copied image correctly, and hangs when large files exist on the clipboard, so only copy image to clipboard on work machine.
@@ -341,7 +341,9 @@ bindsym XF86Tools exec --no-startup-id pactl set-source-mute alsa_input.usb-C-Me
 # Set screen layout for multiple monitors
 # ---------------------------------------------------------
 {% if yadm.class == "Work" %}
-exec_always --no-startup-id $HOME/.scripts/screen-layout.sh
+exec_always --no-startup-id autorandr office-default
+{% else %}
+exec_always --no-startup-id autorandr
 {% endif %}
 
 
@@ -352,9 +354,9 @@ exec_always --no-startup-id $HOME/.scripts/screen-layout.sh
 exec_always --no-startup-id yadm alt
 exec_always --no-startup-id betterlockscreen --update ~/Pictures/Wallpapers --blur 2
 exec_always --no-startup-id betterlockscreen --wall
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id ~/.scripts/gpg-agent-restart.sh
-exec_always --no-startup-id bash -c 'sleep 10 && picom'
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.scripts/restart-gpg-agent.sh
+exec_always --no-startup-id bash -c 'sleep 3 && ~/.scripts/restart-picom.sh'
 exec --no-startup-id ulauncher --hide-window --no-window-shadow
 
 exec google-chrome-stable

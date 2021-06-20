@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+export AUTORANDR_CURRENT_PROFILE
+
+~/.config/polybar/launch.sh
+~/.scripts/restart-picom.sh
+~/.scripts/restart-synergy.sh
