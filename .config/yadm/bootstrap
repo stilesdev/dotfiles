@@ -92,12 +92,6 @@ else
 fi
 yadm alt
 
-echo "Installing Spotify (workaround for GPG importing issue)"
-if ! yay --noconfirm --needed -S spotify; then
-    grep validpgpkeys $HOME/.cache/yay/spotify/.SRCINFO | sed "s/[[:space:]]*validpgpkeys =[[:space:]]*//" | xargs -p -I % bash -c 'gpg --keyserver keys.gnupg.net --recv-keys %'
-    yay --noconfirm --needed -S spotify || exit $?
-fi
-
 echo "Installing nvm"
 nvm_version=$(curl -sS https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
 curl -sS -o- https://raw.githubusercontent.com/nvm-sh/nvm/$nvm_version/install.sh | bash
@@ -133,6 +127,12 @@ if ($IS_DOCKER_HOST); then
 fi
 
 if ($USE_GUI); then
+    echo "Installing Spotify (workaround for GPG importing issue)"
+    if ! yay --noconfirm --needed -S spotify; then
+        grep validpgpkeys $HOME/.cache/yay/spotify/.SRCINFO | sed "s/[[:space:]]*validpgpkeys =[[:space:]]*//" | xargs -p -I % bash -c 'gpg --keyserver keys.gnupg.net --recv-keys %'
+        yay --noconfirm --needed -S spotify || exit $?
+    fi
+
     echo "Downloading and installing Nerd Fonts"
     yay --noconfirm --needed -S fontforge
     CWD=$(pwd)
