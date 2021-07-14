@@ -106,8 +106,13 @@ sudo systemctl enable cronie.service
 sudo systemctl start cronie.service
 
 echo "Configuring sshd"
-sudo sed -i "s/^\#\?\(PermitRootLogin\).*$/\1 no/" /etc/ssh/sshd_config
-sudo sed -i "s/^\#\?\(AllowAgentForwarding\).*$/\1 yes/" /etc/ssh/sshd_config
+sudo sed -i "s/^#\?\(PermitRootLogin\).*$/\1 no/" /etc/ssh/sshd_config
+sudo sed -i "s/^#\?\(AllowAgentForwarding\).*$/\1 yes/" /etc/ssh/sshd_config
+if grep "^#\?StreamLocalBindUnlink" /etc/ssh/sshd_config; then
+    sudo sed -i "s/^#\?\(StreamLocalBindUnlink\).*$/\1 yes/" /etc/ssh/sshd_config
+else
+    echo "StreamLocalBindUnlink yes" | sudo tee -a /etc/ssh/sshd_config > /dev/null
+fi
 sudo systemctl enable sshd.service
 
 if ($IS_LAPTOP); then
