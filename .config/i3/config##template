@@ -340,11 +340,7 @@ bindsym XF86Tools exec --no-startup-id pactl set-source-mute alsa_input.usb-C-Me
 
 # Set screen layout for multiple monitors
 # ---------------------------------------------------------
-{% if yadm.class == "Work" %}
-exec_always --no-startup-id autorandr office-default
-{% else %}
-exec_always --no-startup-id autorandr
-{% endif %}
+exec_always --no-startup-id autorandr -c
 
 
 
