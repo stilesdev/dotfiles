@@ -2,6 +2,5 @@
 
 export AUTORANDR_CURRENT_PROFILE
 
-~/.config/polybar/launch.sh
-~/.scripts/restart-picom.sh
+i3-msg restart
 ~/.scripts/restart-synergy.sh
