@@ -15,7 +15,7 @@ compinit
 
 function powerline_precmd() {
     unset RPROMPT
-    eval "$($GOPATH/bin/powerline-go -error $? -shell zsh -eval -modules nix-shell,venv,user,ssh,cwd,perms,jobs,exit,vgo -modules-right git)"
+    eval "$($GOPATH/bin/powerline-go -error $? -shell zsh -eval -hostname-only-if-ssh -modules nix-shell,venv,user,host,ssh,cwd,perms,jobs,exit,vgo -modules-right git)"
 
 }
 
