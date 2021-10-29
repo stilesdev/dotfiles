@@ -96,6 +96,9 @@ else
 fi
 yadm alt
 
+echo "Setting shell to zsh"
+sudo chsh -s /bin/zsh $user
+
 echo "Installing nvm"
 nvm_version=$(curl -sS https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
 curl -sS -o- https://raw.githubusercontent.com/nvm-sh/nvm/$nvm_version/install.sh | bash
