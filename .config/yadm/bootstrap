@@ -79,6 +79,9 @@ if ($IS_WORK_MACHINE); then
     PACKAGES="$PACKAGES $PKG_WORK_APPS"
 fi
 
+echo "Setting shell to zsh"
+sudo chsh -s /bin/zsh $USER
+
 echo "Configuring yay"
 yay --removemake --sudoloop --save
 
@@ -95,9 +98,6 @@ else
     yadm config local.class Personal
 fi
 yadm alt
-
-echo "Setting shell to zsh"
-sudo chsh -s /bin/zsh $user
 
 echo "Installing nvm"
 nvm_version=$(curl -sS https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
