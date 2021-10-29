@@ -12,9 +12,9 @@ arcade* | bismuth*)
     fi
 
     if [ $(whoami) == 'matthew' ]; then
-        synergyc --enable-crypto "$HOST"
+        /usr/bin/synergyc --enable-crypto "$HOST"
     else
-        su -c "synergyc --enable-crypto $HOST" - matthew
+        su -c "/usr/bin/synergyc --enable-crypto $HOST" - matthew
     fi
     ;;
 esac

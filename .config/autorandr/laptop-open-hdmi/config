@@ -3,6 +3,8 @@ off
 output eDP1
 off
 output HDMI1
+off
+output HDMI2
 crtc 0
 mode 3440x1440
 pos 0x0
