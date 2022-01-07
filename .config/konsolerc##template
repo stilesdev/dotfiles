@@ -5,10 +5,16 @@ DefaultProfile=Default.profile
 Favorites=
 
 [KonsoleWindow]
-SaveGeometryOnExit=false
 ShowMenuBarByDefault=false
 
 [MainWindow]
 MenuBar=Disabled
 State=AAAA/wAAAAD9AAAAAAAABpgAAAVTAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAAAAAAHABzAGUAcwBzAGkAbwBuAFQAbwBvAGwAYgBhAHIAAAABT/////8AAAAAAAAAAA==
+RestorePositionForNextInstance=false
 StatusBar=Disabled
+
+[SplitView]
+SplitViewVisibility=AlwaysHideSplitHeader
+
+[TabBar]
+TabBarVisibility=AlwaysHideTabBar
