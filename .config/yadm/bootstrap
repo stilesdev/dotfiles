@@ -192,6 +192,9 @@ if ($USE_GUI); then
     echo "Configuring icon theme"
     dconf write /org/gnome/desktop/interface/icon-theme "'Arc'"
 
+    echo "Configuring mouse acceleration"
+    sudo install -o root -g root -m 644 -t /etc/X11/xorg.conf.d $HOME/.config/yadm/50-no-mouse-acceleration.conf
+
     echo "Configuring synergy client to start on login screen"
     if ! grep "^greeter-setup-script=/usr/bin/synergyc" /etc/lightdm/lightdm.conf; then
         echo -n "Default Synergy server hostname: "
