@@ -205,11 +205,11 @@ if ($USE_GUI); then
     echo "Creating screenshots directory"
     mkdir -p ~/Pictures/Screenshots
 
-    echo "Creating wallpapers directory and generating placeholder wallpaper"
+    echo "Creating wallpapers directory and generating default wallpaper"
     if ! [ "$(ls -A $HOME/Pictures/Wallpapers 2>/dev/null)" ]; then
         mkdir -p ~/Pictures/Wallpapers
-        convert -size 1920x1080 xc:#393f4c ~/Pictures/Wallpapers/placeholder.jpg
-        betterlockscreen -u $HOME/Pictures/Wallpapers/placeholder.jpg
+        convert -size 1920x1080 xc:#393f4c ~/Pictures/Wallpapers/solid.jpg
+        betterlockscreen -u $HOME/Pictures/Wallpapers/solid.jpg
     fi
 
     echo "Installing VSCode extensions"

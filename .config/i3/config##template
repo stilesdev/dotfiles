@@ -348,7 +348,7 @@ exec_always --no-startup-id autorandr -c
 # ---------------------------------------------------------
 
 exec_always --no-startup-id yadm alt
-exec_always --no-startup-id betterlockscreen --update ~/Pictures/Wallpapers --blur 2
+exec_always --no-startup-id betterlockscreen --update ~/Pictures/Wallpapers/solid.jpg
 exec_always --no-startup-id betterlockscreen --wall
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.scripts/restart-gpg-agent.sh
