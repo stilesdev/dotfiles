@@ -360,6 +360,7 @@ exec --no-startup-id ulauncher --hide-window --no-window-shadow
 exec google-chrome-stable
 
 {% if yadm.class == "Work" %}
+exec synology-drive
 exec --no-startup-id i3-msg 'workspace $workspace2; exec konsole'
 exec ~/.scripts/phpstorm
 exec --no-startup-id obsidian
