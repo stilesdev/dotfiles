@@ -8,12 +8,13 @@ PKG_BLUETOOTH="blueman"
 PKG_LAPTOP="thermald tlp xf86-input-libinput xorg-xbacklight"
 PKG_DOCKER="docker docker-compose"
 PKG_GUI_BASE="xorg-server xorg-xrdb xorg-xev xorg-xmodmap xcursor-neutral i3-gaps polybar picom feh ulauncher lightdm lightdm-slick-greeter betterlockscreen qt5-base arc-gtk-theme arc-icon-theme gnome-themes-extra gtk-engine-murrine qt5-styleplugins"
-PKG_GUI_APPS="arandr autorandr konsole kcalc thunar tumbler ffmpegthumbnailer scrot google-chrome jetbrains-toolbox code synergy yubioath-desktop xclip numlockx insomnia seahorse kwalletmanager flameshot"
+PKG_GUI_APPS="arandr autorandr konsole kcalc thunar tumbler ffmpegthumbnailer scrot google-chrome jetbrains-toolbox code synergy yubioath-desktop xclip numlockx insomnia seahorse kwalletmanager flameshot vlc eog onlyoffice-bin"
 PKG_AUDIO="alsa-utils pulseaudio pavucontrol pulseaudio-equalizer-ladspa playerctl python-dbus"
+PKG_PRINTING="cups hplip"
 PKG_YUBIKEY="gnupg pinentry pcsclite ccid libusb-compat gcr libfido2"
-PKG_WORK_APPS="autossh freerdp libreoffice-still postgresql-client remmina storageexplorer subversion teams vlc"
+PKG_WORK_APPS="autossh evolution evolution-ews freerdp git-lfs kcachegrind libvncserver nmap postgresql-client remmina storageexplorer subversion teams"
 
-PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git"
+PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git libreoffice-still"
 
 NERD_FONTS='"Hack","Hasklig","Overpass","SourceCodePro"'
 
@@ -72,7 +73,7 @@ if ($IS_DOCKER_HOST); then
 fi
 
 if ($USE_GUI); then
-    PACKAGES="$PACKAGES $PKG_GUI_BASE $PKG_GUI_APPS $PKG_AUDIO $PKG_YUBIKEY"
+    PACKAGES="$PACKAGES $PKG_GUI_BASE $PKG_GUI_APPS $PKG_AUDIO $PKG_PRINTING $PKG_YUBIKEY"
 fi
 
 if ($IS_WORK_MACHINE); then
