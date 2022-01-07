@@ -5,5 +5,9 @@
     "editor.fontSize": 11,
     "kite.showWelcomeNotificationOnStartup": false,
     "workbench.colorTheme": "Arc+",
-    "workbench.iconTheme": "material-icon-theme"
+    "workbench.iconTheme": "material-icon-theme",
+    "docker.showStartPage": false,
+    "editor.largeFileOptimizations": false,
+    "instantmarkdown.autoCloseServerAndBrowser": false,
+    "instantmarkdown.autoOpenBrowser": false
 }

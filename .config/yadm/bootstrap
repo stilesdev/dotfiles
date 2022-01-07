@@ -18,7 +18,7 @@ PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-ico
 
 NERD_FONTS='"Hack","Hasklig","Overpass","SourceCodePro"'
 
-VSCODE_EXTENSIONS="formulahendry.auto-close-tag ms-azuretools.vscode-docker octref.vetur ph-hawkins.arc-plus PKief.material-icon-theme"
+VSCODE_EXTENSIONS="formulahendry.auto-close-tag ms-azuretools.vscode-docker octref.vetur ph-hawkins.arc-plus PKief.material-icon-theme dbankier.vscode-instant-markdown bierner.markdown-preview-github-styles"
 
 GRAPHICS='none'
 HAS_BLUETOOTH=false
