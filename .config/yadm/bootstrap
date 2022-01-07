@@ -189,6 +189,9 @@ if ($USE_GUI); then
     sudo sed -i "s/^\#\?\(greeter\-session=\).*$/\1lightdm\-slick\-greeter/" /etc/lightdm/lightdm.conf
     sudo systemctl enable lightdm.service
 
+    echo "Configuring greeter"
+    sudo install -o root -g root -m 644 -t /etc/lightdm $HOME/.config/yadm/slick-greeter.conf $HOME/Pictures/Wallpapers/arch-linux.png
+
     echo "Configuring icon theme"
     dconf write /org/gnome/desktop/interface/icon-theme "'Arc'"
 
