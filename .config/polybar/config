@@ -221,6 +221,7 @@ type = custom/script
 interval = 0.5
 format = <label>
 exec = bash ~/.scripts/polybar-modules/microphone-mute.sh 'InnoGear'
+click-left = pactl set-source-mute alsa_input.usb-C-Media_Electronics_Inc._InnoGear_UC016-00.mono-fallback toggle
 
 [module/backlight-acpi]
 inherit = module/xbacklight

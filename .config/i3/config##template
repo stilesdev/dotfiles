@@ -333,7 +333,7 @@ bindsym XF86AudioPrev exec --no-startup-id "playerctl --player=vlc,spotify,%any 
 
 {% if yadm.class == "Work" %}
 # F13 = Microphone mute
-bindsym XF86Tools exec --no-startup-id pactl set-source-mute alsa_input.usb-C-Media_Electronics_Inc._InnoGear_UC016-00.multichannel-input toggle
+bindsym XF86Tools exec --no-startup-id pactl set-source-mute alsa_input.usb-C-Media_Electronics_Inc._InnoGear_UC016-00.mono-fallback toggle
 {% endif %}
 
 
