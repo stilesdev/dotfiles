@@ -164,7 +164,7 @@ bindsym $mod+r mode "resize"
 set $workspace1 "1 "
 set $workspace2 "2 "
 set $workspace3 "3 "
-set $workspace4 "4"
+set $workspace4 "4 ﴬ"
 set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7 "
@@ -220,6 +220,7 @@ bindsym $mod+Control+Right move workspace to output right
 assign [class="Google-chrome"] $workspace1
 {% if yadm.class == "Work" %}
 assign [class="jetbrains-phpstorm"] $workspace3
+assign [class="obsidian"] $workspace4
 assign [class="org.remmina.Remmina"] $workspace7
 assign [class="Microsoft Teams - Preview"] $workspace8
 for_window [class="Spotify"] move scratchpad
@@ -247,6 +248,7 @@ for_window [class="Cisco AnyConnect Secure Mobility Client"] floating enable
 workspace $workspace1 output $monitor1
 workspace $workspace2 output $monitor1
 workspace $workspace3 output $monitor2
+workspace $workspace4 output $monitor2
 workspace $workspace7 output $monitor1
 workspace $workspace8 output $monitor1
 {% endif %}
@@ -360,6 +362,7 @@ exec google-chrome-stable
 {% if yadm.class == "Work" %}
 exec --no-startup-id i3-msg 'workspace $workspace2; exec konsole'
 exec ~/.scripts/phpstorm
+exec --no-startup-id obsidian
 exec remmina -c ~/.local/share/remmina/auto_*.remmina
 exec --no-startup-id teams
 exec --no-startup-id spotify
