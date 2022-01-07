@@ -10,3 +10,7 @@
 	gpgsign = true
 [gpg]
 	program = /usr/bin/gpg
+[init]
+	defaultBranch = main
+[include]
+    path = .gitconfig-local
