@@ -239,6 +239,7 @@ for_window [window_type="notification"] floating enable
 # Force applications to open in floating mode
 for_window [class="Lxappearance"] floating enable
 for_window [class="jetbrains-toolbox"] floating enable
+for_window [title="Remmina Remote Desktop Client"] floating enable
 {% if yadm.class == "Work" %}
 for_window [class="Cisco AnyConnect Secure Mobility Client"] floating enable
 {% endif %}
@@ -297,7 +298,7 @@ bindsym $mod+Return exec konsole
 
 # Start i3lock to lock the system
 #bindsym $mod+shift+x exec ~/Scripts/lock.sh
-bindsym $mod+shift+x exec betterlockscreen --lock dimblur && autorandr
+bindsym $mod+shift+x exec betterlockscreen --lock dimblur
 
 # Take a screenshot - PrtScr = entire screen, Ctrl+PrtScr = selection, Alt+PrtScr = active window
 # Synergy doesn't currently transfer the copied image correctly, and hangs when large files exist on the clipboard, so only copy image to clipboard on work machine.
@@ -342,7 +343,7 @@ bindsym XF86Tools exec --no-startup-id pactl set-source-mute alsa_input.usb-C-Me
 
 # Set screen layout for multiple monitors
 # ---------------------------------------------------------
-exec_always --no-startup-id autorandr -c
+exec --no-startup-id autorandr -c
 
 
 
