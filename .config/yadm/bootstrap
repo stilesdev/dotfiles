@@ -8,17 +8,15 @@ PKG_BLUETOOTH="blueman"
 PKG_LAPTOP="thermald tlp xf86-input-libinput xorg-xbacklight"
 PKG_DOCKER="docker docker-compose"
 PKG_GUI_BASE="xorg-server xorg-xrdb xorg-xev xorg-xmodmap xcursor-neutral i3-gaps polybar picom feh ulauncher lightdm lightdm-slick-greeter betterlockscreen qt5-base arc-gtk-theme arc-icon-theme gnome-themes-extra gtk-engine-murrine qt5-styleplugins"
-PKG_GUI_APPS="arandr autorandr konsole kcalc thunar tumbler ffmpegthumbnailer scrot google-chrome jetbrains-toolbox code synergy yubioath-desktop xclip numlockx insomnia seahorse kwalletmanager flameshot vlc eog onlyoffice-bin"
+PKG_GUI_APPS="arandr autorandr konsole kcalc thunar tumbler ffmpegthumbnailer scrot google-chrome jetbrains-toolbox visual-studio-code-bin synergy yubioath-desktop xclip numlockx insomnia seahorse kwalletmanager flameshot vlc eog onlyoffice-bin"
 PKG_AUDIO="alsa-utils pulseaudio pavucontrol pulseaudio-equalizer-ladspa playerctl python-dbus"
 PKG_PRINTING="cups hplip"
 PKG_YUBIKEY="gnupg pinentry pcsclite ccid libusb-compat gcr libfido2"
 PKG_WORK_APPS="autossh evolution evolution-ews freerdp git-lfs kcachegrind libvncserver nmap postgresql-client remmina storageexplorer subversion synology-drive teams"
 
-PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git libreoffice-still"
+PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git libreoffice-still code"
 
 NERD_FONTS='"Hack","Hasklig","Overpass","SourceCodePro"'
-
-VSCODE_EXTENSIONS="formulahendry.auto-close-tag ms-azuretools.vscode-docker octref.vetur ph-hawkins.arc-plus PKief.material-icon-theme dbankier.vscode-instant-markdown bierner.markdown-preview-github-styles"
 
 GRAPHICS='none'
 HAS_BLUETOOTH=false
@@ -214,16 +212,6 @@ if ($USE_GUI); then
         convert -size 1920x1080 xc:#393f4c ~/Pictures/Wallpapers/solid.jpg
         betterlockscreen -u $HOME/Pictures/Wallpapers/solid.jpg
     fi
-
-    echo "Installing VSCode extensions"
-    for ext in $VSCODE_EXTENSIONS; do
-        if code --list-extensions | grep "$ext" > /dev/null; then
-            echo "    $ext already installed"
-        else
-            echo "    installing $ext"
-            code --install-extension "$ext"
-        fi
-    done
 
     echo "Setting up GPG key"
     systemctl --user mask --now gpg-agent.service gpg-agent.socket gpg-agent-ssh.socket gpg-agent-extra.socket gpg-agent-browser.socket
