@@ -263,7 +263,7 @@ for_window [class="Cisco AnyConnect Secure Mobility Client"] floating enable
 workspace $workspace1 output $monitor1
 workspace $workspace2 output $monitor1
 workspace $workspace3 output $monitor2
-workspace $workspace4 output $monitor2
+workspace $workspace4 output $monitor1
 workspace $workspace7 output $monitor1
 workspace $workspace8 output $monitor1
 {% endif %}
