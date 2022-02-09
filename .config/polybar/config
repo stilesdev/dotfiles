@@ -182,7 +182,7 @@ type = custom/script
 interval = 1
 ;format-prefix = " "
 format = <label>
-exec = python ~/.scripts/polybar-modules/spotify-status.py -f '{play_pause}  {song}          ﴁ {artist}           {album}' -q -t 120
+exec = python ~/.scripts/polybar-modules/spotify-status.py -f ' {song}          ﴁ {artist}           {album}' -q -t 120
 ;format-underline = #91b859
 format-underline = ${colors.active}
 
