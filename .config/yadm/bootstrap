@@ -226,7 +226,7 @@ if ($USE_GUI); then
     fi
 
     echo "Updating the yadm repo origin URL"
-    yadm remote set-url origin "git@github.com:mstiles92/dotfiles.git"
+    yadm remote set-url origin "git@github.com:stilesdev/dotfiles.git"
 fi
 
 echo "Bootstrap complete. If this is the first time this has run on a new install, reboot to load all new services."
