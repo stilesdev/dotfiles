@@ -8,6 +8,7 @@
 	rebase = false
 [commit]
 	gpgsign = true
+	template = ~/.gitmessage
 [gpg]
 	program = /usr/bin/gpg
 [init]

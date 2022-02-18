@@ -32,6 +32,8 @@ if [ "$TERM" != "linux" ]; then
     install_powerline_precmd
 fi
 
+export EDITOR=vim
+
 alias ls='ls --color=auto'
 alias ll='ls -lAh'
 alias dc='docker-compose'
