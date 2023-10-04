@@ -6,3 +6,5 @@ Xft.hintstyle: hintslight
 
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
+
+Xcursor.size: 16
