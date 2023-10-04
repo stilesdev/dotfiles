@@ -33,6 +33,8 @@ secondary = ${colors.foreground-alt}
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-0}
+; dpi-x = 192
+; dpi-y = 192
 width = 100%
 height = 27
 ;offset-x = 1%
@@ -63,7 +65,7 @@ font-1 = "fixed:pixelsize=10;1"
 
 modules-left = i3
 modules-center = spotify
-modules-right = microphone pulseaudio xbacklight filesystem memory cpu temperature wlan eth vpn battery date
+modules-right = menu-display microphone pulseaudio xbacklight filesystem memory cpu temperature wlan eth vpn battery date
 
 tray-position = right
 tray-padding = 2
@@ -215,6 +217,28 @@ bar-fill-foreground = #9f78e1
 bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
+
+[module/menu-display]
+type = custom/menu
+expand-right = false
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.accent}
+label-close = 
+label-close-foreground = ${colors.accent}
+label-separator = ⏽
+label-separator-foreground = ${colors.secondary}
+
+menu-0-0 = Default Layout
+menu-0-0-foreground = ${colors.accent}
+menu-0-0-exec = autorandr office-default
+menu-0-1 = Presenting Layout
+menu-0-1-foreground = ${colors.accent}
+menu-0-1-exec = autorandr office-presenting
+menu-0-2 = Restart Compositor
+menu-0-2-foreground = ${colors.accent}
+menu-0-2-exec = bash ~/.scripts/restart-picom.sh
 
 [module/microphone]
 type = custom/script
@@ -406,7 +430,7 @@ animation-discharging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 2
+thermal-zone = 0
 warn-temperature = 75
 
 format = <ramp> <label>

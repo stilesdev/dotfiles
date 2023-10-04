@@ -25,6 +25,7 @@ set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
+set $border-color        #000000
 
 {% if yadm.class == "Work" %}
 set $monitor1 DisplayPort-0
@@ -37,9 +38,9 @@ set $monitor2 DisplayPort-1
 
 # Set window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.focused          $border-color       $bg-color          $text-color          #00ff00
+client.unfocused        $border-color       $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive $border-color       $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
 # Gaps
@@ -67,6 +68,9 @@ bindsym $mod+Shift+r restart
 # Exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+# No border or window title for new floating windows
+default_border none
+default_floating_border none
 
 
 # Window hotkeys
@@ -176,13 +180,13 @@ bindsym $mod+r mode "resize"
 {% if yadm.class == "Work" %}
 # Define workspaces
 set $workspace1 "1 "
-set $workspace2 "2 "
-set $workspace3 "3 "
-set $workspace4 "4 ﴬ"
-set $workspace5 "5"
-set $workspace6 "6"
-set $workspace7 "7 "
-set $workspace8 "8 "
+set $workspace2 "2 "
+set $workspace3 "3 "
+set $workspace4 "4 󰨞"
+set $workspace5 "5 ﴬ"
+set $workspace6 "6 "
+set $workspace7 "7 󰖳"
+set $workspace8 "8 󰊻"
 set $workspace9 "9"
 set $workspace10 "10"
 {% else %}
@@ -234,7 +238,7 @@ bindsym $mod+Control+Right move workspace to output right
 assign [class="Google-chrome"] $workspace1
 {% if yadm.class == "Work" %}
 assign [class="jetbrains-phpstorm"] $workspace3
-assign [class="obsidian"] $workspace4
+assign [class="obsidian"] $workspace5
 assign [class="org.remmina.Remmina"] $workspace7
 assign [class="Microsoft Teams - Preview"] $workspace8
 for_window [class="Spotify"] move scratchpad
@@ -253,6 +257,7 @@ for_window [window_type="notification"] floating enable
 # Force applications to open in floating mode
 for_window [class="Lxappearance"] floating enable
 for_window [class="jetbrains-toolbox"] floating enable
+for_window [class="kcalc"] floating enable
 for_window [title="Remmina Remote Desktop Client"] floating enable
 {% if yadm.class == "Work" %}
 for_window [class="Cisco AnyConnect Secure Mobility Client"] floating enable
@@ -263,7 +268,8 @@ for_window [class="Cisco AnyConnect Secure Mobility Client"] floating enable
 workspace $workspace1 output $monitor1
 workspace $workspace2 output $monitor1
 workspace $workspace3 output $monitor2
-workspace $workspace4 output $monitor1
+workspace $workspace4 output $monitor2
+workspace $workspace5 output $monitor2
 workspace $workspace7 output $monitor1
 workspace $workspace8 output $monitor1
 {% endif %}
@@ -379,8 +385,8 @@ exec synology-drive
 exec --no-startup-id i3-msg 'workspace $workspace2; exec konsole'
 exec ~/.scripts/phpstorm
 exec --no-startup-id obsidian
-exec remmina -c ~/.local/share/remmina/auto_*.remmina
-exec --no-startup-id teams
+#exec remmina -c ~/.local/share/remmina/auto_*.remmina
+exec --no-startup-id teams --no-sandbox
 exec --no-startup-id spotify
 {% else %}
 

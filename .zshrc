@@ -13,6 +13,8 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+setopt histignoredups
+
 function powerline_precmd() {
     unset RPROMPT
     eval "$($GOPATH/bin/powerline-go -error $? -shell zsh -eval -hostname-only-if-ssh -modules nix-shell,venv,user,host,ssh,cwd,perms,jobs,exit,vgo -modules-right git)"
@@ -39,7 +41,7 @@ alias ll='ls -lAh'
 alias dc='docker-compose'
 
 if which psql > /dev/null; then
-    alias pg="psql -U postgre -d distributed -h localhost"
+    alias pg="psql -U postgre -d distributed -h localhost -p 7432"
 fi
 
 if which autossh > /dev/null; then
