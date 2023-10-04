@@ -2,15 +2,15 @@
 	name = Matthew Stiles
 	email = mstiles92@gmail.com
 	signingkey = C0AC1B5B
+[commit]
+	gpgsign = true
+	template = ~/.gitmessage
+[core]
+	editor = vim
 [push]
 	default = simple
 [pull]
 	rebase = false
-[commit]
-	gpgsign = true
-	template = ~/.gitmessage
-[gpg]
-	program = /usr/bin/gpg
 [init]
 	defaultBranch = main
 [include]
