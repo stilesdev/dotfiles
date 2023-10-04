@@ -1,1 +1,12 @@
-{}
+{
+    "6be8c6d3-d8b2-471a-a97d-6b95f20e48d2": {
+        "id": "6be8c6d3-d8b2-471a-a97d-6b95f20e48d2",
+        "name": "Sleep",
+        "keyword": "sleep",
+        "cmd": "#!/usr/bin/env bash\nbetterlockscreen -s && ~/.scripts/restart-picom.sh",
+        "icon": null,
+        "is_default_search": false,
+        "run_without_argument": true,
+        "added": 1646433276.505401
+    }
+}
