@@ -312,18 +312,18 @@ bindsym $mod+Return exec konsole
 
 # Start i3lock to lock the system
 #bindsym $mod+shift+x exec ~/Scripts/lock.sh
-bindsym $mod+shift+x exec betterlockscreen --lock dimblur
+bindsym $mod+shift+x exec betterlockscreen --lock dimblur && sleep 1 && autorandr -c && ~/.scripts/restart-picom.sh
 
 # Take a screenshot - PrtScr = entire screen, Ctrl+PrtScr = selection, Alt+PrtScr = active window
 # Synergy doesn't currently transfer the copied image correctly, and hangs when large files exist on the clipboard, so only copy image to clipboard on work machine.
 {% if yadm.class == "Work" %}
-bindsym Print exec flameshot full --clipboard --path "$HOME/Pictures/Screenshots"
-bindsym Control+Print exec flameshot gui --path "$HOME/Pictures/Screenshots"
-bindsym Mod1+Print exec flameshot screen --clipboard --path "$HOME/Pictures/Screenshots"
+bindsym Print exec flameshot full --clipboard --path "$HOME/Pictures/Screenshots" && ~/.scripts/restart-picom.sh
+bindsym Control+Print exec flameshot gui --clipboard --path "$HOME/Pictures/Screenshots" && ~/.scripts/restart-picom.sh
+bindsym Mod1+Print exec flameshot screen --clipboard --path "$HOME/Pictures/Screenshots" && ~/.scripts/restart-picom.sh
 {% else %}
-bindsym Print exec flameshot full --path "$HOME/Pictures/Screenshots"
-bindsym Control+Print exec flameshot gui --path "$HOME/Pictures/Screenshots"
-bindsym Mod1+Print exec flameshot screen --path "$HOME/Pictures/Screenshots"
+bindsym Print exec flameshot full --path "$HOME/Pictures/Screenshots" && ~/.scripts/restart-picom.sh
+bindsym Control+Print exec flameshot gui --path "$HOME/Pictures/Screenshots" && ~/.scripts/restart-picom.sh
+bindsym Mod1+Print exec flameshot screen --path "$HOME/Pictures/Screenshots" && ~/.scripts/restart-picom.sh
 {% endif %}
 
 
@@ -365,11 +365,11 @@ exec --no-startup-id autorandr -c
 # ---------------------------------------------------------
 
 exec_always --no-startup-id yadm alt
-exec_always --no-startup-id betterlockscreen --update ~/Pictures/Wallpapers/solid.jpg
+#exec_always --no-startup-id betterlockscreen --update ~/Pictures/Wallpapers/solid.jpg # this seems to cause a race condition between this and the next command
 exec_always --no-startup-id betterlockscreen --wall
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.scripts/restart-gpg-agent.sh
-exec_always --no-startup-id bash -c 'sleep 3 && ~/.scripts/restart-picom.sh'
+exec_always --no-startup-id bash -c 'sleep 1 && ~/.scripts/restart-picom.sh'
 exec --no-startup-id ulauncher --hide-window --no-window-shadow
 
 exec google-chrome-stable

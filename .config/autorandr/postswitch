@@ -2,5 +2,5 @@
 
 export AUTORANDR_CURRENT_PROFILE
 
-i3-msg restart
+~/.config/polybar/launch.sh
 ~/.scripts/restart-synergy.sh
