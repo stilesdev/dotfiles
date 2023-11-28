@@ -47,8 +47,8 @@ if which autossh > /dev/null; then
     alias localtun='AUTOSSH_POLL=300 AUTOSSH_FIRST_POLL=10 AUTOSSH_GATETIME=5 autossh -M 20000 -N -p 2222 -R 8080:localhost:80 -R 8081:localhost:8081 tun.stiles.me'
 fi
 
-if [ -f '/opt/cisco/anyconnect/bin/vpn' ]; then
-    alias vpn='/opt/cisco/anyconnect/bin/vpn'
+if [ -f '/opt/cisco/secureclient/bin/vpn' ]; then
+    alias vpn='/opt/cisco/secureclient/bin/vpn'
 fi
 
 bindkey "^H" backward-delete-word    # Ctrl+Backspace
