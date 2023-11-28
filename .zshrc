@@ -18,16 +18,15 @@ setopt histignoredups
 function powerline_precmd() {
     unset RPROMPT
     eval "$($GOPATH/bin/powerline-go -error $? -shell zsh -eval -hostname-only-if-ssh -modules nix-shell,venv,user,host,ssh,cwd,perms,jobs,exit,vgo -modules-right git)"
-
 }
 
 function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
+    for s in "${precmd_functions[@]}"; do
+        if [ "$s" = "powerline_precmd" ]; then
+            return
+        fi
+    done
+    precmd_functions+=(powerline_precmd)
 }
 
 if [ "$TERM" != "linux" ]; then
@@ -52,23 +51,23 @@ if [ -f '/opt/cisco/anyconnect/bin/vpn' ]; then
     alias vpn='/opt/cisco/anyconnect/bin/vpn'
 fi
 
-bindkey "^H" backward-delete-word     # Ctrl+Backspace
-bindkey "^[[3~" delete-char           # Del
-bindkey "^[[3;5~" delete-word         # Ctrl+Del
-bindkey "^[[H" beginning-of-line      # Home
-bindkey "^[[F" end-of-line            # End
-bindkey "^[[5~" beginning-of-history  # PgUp
-bindkey "^[[6~" end-of-history        # PgDown
-bindkey "^[[1;5C" forward-word        # Ctrl+Right
-bindkey "^[[1;5D" backward-word       # Ctrl+Left
+bindkey "^H" backward-delete-word    # Ctrl+Backspace
+bindkey "^[[3~" delete-char          # Del
+bindkey "^[[3;5~" delete-word        # Ctrl+Del
+bindkey "^[[H" beginning-of-line     # Home
+bindkey "^[[F" end-of-line           # End
+bindkey "^[[5~" beginning-of-history # PgUp
+bindkey "^[[6~" end-of-history       # PgDown
+bindkey "^[[1;5C" forward-word       # Ctrl+Right
+bindkey "^[[1;5D" backward-word      # Ctrl+Left
 
 # export GPG_TTY=`tty`
 # export GPG_AGENT_INFO=/run/user/$(id -u)/gnupg/S.gpg-agent::
 # export SSH_AUTH_SOCK=/run/user/$(id -u)/gnupg/S.gpg-agent.ssh
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 if [ -f "$HOME/.zshrc-local" ]; then
     source "$HOME/.zshrc-local"
