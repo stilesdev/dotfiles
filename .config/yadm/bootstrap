@@ -72,7 +72,7 @@ if ($IS_DOCKER_HOST); then
 fi
 
 if ($USE_GUI); then
-    PACKAGES="$PACKAGES $PKG_GUI_BASE $PKG_GUI_APPS $PKG_AUDIO $PKG_PRINTING $PKG_YUBIKEY"
+    PACKAGES="$PACKAGES $PKG_GUI_BASE $PKG_GUI_APPS $PKG_AUDIO $PKG_YUBIKEY"
 fi
 
 if ($IS_WORK_MACHINE); then
@@ -158,7 +158,7 @@ if ($USE_GUI); then
     yay --noconfirm --needed -S fontforge
     CWD=$(pwd)
     mkdir -p /tmp/fonts && cd /tmp/fonts
-    for FONT_URL in $(curl -Ss "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r ".assets[] | select(.name | contains($NERD_FONTS)) | .browser_download_url"); do
+    for FONT_URL in $(curl -Ss "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r ".assets[] | select(.name | contains($NERD_FONTS)) | .browser_download_url" | grep .zip); do
         echo "Downloading $FONT_URL"
         curl -LOJ "$FONT_URL"
     done
@@ -166,13 +166,13 @@ if ($USE_GUI); then
         FONT_NAME=$(basename $FONT_ZIP .zip)
         echo "Installing $FONT_NAME"
         sudo rm -rf "/usr/share/fonts/$FONT_NAME"
-        unzip -q "$FONT_ZIP"
+        unzip -q -o "$FONT_ZIP"
         sudo install -o root -g root -d "/usr/share/fonts/$FONT_NAME"
 
         if [ "$FONT_NAME" = "Overpass" ]; then
             echo "  Removing incorrect glyphs from $FONT_NAME"
             mkdir /tmp/fonts/patched
-            for input in *Complete.otf; do
+            for input in *.otf; do
                 python $HOME/.scripts/remove-incorrect-nerd-font-glyphs.py "$input" "/tmp/fonts/patched/$input" >/dev/null 2>&1
             done
             rm -f /tmp/fonts/*.otf
@@ -180,10 +180,10 @@ if ($USE_GUI); then
             rm -rf /tmp/fonts/patched
         fi
 
-        if ls /tmp/fonts/*Complete.ttf >/dev/null 2>&1; then
-            sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *Complete.ttf
+        if ls /tmp/fonts/*.ttf >/dev/null 2>&1; then
+            sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *.ttf
         else
-            sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *Complete.otf
+            sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *.otf
         fi
         rm -f /tmp/fonts/*.otf /tmp/fonts/*.ttf
     done
