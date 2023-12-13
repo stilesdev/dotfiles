@@ -165,7 +165,7 @@ if ($USE_GUI); then
     for FONT_ZIP in /tmp/fonts/*.zip; do
         FONT_NAME=$(basename $FONT_ZIP .zip)
         echo "Installing $FONT_NAME"
-        sudo rm -r "/usr/share/fonts/$FONT_NAME"
+        sudo rm -rf "/usr/share/fonts/$FONT_NAME"
         unzip -q "$FONT_ZIP"
         sudo install -o root -g root -d "/usr/share/fonts/$FONT_NAME"
 
@@ -205,12 +205,12 @@ if ($USE_GUI); then
     echo "Configuring mouse acceleration"
     sudo install -o root -g root -m 644 -t /etc/X11/xorg.conf.d $HOME/.config/yadm/50-no-mouse-acceleration.conf
 
-    echo "Configuring synergy client to start on login screen"
-    if ! grep "^greeter-setup-script=/usr/bin/synergyc" /etc/lightdm/lightdm.conf; then
-        echo -n "Default Synergy server hostname: "
-        read synergy_host
-        echo -e "\n[SeatDefaults]\ngreeter-setup-script=/usr/bin/synergyc --enable-crypto $synergy_host" | sudo tee -a /etc/lightdm/lightdm.conf
-    fi
+    # echo "Configuring synergy client to start on login screen"
+    # if ! grep "^greeter-setup-script=/usr/bin/synergyc" /etc/lightdm/lightdm.conf; then
+    #     echo -n "Default Synergy server hostname: "
+    #     read synergy_host
+    #     echo -e "\n[SeatDefaults]\ngreeter-setup-script=/usr/bin/synergyc --enable-crypto $synergy_host" | sudo tee -a /etc/lightdm/lightdm.conf
+    # fi
 
     echo "Creating screenshots directory"
     mkdir -p ~/Pictures/Screenshots
