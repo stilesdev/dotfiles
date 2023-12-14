@@ -314,7 +314,7 @@ bindsym $mod+minus scratchpad show
 
 # Start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec wezterm
 
 # Start i3lock to lock the system
 #bindsym $mod+shift+x exec ~/Scripts/lock.sh
@@ -389,7 +389,7 @@ exec google-chrome-stable
 
 {% if yadm.class == "Work" %}
 exec synology-drive
-exec --no-startup-id i3-msg 'workspace $workspace2; exec konsole'
+exec --no-startup-id i3-msg 'workspace $workspace2; exec wezterm'
 exec ~/.scripts/phpstorm
 exec --no-startup-id obsidian
 #exec remmina -c ~/.local/share/remmina/auto_*.remmina
