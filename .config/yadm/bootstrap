@@ -33,7 +33,7 @@ PKG_DOCKER="docker docker-compose docker-buildx"
 PKG_WORK_APPS="evolution evolution-ews freerdp git-lfs jetbrains-toolbox kcachegrind libvncserver minikube nmap postgresql-libs postman-bin remmina storageexplorer synology-drive teams"
 
 # Used in the past but no longer needed
-PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git libreoffice-still code insomnia yubioath-desktop arc-gtk-theme arc-icon-theme gtk-engine-murrine qt5-styleplugins scrot cups hplip feh synergy subversion arc-gtk-theme arc-icon-theme gtk-engine-murrine qt5-styleplugins kwalletmanager konsole"
+PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git libreoffice-still code insomnia yubioath-desktop arc-gtk-theme arc-icon-theme gtk-engine-murrine qt5-styleplugins scrot cups hplip synergy subversion arc-gtk-theme arc-icon-theme gtk-engine-murrine qt5-styleplugins kwalletmanager konsole"
 
 NERD_FONTS='"Hack","Hasklig","Overpass","SourceCodePro"'
 
@@ -107,7 +107,8 @@ echo "Installing packages"
 yay --noconfirm --needed -S $PACKAGES || exit $?
 
 echo "Removing retired packages"
-yay --noconfirm -Rs $PKG_RETIRED
+# this must be done one at a time, as yay will fail if any of the listed packages are already uninstalled
+for pkg in $(echo $PKG_RETIRED); do yay --noconfirm -Rs $pkg; done
 
 echo "Processing yadm alternates and templates"
 if ($IS_WORK_MACHINE); then
