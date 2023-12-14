@@ -1,5 +1,5 @@
-gtk-icon-theme-name = "Arc"
-gtk-theme-name = "Arc-Dark"
+gtk-icon-theme-name = "Papirus"
+gtk-theme-name = "Catppuccin-Mocha-Standard-Green-Dark"
 gtk-enable-primary-paste = false
 gtk-cursor-theme-name = "Neutral"
 gtk-application-prefer-dark-theme = true

@@ -12,10 +12,10 @@ PKG_GRAPHICS_INTEL="xf86-video-intel mesa lib32-mesa"
 
 # Installed on all GUI systems
 PKG_GUI_XORG="xorg-server xorg-xrdb xorg-xev xorg-xmodmap"
-PKG_GUI_THEME="arc-gtk-theme arc-icon-theme gtk-engine-murrine qt5-styleplugins gnome-themes-extra xcursor-neutral"
+PKG_GUI_THEME="catppuccin-gtk-theme-mocha gnome-themes-extra papirus-icon-theme xcursor-neutral"
 PKG_GUI_DE="i3-gaps picom polybar ulauncher dunst betterlockscreen lightdm lightdm-slick-greeter"
 PKG_GUI_FILEBROWSER="thunar tumbler ffmpegthumbnailer"
-PKG_GUI_UTILS="arandr autorandr xclip numlockx kcalc flameshot eog seahorse kwalletmanager yubico-authenticator-bin"
+PKG_GUI_UTILS="arandr autorandr xclip numlockx kcalc flameshot eog seahorse yubico-authenticator-bin"
 PKG_GUI_APPS="konsole google-chrome firefox visual-studio-code-bin vlc onlyoffice-bin insomnia-bin"
 PKG_AUDIO="alsa-utils pulseaudio pavucontrol pulseaudio-equalizer-ladspa playerctl python-dbus"
 PKG_YUBIKEY="pinentry pcsclite ccid libusb-compat gcr libfido2"
@@ -33,7 +33,7 @@ PKG_DOCKER="docker docker-compose docker-buildx"
 PKG_WORK_APPS="evolution evolution-ews freerdp git-lfs jetbrains-toolbox kcachegrind libvncserver minikube nmap postgresql-libs postman-bin remmina storageexplorer synology-drive teams"
 
 # Used in the past but no longer needed
-PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git libreoffice-still code insomnia yubioath-desktop arc-gtk-theme arc-icon-theme gtk-engine-murrine qt5-styleplugins scrot cups hplip feh synergy subversion"
+PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git libreoffice-still code insomnia yubioath-desktop arc-gtk-theme arc-icon-theme gtk-engine-murrine qt5-styleplugins scrot cups hplip feh synergy subversion arc-gtk-theme arc-icon-theme gtk-engine-murrine qt5-styleplugins kwalletmanager"
 
 NERD_FONTS='"Hack","Hasklig","Overpass","SourceCodePro"'
 
