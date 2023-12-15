@@ -19,13 +19,32 @@
 # Set mod key (Mod4 = Windows key)
 set $mod Mod4
 
-# Set colors
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
-set $border-color        #000000
+# Set colors (catppuccin mocha palette)
+set $color-rosewater #f5e0dc
+set $color-flamingo  #f2cdcd
+set $color-pink      #f5c2e7
+set $color-mauve     #cba6f7
+set $color-red       #f38ba8
+set $color-maroon    #eba0ac
+set $color-peach     #fab387
+set $color-green     #a6e3a1
+set $color-teal      #94e2d5
+set $color-sky       #89dceb
+set $color-sapphire  #74c7ec
+set $color-blue      #89b4fa
+set $color-lavender  #b4befe
+set $color-text      #cdd6f4
+set $color-subtext1  #bac2de
+set $color-subtext0  #a6adc8
+set $color-overlay2  #9399b2
+set $color-overlay1  #7f849c
+set $color-overlay0  #6c7086
+set $color-surface2  #585b70
+set $color-surface1  #45475a
+set $color-surface0  #313244
+set $color-base      #1e1e2e
+set $color-mantle    #181825
+set $color-crust     #11111b
 
 {% if yadm.class == "Work" %}
 set $monitor1 DisplayPort-0
@@ -37,21 +56,23 @@ set $monitor2 DisplayPort-1
 # ---------------------------------------------------------
 
 # Set window colors
-#                       border              background         text                 indicator
-client.focused          $border-color       $bg-color          $text-color          #00ff00
-client.unfocused        $border-color       $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $border-color       $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+# target                 title-border    bg          text         indicator        border
+client.focused           $color-green    $color-base $color-text  $color-green     $color-green
+client.focused_inactive  $color-overlay0 $color-base $color-text  $color-green     $color-overlay0
+client.unfocused         $color-overlay0 $color-base $color-text  $color-green     $color-overlay0
+client.urgent            $color-red      $color-base $color-red   $color-overlay0  $color-red
+client.placeholder       $color-overlay0 $color-base $color-text  $color-overlay0  $color-overlay0
+client.background        $color-base
+
 
 # Gaps
 gaps inner 20
 #gaps outer 10
 smart_gaps on
 smart_borders on
-new_window pixel 1
 
-# Hide window borders
-hide_edge_borders both
+# Hide window borders adjacent to screen edges
+#hide_edge_borders both
 
 # Font for window titles and bar
 font pango:Overpass Nerd Font 10
@@ -69,9 +90,8 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # No border or window title for new floating windows
-default_border none
-default_floating_border none
-
+default_border pixel 2
+default_floating_border pixel 2
 
 # Window hotkeys
 # ---------------------------------------------------------
@@ -199,7 +219,7 @@ set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
 set $workspace9 "9"
-set $workspace10 "10 "
+set $workspace10 "10"
 {% endif %}
 
 # Switch to workspace
@@ -386,10 +406,10 @@ exec_always --no-startup-id bash -c 'sleep 1 && ~/.scripts/restart-picom.sh'
 exec --no-startup-id ulauncher --hide-window --no-window-shadow
 
 exec google-chrome-stable
+exec --no-startup-id i3-msg 'workspace $workspace2; exec wezterm'
 
 {% if yadm.class == "Work" %}
 exec synology-drive
-exec --no-startup-id i3-msg 'workspace $workspace2; exec wezterm'
 exec ~/.scripts/phpstorm
 exec --no-startup-id obsidian
 #exec remmina -c ~/.local/share/remmina/auto_*.remmina
