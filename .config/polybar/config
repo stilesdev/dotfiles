@@ -64,6 +64,7 @@ secondary = ${colors.foreground-alt}
 
 
 [bar/main]
+enable-ipc = true
 ;monitor = ${env:MONITOR:HDMI-0}
 ; dpi-x = 192
 ; dpi-y = 192
