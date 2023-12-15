@@ -89,7 +89,7 @@ bindsym $mod+Shift+r restart
 # Exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# No border or window title for new floating windows
+# Set new window borders, no title bars
 default_border pixel 2
 default_floating_border pixel 2
 
@@ -197,22 +197,10 @@ bindsym $mod+r mode "resize"
 # Workspaces
 # ---------------------------------------------------------
 
-{% if yadm.class == "Work" %}
 # Define workspaces
-set $workspace1 "1 "
-set $workspace2 "2 "
-set $workspace3 "3 "
-set $workspace4 "4 󰨞"
-set $workspace5 "5 ﴬ"
-set $workspace6 "6 "
-set $workspace7 "7 󰖳"
-set $workspace8 "8 󰊻"
-set $workspace9 "9"
-set $workspace10 "10"
-{% else %}
-set $workspace1 "1 "
-set $workspace2 "2 "
-set $workspace3 "3 "
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
 set $workspace4 "4"
 set $workspace5 "5"
 set $workspace6 "6"
@@ -220,7 +208,6 @@ set $workspace7 "7"
 set $workspace8 "8"
 set $workspace9 "9"
 set $workspace10 "10"
-{% endif %}
 
 # Switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -273,7 +260,6 @@ for_window [window_type="splash"] floating enable
 for_window [window_type="popup_menu"] floating enable
 for_window [window_type="notification"] floating enable
 
-
 # Force applications to open in floating mode
 for_window [class="Lxappearance"] floating enable
 for_window [class="jetbrains-toolbox"] floating enable
@@ -309,25 +295,6 @@ bindsym $mod+minus scratchpad show
 
 
 
-# Bar settings
-# ---------------------------------------------------------
-
-# bar {
-# 	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-# #    tray_output primary
-# 	position top
-
-# 	colors {
-# 		background $bg-color
-# 	    separator #757575
-# 		#                  border             background         text
-# 		focused_workspace  $bg-color          $bg-color          $text-color
-# 		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-# 		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-# 	}
-# }
-
-
 
 # Program hotkeys
 # ---------------------------------------------------------
@@ -336,7 +303,7 @@ bindsym $mod+minus scratchpad show
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec wezterm
 
-# Start i3lock to lock the system
+# Start betterlockscreen to lock the system
 #bindsym $mod+shift+x exec ~/Scripts/lock.sh
 bindsym $mod+shift+x exec betterlockscreen --lock dimblur && sleep 1 && autorandr -c && ~/.scripts/restart-picom.sh
 
