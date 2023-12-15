@@ -243,15 +243,15 @@ bindsym $mod+Control+Right move workspace to output right
 # Force applications to open in a specific workspace
 # use `xprop` command in terminal and click on application window to find (second value for class)
 assign [class="Google-chrome"] $workspace1
+assign [class="Code"] $workspace4
+assign [class="obsidian"] $workspace5
+for_window [class="Spotify"] move scratchpad # (for_window instead of assign is a Workaround for Spotify not immediately setting the window class)
+
 {% if yadm.class == "Work" %}
 assign [class="jetbrains-phpstorm"] $workspace3
-assign [class="obsidian"] $workspace5
 assign [class="org.remmina.Remmina"] $workspace7
 assign [class="Microsoft Teams - Preview"] $workspace8
-for_window [class="Spotify"] move scratchpad
 {% else %}
-assign [class="jetbrains-webstorm"] $workspace3
-for_window [class="Spotify"] move to workspace $workspace10 # (Workaround for Spotify not immediately setting the window class)
 {% endif %}
 
 # Force popups, etc to open in floating mode
@@ -276,8 +276,11 @@ workspace $workspace2 output $monitor1
 workspace $workspace3 output $monitor2
 workspace $workspace4 output $monitor2
 workspace $workspace5 output $monitor2
+workspace $workspace6 output $monitor1
 workspace $workspace7 output $monitor1
 workspace $workspace8 output $monitor1
+workspace $workspace9 output $monitor1
+workspace $workspace10 output $monitor1
 {% endif %}
 
 
@@ -374,14 +377,13 @@ exec --no-startup-id ulauncher --hide-window --no-window-shadow
 
 exec google-chrome-stable
 exec --no-startup-id i3-msg 'workspace $workspace2; exec wezterm'
+exec --no-startup-id spotify
 
 {% if yadm.class == "Work" %}
 exec synology-drive
 exec ~/.scripts/phpstorm
 exec --no-startup-id obsidian
-#exec remmina -c ~/.local/share/remmina/auto_*.remmina
 exec --no-startup-id teams --no-sandbox
-exec --no-startup-id spotify
 {% else %}
 
 {% endif %}
