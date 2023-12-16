@@ -64,7 +64,7 @@ jstiles-archlinux*)
     ;;
 esac
 
-PACKAGES="$PKG_BASE"
+PACKAGES="$PKG_SYSTEM $PKG_UTILS $PKG_TERMINAL"
 USE_GUI=true
 
 if [ "$GRAPHICS" = 'intel' ]; then
