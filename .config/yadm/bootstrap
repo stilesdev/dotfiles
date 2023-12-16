@@ -33,7 +33,7 @@ PKG_DOCKER="docker docker-compose docker-buildx"
 PKG_WORK_APPS="evolution evolution-ews freerdp git-lfs jetbrains-toolbox kcachegrind libvncserver minikube nmap postgresql-libs postman-bin remmina storageexplorer synology-drive teams"
 
 # Used in the past but no longer needed
-PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git libreoffice-still code insomnia yubioath-desktop arc-gtk-theme arc-icon-theme gtk-engine-murrine scrot cups hplip synergy subversion arc-gtk-theme arc-icon-theme gtk-engine-murrine qt5-styleplugins kwalletmanager konsole powerline-go insomnia-bin"
+PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git libreoffice-still code insomnia yubioath-desktop arc-gtk-theme arc-icon-theme gtk-engine-murrine scrot cups hplip synergy subversion arc-gtk-theme arc-icon-theme gtk-engine-murrine kwalletmanager konsole powerline-go insomnia-bin"
 
 NERD_FONTS='"Hack","Hasklig","SourceCodePro"'
 
