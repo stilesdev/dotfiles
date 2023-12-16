@@ -10,15 +10,17 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.color_scheme = 'catppuccin-mocha'
+config.color_scheme = 'Catppuccin Mocha'
 
 config.enable_tab_bar = false
 
+config.enable_scroll_bar = true
+
 config.window_padding = {
-	left = 0,
-	right = 0,
-	top = 0,
-	bottom = 0,
+	left = 4,
+	right = 8,
+	top = 2,
+	bottom = 2,
 }
 
 config.font = wezterm.font 'Hasklug Nerd Font'
