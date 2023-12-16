@@ -4,6 +4,7 @@
 PKG_SYSTEM="systemd-boot-pacman-hook pacman-contrib smbclient cronie nohang usbutils"
 PKG_UTILS="zip unzip openssh autossh git tig bat htop imagemagick jq rsync gnupg"
 PKG_TERMINAL="zsh starship neofetch vim"
+PKG_FONTS="otf-hasklig-nerd ttf-sourcecodepro-nerd"
 
 # Graphics drivers by vendor
 PKG_GRAPHICS_NVIDIA="nvidia nvidia-utils lib32-nvidia-utils"
@@ -35,8 +36,6 @@ PKG_WORK_APPS="evolution evolution-ews freerdp git-lfs jetbrains-toolbox kcacheg
 # Used in the past but no longer needed
 PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git libreoffice-still code insomnia yubioath-desktop arc-gtk-theme arc-icon-theme gtk-engine-murrine scrot cups hplip synergy subversion arc-gtk-theme arc-icon-theme gtk-engine-murrine kwalletmanager konsole powerline-go insomnia-bin"
 
-NERD_FONTS='"Hack","Hasklig","SourceCodePro"'
-
 GRAPHICS='none'
 HAS_BLUETOOTH=false
 IS_LAPTOP=false
@@ -64,7 +63,7 @@ jstiles-archlinux*)
     ;;
 esac
 
-PACKAGES="$PKG_SYSTEM $PKG_UTILS $PKG_TERMINAL"
+PACKAGES="$PKG_SYSTEM $PKG_UTILS $PKG_TERMINAL $PKG_FONTS"
 USE_GUI=true
 
 if [ "$GRAPHICS" = 'intel' ]; then
@@ -170,31 +169,6 @@ if ($USE_GUI); then
         grep validpgpkeys $HOME/.cache/yay/spotify/.SRCINFO | sed "s/[[:space:]]*validpgpkeys =[[:space:]]*//" | xargs -p -I % bash -c 'gpg --keyserver keys.gnupg.net --recv-keys %'
         yay --noconfirm --needed -S spotify || exit $?
     fi
-
-    echo "Downloading and installing Nerd Fonts"
-    CWD=$(pwd)
-    mkdir -p /tmp/fonts && cd /tmp/fonts
-    for FONT_URL in $(curl -Ss "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r ".assets[] | select(.name | contains($NERD_FONTS)) | .browser_download_url" | grep .zip); do
-        echo "Downloading $FONT_URL"
-        curl -LOJ "$FONT_URL"
-    done
-    for FONT_ZIP in /tmp/fonts/*.zip; do
-        FONT_NAME=$(basename $FONT_ZIP .zip)
-        echo "Installing $FONT_NAME"
-        sudo rm -rf "/usr/share/fonts/$FONT_NAME"
-        unzip -q -o "$FONT_ZIP"
-        sudo install -o root -g root -d "/usr/share/fonts/$FONT_NAME"
-
-        if ls /tmp/fonts/*.ttf >/dev/null 2>&1; then
-            sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *.ttf
-        else
-            sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *.otf
-        fi
-        rm -f /tmp/fonts/*.otf /tmp/fonts/*.ttf
-    done
-    cd "$CWD"
-    rm -rf /tmp/fonts
-    fc-cache -v
 
     echo "Configuring lightdm"
     sudo sed -i "s/^\#\?\(greeter\-session=\).*$/\1lightdm\-slick\-greeter/" /etc/lightdm/lightdm.conf
