@@ -35,7 +35,7 @@ PKG_WORK_APPS="evolution evolution-ews freerdp git-lfs jetbrains-toolbox kcacheg
 # Used in the past but no longer needed
 PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git libreoffice-still code insomnia yubioath-desktop arc-gtk-theme arc-icon-theme gtk-engine-murrine scrot cups hplip synergy subversion arc-gtk-theme arc-icon-theme gtk-engine-murrine qt5-styleplugins kwalletmanager konsole powerline-go insomnia-bin"
 
-NERD_FONTS='"Hack","Hasklig","Overpass","SourceCodePro"'
+NERD_FONTS='"Hack","Hasklig","SourceCodePro"'
 
 GRAPHICS='none'
 HAS_BLUETOOTH=false
@@ -172,7 +172,6 @@ if ($USE_GUI); then
     fi
 
     echo "Downloading and installing Nerd Fonts"
-    yay --noconfirm --needed -S fontforge
     CWD=$(pwd)
     mkdir -p /tmp/fonts && cd /tmp/fonts
     for FONT_URL in $(curl -Ss "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r ".assets[] | select(.name | contains($NERD_FONTS)) | .browser_download_url" | grep .zip); do
@@ -186,17 +185,6 @@ if ($USE_GUI); then
         unzip -q -o "$FONT_ZIP"
         sudo install -o root -g root -d "/usr/share/fonts/$FONT_NAME"
 
-        if [ "$FONT_NAME" = "Overpass" ]; then
-            echo "  Removing incorrect glyphs from $FONT_NAME"
-            mkdir /tmp/fonts/patched
-            for input in *.otf; do
-                python $HOME/.scripts/remove-incorrect-nerd-font-glyphs.py "$input" "/tmp/fonts/patched/$input" >/dev/null 2>&1
-            done
-            rm -f /tmp/fonts/*.otf
-            mv /tmp/fonts/patched/*.otf /tmp/fonts
-            rm -rf /tmp/fonts/patched
-        fi
-
         if ls /tmp/fonts/*.ttf >/dev/null 2>&1; then
             sudo install -o root -g root -m 644 -t "/usr/share/fonts/$FONT_NAME" *.ttf
         else
@@ -207,7 +195,6 @@ if ($USE_GUI); then
     cd "$CWD"
     rm -rf /tmp/fonts
     fc-cache -v
-    yay --noconfirm -Rs fontforge
 
     echo "Configuring lightdm"
     sudo sed -i "s/^\#\?\(greeter\-session=\).*$/\1lightdm\-slick\-greeter/" /etc/lightdm/lightdm.conf

@@ -75,7 +75,7 @@ smart_borders on
 #hide_edge_borders both
 
 # Font for window titles and bar
-font pango:Overpass Nerd Font 10
+font pango:Hasklug Nerd Font 10
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
