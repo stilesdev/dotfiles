@@ -2,6 +2,7 @@
 
 PACKAGES="\
 neofetch \
+ripgrep \
 starship \
 vim \
 wezterm \
