@@ -27,7 +27,7 @@ config.font = wezterm.font 'Hasklug Nerd Font'
 
 config.font_size = 9
 
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.95
 
 config.front_end = 'WebGpu'
 
