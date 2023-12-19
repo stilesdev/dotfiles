@@ -31,5 +31,7 @@ config.window_background_opacity = 0.95
 
 config.front_end = 'WebGpu'
 
+config.scrollback_lines = 999999
+
 -- and finally, return the configuration to wezterm
 return config
