@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Used in the past but no longer needed
+PKG_RETIRED="superproductivity-bin libu2f-host rofi moka-icon-theme-git faba-icon-theme-git libreoffice-still code insomnia yubioath-desktop arc-gtk-theme arc-icon-theme gtk-engine-murrine scrot cups hplip synergy subversion arc-gtk-theme arc-icon-theme gtk-engine-murrine kwalletmanager konsole powerline-go insomnia-bin"
+
+echo "Removing retired packages"
+# this must be done one at a time, as yay will fail if any of the listed packages are already uninstalled
+for pkg in $(echo $PKG_RETIRED); do yay --noconfirm -Rs $pkg; done

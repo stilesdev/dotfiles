@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# Installed on all systems
+PKG_SYSTEM="systemd-boot-pacman-hook pacman-contrib smbclient cronie nohang usbutils"
+PKG_UTILS="zip unzip openssh autossh git tig bat htop imagemagick jq rsync gnupg"
+PKG_DOCKER="docker docker-compose docker-buildx"
+
+PACKAGES="$PKG_SYSTEM $PKG_UTILS $PKG_DOCKER"
+
+echo "Setting shell to zsh"
+sudo chsh -s /bin/zsh $USER
+
+echo "Configuring yay"
+yay --removemake --sudoloop --save
+
+echo "Installing packages"
+yay --noconfirm --needed -S $PACKAGES || exit $?
+
+echo "Installing nvm"
+nvm_version=$(curl -sS https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
+curl -sS -o- https://raw.githubusercontent.com/nvm-sh/nvm/$nvm_version/install.sh | bash
+
+echo "Configuring cronie"
+sudo systemctl enable --now cronie.service
+
+echo "Configuring sshd"
+sudo sed -i "s/^#\?\(PermitRootLogin\).*$/\1 no/" /etc/ssh/sshd_config
+sudo sed -i "s/^#\?\(AllowAgentForwarding\).*$/\1 yes/" /etc/ssh/sshd_config
+if grep "^#\?StreamLocalBindUnlink" /etc/ssh/sshd_config; then
+    sudo sed -i "s/^#\?\(StreamLocalBindUnlink\).*$/\1 yes/" /etc/ssh/sshd_config
+else
+    echo "StreamLocalBindUnlink yes" | sudo tee -a /etc/ssh/sshd_config >/dev/null
+fi
+sudo systemctl enable sshd.service
+
+echo "Configuring nohang"
+sudo systemctl enable --now nohang.service
+
+echo "Configuring docker"
+sudo systemctl enable --now docker.service
+sudo usermod -a -G docker $USER
+docker buildx install
+
+echo "Bootstrap complete. If this is the first time this has run on a new install, reboot to load all new services."
