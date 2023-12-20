@@ -23,18 +23,6 @@ alias ls='ls --color=auto'
 alias ll='ls -lAh'
 alias dc='docker-compose'
 
-if which psql > /dev/null; then
-    alias pg="psql -U postgre -d distributed -h localhost -p 7432"
-fi
-
-if which autossh > /dev/null; then
-    alias localtun='AUTOSSH_POLL=300 AUTOSSH_FIRST_POLL=10 AUTOSSH_GATETIME=5 autossh -M 20000 -N -p 2222 -R 8080:localhost:80 -R 8081:localhost:8081 tun.stiles.me'
-fi
-
-if [ -f '/opt/cisco/secureclient/bin/vpn' ]; then
-    alias vpn='/opt/cisco/secureclient/bin/vpn'
-fi
-
 bindkey "^H" backward-delete-word    # Ctrl+Backspace
 bindkey "^[[3~" delete-char          # Del
 bindkey "^[[3;5~" delete-word        # Ctrl+Del
@@ -53,6 +41,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-if [ -f "$HOME/.zshrc-local" ]; then
-    source "$HOME/.zshrc-local"
-fi
+for script in ~/.config/shell/*.(z|)sh; do
+    . "$script"
+done
+
