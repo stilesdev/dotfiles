@@ -11,3 +11,6 @@ zsh \
 
 echo "Installing packages"
 sudo pacman -S --noconfirm --needed $PACKAGES || exit $?
+
+#echo "Updating the vcsh repo origin URL"
+#vcsh cli remote set-url origin "git@github.com:stilesdev/dotfiles-cli.git"
