@@ -2,6 +2,7 @@
 
 PACKAGES="\
 neofetch \
+neovim \
 ripgrep \
 starship \
 vim \
