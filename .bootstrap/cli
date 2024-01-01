@@ -8,6 +8,9 @@ starship \
 vim \
 wezterm \
 zsh \
+zsh-autosuggestions \
+zsh-history-substring-search \
+zsh-syntax-highlighting \
 "
 
 echo "Installing packages"
