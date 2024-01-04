@@ -48,3 +48,5 @@ bindkey "^[[6~" end-of-history       # PgDown
 bindkey "^[[1;5C" forward-word       # Ctrl+Right
 bindkey "^[[1;5D" backward-word      # Ctrl+Left
 
+# Same tmux-sessionizer keybind as tmux config
+bindkey -s ^p "tmux-sessionizer\n"

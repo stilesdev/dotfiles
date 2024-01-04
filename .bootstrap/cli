@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
 PACKAGES="\
+fzf \
 neofetch \
 neovim \
 ripgrep \
 starship \
+tmux \
 vim \
 wezterm \
 zsh \
