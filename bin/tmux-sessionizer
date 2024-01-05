@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
-# Awesome little script for starting separate tmux sessions per project from ThePrimeagen
+# Based on an awesome little script for starting separate tmux sessions per project from ThePrimeagen
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
+
+source ~/.bashrc # to pull in TMUX_SESSIONIZER_PROJECTS environment variable
 
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/projects ~/working -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf)
+    selected=$(find ${TMUX_SESSIONIZER_PROJECTS[*]:-~/projects} -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf)
 fi
 
 if [[ -z $selected ]]; then
