@@ -8,7 +8,7 @@ timedatectl status
 curl "https://archlinux.org/mirrorlist/?country=US&protocol=https&ip_version=4&use_mirror_status=on" | cut -c2- > /etc/pacman.d/mirrorlist
 
 # Install base packages
-pacstrap /mnt base base-devel linux linux-firmware dhcpcd inetutils man-db man-pages netctl openssh vim git
+pacstrap /mnt base base-devel linux linux-firmware dhcpcd openresolv inetutils man-db man-pages netctl openssh vim git
 
 # Generate fstab file
 genfstab -U /mnt >> /mnt/etc/fstab
