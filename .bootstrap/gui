@@ -7,7 +7,7 @@ source ~/.bootstrap/base-video-drivers
 PKG_GUI_XORG="xorg-server xorg-xrdb xorg-xev xorg-xmodmap"
 PKG_GUI_THEME="catppuccin-gtk-theme-mocha gnome-themes-extra papirus-icon-theme qt5-styleplugins xcursor-neutral"
 PKG_GUI_DE="i3-gaps picom polybar ulauncher dunst betterlockscreen lightdm lightdm-slick-greeter"
-PKG_GUI_FILEBROWSER="thunar tumbler ffmpegthumbnailer"
+PKG_GUI_FILEBROWSER="thunar tumbler ffmpegthumbnailer ark p7zip unarchiver"
 PKG_GUI_UTILS="arandr autorandr xclip numlockx kcalc flameshot eog seahorse yubico-authenticator-bin"
 PKG_GUI_APPS="wezterm google-chrome firefox visual-studio-code-bin vlc onlyoffice-bin"
 PKG_FONTS="otf-hasklig-nerd ttf-sourcecodepro-nerd"
