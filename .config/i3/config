@@ -95,7 +95,7 @@ bindsym $mod+e layout toggle split
 
 # Enter fullscreen mode with the focused window
 bindsym $mod+f fullscreen toggle
-bindsym $mod+Shift+f exec polybar-msg cmd toggle
+bindsym $mod+b exec polybar-msg cmd toggle
 
 # Toggle floating mode
 bindsym $mod+Shift+space floating toggle
