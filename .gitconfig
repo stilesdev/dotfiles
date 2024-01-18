@@ -3,15 +3,15 @@
     email = mstiles92@gmail.com
     signingkey = C0AC1B5B
 [commit]
-	gpgsign = true
-	template = ~/.gitmessage
+    gpgsign = true
+    template = ~/.gitmessage
 [core]
-	editor = vim
+    editor = vim
 [push]
-	default = simple
+    default = simple
 [pull]
-	rebase = false
+    rebase = false
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [include]
     path = .gitconfig-local
