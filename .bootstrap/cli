@@ -3,6 +3,7 @@
 PACKAGES="\
 fnm-bin \
 fzf \
+go \
 neofetch \
 neovim \
 ripgrep \
