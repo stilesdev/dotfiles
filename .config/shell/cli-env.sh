@@ -8,9 +8,7 @@ export GPG_TTY=`tty`
 export GPG_AGENT_INFO=/run/user/$(id -u)/gnupg/S.gpg-agent::
 export SSH_AUTH_SOCK=/run/user/$(id -u)/gnupg/S.gpg-agent.ssh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+eval "$(fnm env --corepack-enabled)"
 
 # fzf catppuccin mocha color theme
 export FZF_DEFAULT_OPTS=" \

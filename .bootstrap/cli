@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 PACKAGES="\
+fnm-bin \
 fzf \
 neofetch \
 neovim \
