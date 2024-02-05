@@ -16,10 +16,6 @@ yay --removemake --sudoloop --save
 echo "Installing packages"
 yay --noconfirm --needed -S $PACKAGES || exit $?
 
-echo "Installing nvm"
-nvm_version=$(curl -sS https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
-curl -sS -o- https://raw.githubusercontent.com/nvm-sh/nvm/$nvm_version/install.sh | env PROFILE=/dev/null bash
-
 echo "Configuring cronie"
 sudo systemctl enable --now cronie.service
 
