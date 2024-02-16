@@ -14,5 +14,7 @@
     rebase = false
 [init]
     defaultBranch = main
+[alias]
+    tig = "!fn() { tig status; }; fn"
 [include]
     path = .gitconfig-local

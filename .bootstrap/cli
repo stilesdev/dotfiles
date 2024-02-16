@@ -4,10 +4,12 @@ PACKAGES="\
 fnm-bin \
 fzf \
 go \
+jq \
 neofetch \
 neovim \
 ripgrep \
 starship \
+tig \
 tmux \
 vim \
 wezterm \
