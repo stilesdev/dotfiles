@@ -22,5 +22,5 @@ zsh-syntax-highlighting \
 echo "Installing packages"
 yay -S --noconfirm --needed $PACKAGES || exit $?
 
-#echo "Updating the vcsh repo origin URL"
-#vcsh cli remote set-url origin "git@github.com:stilesdev/dotfiles-cli.git"
+echo "Updating the vcsh repo origin URL"
+vcsh cli remote set-url origin "git@github.com:stilesdev/dotfiles-cli.git"
