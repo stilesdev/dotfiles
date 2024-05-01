@@ -14,11 +14,9 @@ config.color_scheme = 'Catppuccin Mocha'
 
 config.enable_tab_bar = false
 
-config.enable_scroll_bar = true
-
 config.window_padding = {
 	left = 4,
-	right = 8,
+	right = 4,
 	top = 2,
 	bottom = 2,
 }
