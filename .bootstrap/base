@@ -37,4 +37,7 @@ sudo systemctl enable --now docker.service
 sudo usermod -a -G docker $USER
 docker buildx install
 
+echo "Updating the vcsh repo origin URL"
+vcsh base remote set-url origin "git@github.com:stilesdev/dotfiles.git"
+
 echo "Bootstrap complete. If this is the first time this has run on a new install, reboot to load all new services."
