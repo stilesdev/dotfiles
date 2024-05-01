@@ -108,5 +108,5 @@ else
     echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key C0AC1B5B trust
 fi
 
-#echo "Updating the vcsh repo origin URL"
-#vcsh gui remote set-url origin "git@github.com:stilesdev/dotfiles.git"
+echo "Updating the vcsh repo origin URL"
+vcsh gui remote set-url origin "git@github.com:stilesdev/dotfiles-gui.git"
