@@ -8,7 +8,7 @@ PKG_DOCKER="docker docker-compose docker-buildx"
 PACKAGES="$PKG_SYSTEM $PKG_UTILS $PKG_DOCKER"
 
 echo "Installing packages"
-yay --noconfirm --needed -S $PACKAGES || exit $?
+sudo pacman --noconfirm --needed -S $PACKAGES || exit $?
 
 echo "Configuring cronie"
 sudo systemctl enable --now cronie.service
