@@ -76,6 +76,9 @@ fi
 echo "Configuring lightdm"
 sudo systemctl enable lightdm.service
 
+echo "Configuring ulauncher"
+systemctl --user enable --now ulauncher.service
+
 echo "Creating screenshots directory"
 mkdir -p ~/Pictures/Screenshots
 
