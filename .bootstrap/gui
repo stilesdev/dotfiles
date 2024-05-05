@@ -77,29 +77,19 @@ if ! yay --noconfirm --needed -S spotify; then
 fi
 
 echo "Configuring lightdm"
-sudo sed -i "s/^\#\?\(greeter\-session=\).*$/\1lightdm\-slick\-greeter/" /etc/lightdm/lightdm.conf
-    sudo systemctl enable lightdm.service
-
-echo "Configuring greeter"
-sudo install -o root -g root -m 644 -t /etc/lightdm $HOME/.bootstrap/files/slick-greeter.conf $HOME/Pictures/Wallpapers/arch-linux.png
-
-echo "Configuring mouse acceleration"
-sudo install -o root -g root -m 644 -t /etc/X11/xorg.conf.d $HOME/.bootstrap/files/50-no-mouse-acceleration.conf
+sudo systemctl enable lightdm.service
 
 echo "Creating screenshots directory"
 mkdir -p ~/Pictures/Screenshots
 
-echo "Creating wallpapers directory and generating default wallpaper"
-if ! [ "$(ls -A $HOME/Pictures/Wallpapers 2>/dev/null)" ]; then
-    mkdir -p ~/Pictures/Wallpapers
-    convert -size 1920x1080 xc:#393f4c ~/Pictures/Wallpapers/solid.jpg
-    betterlockscreen -u $HOME/Pictures/Wallpapers/solid.jpg
+if ! [ -f "$HOME/.fehbg" ]; then
+    echo "Setting default wallpaper"
+    betterlockscreen -u $HOME/Pictures/Wallpapers/arch-linux.png
 fi
 
 echo "Setting up GPG key"
 systemctl --user mask --now gpg-agent.service gpg-agent.socket gpg-agent-ssh.socket gpg-agent-extra.socket gpg-agent-browser.socket
-sudo systemctl enable pcscd
-sudo systemctl start pcscd
+sudo systemctl enable --now pcscd
 if ! gpg --card-status; then
     echo "Failed to detect YubiKey. Plug in the YubiKey and try running the bootstrap script again"
 #elif ! gpg --keyserver keys.gnupg.net --recv C0AC1B5B; then
