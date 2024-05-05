@@ -26,6 +26,9 @@ arcade*)
     GRAPHICS='intel'
     IS_LAPTOP=true
     ;;
+arena*)
+    GRAPHICS='nvidia'
+    ;;
 bismuth*)
     GRAPHICS='nvidia'
     ;;
