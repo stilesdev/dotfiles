@@ -79,6 +79,9 @@ sudo systemctl enable lightdm.service
 echo "Configuring ulauncher"
 systemctl --user enable --now ulauncher.service
 
+echo "Configuring thunar as the default file explorer"
+xdg-mime default thunar.desktop inode/directory
+
 echo "Creating screenshots directory"
 mkdir -p ~/Pictures/Screenshots
 
