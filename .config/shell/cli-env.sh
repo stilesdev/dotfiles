@@ -2,8 +2,6 @@ export EDITOR=vim
 
 export TERMINAL=/usr/bin/wezterm
 
-export PATH="$HOME/bin:$PATH"
-
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$GOBIN:$PATH"

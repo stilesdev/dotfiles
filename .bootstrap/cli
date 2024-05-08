@@ -28,6 +28,9 @@ if ! command -v node > /dev/null 2>&1; then
     fnm default v20
 fi
 
+echo "Installing sessionizer"
+go install github.com/stilesdev/sessionizer@latest
+
 echo "Setting shell to zsh"
 sudo chsh -s /usr/bin/zsh $USER
 
