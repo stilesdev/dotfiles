@@ -85,7 +85,7 @@ xdg-mime default thunar.desktop inode/directory
 echo "Creating screenshots directory"
 mkdir -p ~/Pictures/Screenshots
 
-if ! [ -f "$HOME/.fehbg" ]; then
+if ! [ -f "$HOME/.cache/betterlockscreen/current/wall_resize.png" ]; then
     echo "Setting default wallpaper"
     betterlockscreen -u $HOME/Pictures/Wallpapers/arch-linux.png
 fi
