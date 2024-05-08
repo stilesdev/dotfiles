@@ -2,7 +2,7 @@
 
 # Installed on all systems
 PKG_SYSTEM="systemd-boot-pacman-hook pacman-contrib smbclient cronie nohang usbutils"
-PKG_UTILS="zip unzip openssh autossh git tig bat htop imagemagick jq rsync gnupg"
+PKG_UTILS="zip unzip openssh autossh git tig bat htop imagemagick jq rsync gnupg wget"
 PKG_DOCKER="docker docker-compose docker-buildx"
 
 PACKAGES="$PKG_SYSTEM $PKG_UTILS $PKG_DOCKER"
