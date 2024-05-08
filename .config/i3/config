@@ -214,6 +214,7 @@ for_window [window_type="notification"] floating enable
 for_window [class="Lxappearance"] floating enable
 for_window [class="kcalc"] floating enable
 for_window [title="Remmina Remote Desktop Client"] floating enable
+for_window [class="Authenticator"] floating enable
 
 
 # Scratchpad
