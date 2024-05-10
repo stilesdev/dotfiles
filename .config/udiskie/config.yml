@@ -1,0 +1,4 @@
+program_options:
+  tray: true
+  automount: false
+  terminal: wezterm start --cwd
