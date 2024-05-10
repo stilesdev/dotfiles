@@ -58,6 +58,9 @@ echo "Configuring nohang"
 sudo systemctl disable --now nohang.service
 sudo systemctl enable --now nohang-desktop.service
 
+echo "Configuring bluetooth"
+sudo systemctl enable --now bluetooth.service
+
 if ($IS_LAPTOP); then
     echo "Configuring thermald"
     sudo systemctl enable thermald.service
