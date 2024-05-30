@@ -1,0 +1,18 @@
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.scripts/restart-gpg-agent.sh
+exec_always --no-startup-id bash -c 'sleep 1 && ~/.scripts/restart-picom.sh'
+exec_always --no-startup-id betterlockscreen -w
+exec --no-startup-id ulauncher --hide-window --no-window-shadow
+exec udiskie
+
+exec google-chrome-stable
+exec --no-startup-id i3-msg 'workspace $workspace2; exec wezterm'
+exec --no-startup-id spotify
+
+exec synology-drive
+exec ~/.scripts/PhpStorm
+exec --no-startup-id obsidian
+#exec virt-manager --connect qemu:///system --show-domain-console win10
+exec --no-startup-id teams --no-sandbox
+exec xedgewarp
+exec --no-startup-id bash -c 'sleep 5 && ~/.scripts/cloud-environment-start.sh'
