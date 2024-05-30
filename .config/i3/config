@@ -193,19 +193,9 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
-# Assign workspaces to specific displays
-include ~/.config/i3/config.d/workspace-monitor-assignments.conf
-
 # Move focused workspace to display
 bindsym $mod+Control+Left move workspace to output left
 bindsym $mod+Control+Right move workspace to output right
-
-# Force applications to open in a specific workspace
-# use `xprop` command in terminal and click on application window to find (second value for class)
-assign [class="Google-chrome"] $workspace1
-assign [class="Code"] $workspace4
-assign [class="obsidian"] $workspace5
-for_window [class="Spotify"] move scratchpad # (for_window instead of assign is a Workaround for Spotify not immediately setting the window class)
 
 # Force popups, etc to open in floating mode
 for_window [window_role="pop-up"] floating enable
@@ -213,11 +203,11 @@ for_window [window_type="splash"] floating enable
 for_window [window_type="popup_menu"] floating enable
 for_window [window_type="notification"] floating enable
 
-# Force applications to open in floating mode
-for_window [class="Lxappearance"] floating enable
-for_window [class="kcalc"] floating enable
-for_window [title="Remmina Remote Desktop Client"] floating enable
-for_window [class="Authenticator"] floating enable
+# Assign workspaces to specific displays
+include ~/.config/i3/config.d/workspace-monitor-assignments.conf
+
+# Assign applications to specific workspaces
+include ~/.config/i3/config.d/app-workspace-assignments.conf
 
 
 # Scratchpad

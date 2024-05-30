@@ -1,0 +1,15 @@
+# Force applications to open in a specific workspace
+# use `xprop` command in terminal and click on application window to find (second value for class)
+assign [class="Google-chrome"] $workspace1
+assign [class="jetbrains-phpstorm"] $workspace3
+assign [class="obsidian"] $workspace5
+assign [class="Virt-manager"] $workspace7
+assign [class="Microsoft Teams - Preview"] $workspace8
+for_window [class="Spotify"] move scratchpad # (for_window instead of assign is a Workaround for Spotify not immediately setting the window class)
+
+# Force applications to open in floating mode
+for_window [class="kcalc"] floating enable
+for_window [title="Remmina Remote Desktop Client"] floating enable
+for_window [class="Authenticator"] floating enable
+for_window [class="jetbrains-toolbox"] floating enable
+for_window [class="Cisco AnyConnect Secure Mobility Client"] floating enable
