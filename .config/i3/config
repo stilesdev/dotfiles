@@ -263,7 +263,7 @@ bindsym XF86AudioPrev exec --no-startup-id "playerctl --player=spotify previous"
 
 # Set screen layout for multiple monitors
 # ---------------------------------------------------------
-exec --no-startup-id autorandr -c
+include ~/.config/i3/config.d/screen-layout.conf
 
 
 # Run programs at startup
