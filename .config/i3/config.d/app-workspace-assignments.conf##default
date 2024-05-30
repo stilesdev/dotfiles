@@ -9,3 +9,5 @@ for_window [class="Spotify"] move scratchpad # (for_window instead of assign is 
 for_window [class="kcalc"] floating enable
 for_window [title="Remmina Remote Desktop Client"] floating enable
 for_window [class="Authenticator"] floating enable
+
+# vim:filetype=i3config

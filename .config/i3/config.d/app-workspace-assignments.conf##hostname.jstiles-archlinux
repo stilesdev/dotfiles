@@ -13,3 +13,5 @@ for_window [title="Remmina Remote Desktop Client"] floating enable
 for_window [class="Authenticator"] floating enable
 for_window [class="jetbrains-toolbox"] floating enable
 for_window [class="Cisco AnyConnect Secure Mobility Client"] floating enable
+
+# vim:filetype=i3config

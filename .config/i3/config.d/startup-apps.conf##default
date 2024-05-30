@@ -8,3 +8,5 @@ exec udiskie
 exec google-chrome-stable
 exec --no-startup-id i3-msg 'workspace $workspace2; exec wezterm'
 exec --no-startup-id spotify
+
+# vim:filetype=i3config

@@ -13,3 +13,5 @@ workspace $workspace7 output $monitor1
 workspace $workspace8 output $monitor1
 workspace $workspace9 output $monitor1
 workspace $workspace10 output $monitor1
+
+# vim:filetype=i3config
