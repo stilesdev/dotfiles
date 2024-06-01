@@ -260,6 +260,9 @@ bindsym XF86AudioPause exec --no-startup-id "playerctl --player=spotify play-pau
 bindsym XF86AudioNext exec --no-startup-id "playerctl --player=spotify next"
 bindsym XF86AudioPrev exec --no-startup-id "playerctl --player=spotify previous"
 
+# Any extra per-host keybinds
+include ~/.config/i3/config.d/extra-keybinds.conf
+
 
 # Set screen layout for multiple monitors
 # ---------------------------------------------------------
