@@ -62,6 +62,16 @@ accent = ${palette.green}
 primary = ${colors.foreground}
 secondary = ${colors.foreground-alt}
 
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
 
 [bar/main]
 enable-ipc = true
@@ -96,10 +106,6 @@ font-1 = "fixed:pixelsize=10;1"
 ;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 ;font-2 = siji:pixelsize=10;1
 
-modules-left = i3
-modules-center = spotify
-modules-right = menu-display microphone pulseaudio xbacklight filesystem memory cpu temperature wlan eth vpn battery date
-
 tray-position = right
 tray-padding = 2
 tray-transparent = true
@@ -119,45 +125,8 @@ tray-transparent = true
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
-
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
-
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.underline}
-
-label-layout = %layout%
-label-layout-underline = ${colors.underline}
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.underline}
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-mount-1 = /home
-mount-2 = /var
-
-; Potential icons to be used when PR #1668 makes it into a release https://github.com/polybar/polybar/pull/1668
-;label-mounted-0 = "   "
-;label-mounted-1 = "    "
-;label-mounted-2 = "     "
-
-label-mounted = %{F#a6e3a1}%mountpoint%%{F-}: %percentage_used%%
-label-mounted-underline = ${colors.underline}
-label-mounted-margin = 0
-#label-unmounted = %mountpoint% not mounted
-label-unmounted =
-label-unmounted-foreground = ${colors.foreground-alt}
+; WARNING: this include must always be the last line of the bar section, as this allows defining other modules in the alternate per-system include files
+include-file = config.d/modules
 
 [module/i3]
 type = internal/i3
@@ -202,18 +171,33 @@ format = <label>
 exec = python ~/.scripts/polybar-modules/spotify-status.py -f '󰝚  {song}     󰠃  {artist}     󰀥  {album}' -q -t 120
 format-underline = ${colors.underline}
 
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+[module/pulseaudio]
+type = internal/pulseaudio
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+format-volume = <label-volume> <bar-volume>
+label-volume = 󰕾 %percentage%%
+label-volume-foreground = ${colors.foreground}
 
-label-song-maxlen = 25
-label-song-ellipsis = true
+label-muted = 󰝟 muted
+label-muted-foreground = ${colors.alert}
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.accent}
+bar-volume-foreground-1 = ${colors.accent}
+bar-volume-foreground-2 = ${colors.accent}
+bar-volume-foreground-3 = ${colors.accent}
+bar-volume-foreground-4 = ${colors.accent}
+bar-volume-foreground-5 = ${colors.alert}
+bar-volume-foreground-6 = ${colors.alert}
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-indicator-foreground = ${colors.foreground}
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -232,39 +216,26 @@ bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
 
-[module/menu-display]
-type = custom/menu
-expand-right = false
-format-spacing = 1
+[module/filesystem]
+type = internal/fs
+interval = 25
 
-label-open = 󰍺
-label-open-foreground = ${colors.accent}
-label-close = 
-label-close-foreground = ${colors.accent}
-label-separator = ⏽
-label-separator-foreground = ${colors.secondary}
+include-file = config.d/filesystem-mounts
 
-menu-0-0 = Default Layout
-menu-0-0-foreground = ${colors.accent}
-menu-0-0-exec = autorandr office-default
-menu-0-1 = Presenting Layout
-menu-0-1-foreground = ${colors.accent}
-menu-0-1-exec = autorandr office-presenting
-menu-0-2 = Restart Compositor
-menu-0-2-foreground = ${colors.accent}
-menu-0-2-exec = bash ~/.scripts/restart-picom.sh
+label-mounted = %{F#a6e3a1}%mountpoint%%{F-}: %percentage_used%%
+label-mounted-underline = ${colors.underline}
+label-mounted-margin = 0
+#label-unmounted = %mountpoint% not mounted
+label-unmounted =
+label-unmounted-foreground = ${colors.foreground-alt}
 
-[module/microphone]
-type = custom/script
-interval = 0.5
-format = <label>
-exec = bash ~/.scripts/polybar-modules/microphone-mute.sh 'InnoGear'
-click-left = pactl set-source-mute alsa_input.usb-C-Media_Electronics_Inc._InnoGear_UC016-00.mono-fallback toggle
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.accent}
+format-underline = ${colors.underline}
+label = %percentage_used%%
 
 [module/cpu]
 type = internal/cpu
@@ -274,13 +245,24 @@ format-prefix-foreground = ${colors.accent}
 format-underline = ${colors.underline}
 label = %percentage:2%%
 
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.accent}
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 75
+
+format = <ramp> <label>
 format-underline = ${colors.underline}
-label = %percentage_used%%
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${colors.alert}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.alert}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.accent}
 
 [module/wlan]
 type = internal/network
@@ -319,62 +301,6 @@ format-disconnected =
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
-
-[module/vpn]
-type = internal/network
-interface = cscotun0
-interval = 3.0
-
-format-connected-underline = ${colors.underline}
-format-connected-prefix = "󰌘 "
-format-connected-prefix-foreground = ${colors.accent}
-label-connected = %local_ip%
-
-format-disconnected =
-
-[module/date]
-type = internal/date
-interval = 1
-
-date = " %Y-%m-%d"
-date-alt = " %Y-%m-%d"
-
-time = %H:%M:%S
-time-alt = %H:%M:%S
-
-format-prefix = " "
-format-prefix-foreground = ${colors.accent}
-format-underline = ${colors.underline}
-
-label = %date% %time%
-
-[module/pulseaudio]
-type = internal/pulseaudio
-
-format-volume = <label-volume> <bar-volume>
-label-volume = 󰕾 %percentage%%
-label-volume-foreground = ${colors.foreground}
-
-label-muted = 󰝟 muted
-label-muted-foreground = ${colors.alert}
-
-bar-volume-width = 10
-bar-volume-foreground-0 = ${colors.accent}
-bar-volume-foreground-1 = ${colors.accent}
-bar-volume-foreground-2 = ${colors.accent}
-bar-volume-foreground-3 = ${colors.accent}
-bar-volume-foreground-4 = ${colors.accent}
-bar-volume-foreground-5 = ${colors.alert}
-bar-volume-foreground-6 = ${colors.alert}
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-indicator-foreground = ${colors.foreground}
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
@@ -415,34 +341,20 @@ animation-discharging-4 = 
 animation-discharging-foreground = ${colors.accent}
 animation-discharging-framerate = 750
 
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 75
+[module/date]
+type = internal/date
+interval = 1
 
-format = <ramp> <label>
+date = " %Y-%m-%d"
+date-alt = " %Y-%m-%d"
+
+time = %H:%M:%S
+time-alt = %H:%M:%S
+
+format-prefix = " "
+format-prefix-foreground = ${colors.accent}
 format-underline = ${colors.underline}
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${colors.alert}
 
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.alert}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.accent}
-
-[settings]
-screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
-
-[global/wm]
-margin-top = 5
-margin-bottom = 5
+label = %date% %time%
 
 ; vim:ft=dosini

@@ -1,0 +1,46 @@
+modules-left = i3
+modules-center = spotify
+modules-right = menu-display microphone pulseaudio xbacklight filesystem memory cpu temperature wlan eth vpn battery date
+
+[module/menu-display]
+type = custom/menu
+expand-right = false
+format-spacing = 1
+
+label-open = 󰍺
+label-open-foreground = ${colors.accent}
+label-close = 
+label-close-foreground = ${colors.accent}
+label-separator = ⏽
+label-separator-foreground = ${colors.secondary}
+
+menu-0-0 = Default Layout
+menu-0-0-foreground = ${colors.accent}
+menu-0-0-exec = autorandr office-default
+menu-0-1 = Presenting Layout
+menu-0-1-foreground = ${colors.accent}
+menu-0-1-exec = autorandr office-presenting
+menu-0-2 = Restart Compositor
+menu-0-2-foreground = ${colors.accent}
+menu-0-2-exec = bash ~/.scripts/restart-picom.sh
+
+[module/microphone]
+type = custom/script
+interval = 0.5
+format = <label>
+exec = bash ~/.scripts/polybar-modules/microphone-mute.sh 'InnoGear'
+click-left = pactl set-source-mute alsa_input.usb-C-Media_Electronics_Inc._InnoGear_UC016-00.mono-fallback toggle
+
+[module/vpn]
+type = internal/network
+interface = cscotun0
+interval = 3.0
+
+format-connected-underline = ${colors.underline}
+format-connected-prefix = "󰌘 "
+format-connected-prefix-foreground = ${colors.accent}
+label-connected = %local_ip%
+
+format-disconnected = 
+
+; vim:ft=dosini

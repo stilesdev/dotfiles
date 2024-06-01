@@ -1,0 +1,5 @@
+modules-left = i3
+modules-center = spotify
+modules-right = pulseaudio xbacklight filesystem memory cpu temperature wlan eth battery date
+
+; vim:ft=dosini

@@ -1,0 +1,6 @@
+mount-0 = /
+mount-1 = /home
+mount-2 = /var
+mount-3 = /mnt/data
+
+; vim:ft=dosini
