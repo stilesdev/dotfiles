@@ -1,6 +1,6 @@
 modules-left = i3
 modules-center = spotify
-modules-right = menu-display microphone pulseaudio xbacklight filesystem memory cpu temperature wlan eth vpn battery date
+modules-right = menu-display microphone pulseaudio xbacklight filesystem memory cpu temperature wlan eth vpn battery date tray
 
 [module/menu-display]
 type = custom/menu

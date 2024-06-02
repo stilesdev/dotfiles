@@ -106,11 +106,6 @@ font-1 = "fixed:pixelsize=10;1"
 ;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 ;font-2 = siji:pixelsize=10;1
 
-tray-position = right
-tray-padding = 2
-tray-transparent = true
-;tray-background = #0063ff
-
 ;wm-restack = bspwm
 ;wm-restack = i3
 
@@ -356,5 +351,8 @@ format-prefix-foreground = ${colors.accent}
 format-underline = ${colors.underline}
 
 label = %date% %time%
+
+[module/tray]
+type = internal/tray
 
 ; vim:ft=dosini
