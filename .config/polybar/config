@@ -126,7 +126,7 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 ; WARNING: this include must always be the last line of the bar section, as this allows defining other modules in the alternate per-system include files
-include-file = config.d/modules
+include-file = config.d/modules.ini
 
 [module/i3]
 type = internal/i3
@@ -220,7 +220,7 @@ bar-empty-foreground = ${colors.foreground-alt}
 type = internal/fs
 interval = 25
 
-include-file = config.d/filesystem-mounts
+include-file = config.d/filesystem-mounts.ini
 
 label-mounted = %{F#a6e3a1}%mountpoint%%{F-}: %percentage_used%%
 label-mounted-underline = ${colors.underline}
