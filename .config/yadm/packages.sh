@@ -184,6 +184,38 @@ xf86-input-libinput \
 xorg-xbacklight \
 "
 
+PKG_WORK="\
+azure-cli \
+composer \
+evolution \
+evolution-ews \
+freerdp \
+git-lfs \
+jetbrains-toolbox \
+kcachegrind \
+kubectl \
+libvncserver \
+minikube \
+nmap \
+php \
+postgresql-libs \
+postman-bin \
+remmina \
+storageexplorer \
+synology-drive \
+teams \
+"
+
+PKG_LIBVIRT="\
+dmidecode \
+dnsmasq \
+iptables-nft \
+libvirt \
+qemu-desktop \
+samba \
+virt-manager \
+"
+
 # Installed on all systems
 PACKAGES="$PKG_SYSTEM $PKG_UTILS $PKG_DOCKER $PKG_CLI"
 
@@ -193,6 +225,10 @@ if [ "$GRAPHICS_VENDOR" != 'none' ]; then
 
     if ($IS_LAPTOP); then
         PACKAGES="$PACKAGES $PKG_LAPTOP"
+    fi
+
+    if [ "$USER" = 'jstiles' ]; then
+        PACKAGES="$PACKAGES $PKG_WORK $PKG_LIBVIRT"
     fi
 fi
 

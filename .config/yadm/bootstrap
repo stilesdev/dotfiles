@@ -75,6 +75,14 @@ else
         gpg --list-keys --fingerprint C0AC1B5B | gawk 'NR==2 {gsub(/ /, ""); printf("%s:6:\n", $0)}' | gpg --import-ownertrust
         # echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key C0AC1B5B trust
     fi
+
+    if [ "$USER" = 'jstiles' ]; then
+        echo "Configuring libvirt"
+        sudo systemctl enable libvirtd.service
+        sudo systemctl start libvirtd.service virtlogd.service
+        sudo usermod --append --groups libvirt "$USER"
+        sudo virsh net-start default
+    fi
 fi
 
 echo "Updating the yadm repo origin URL"
