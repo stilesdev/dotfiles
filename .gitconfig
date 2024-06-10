@@ -11,7 +11,9 @@
     default = simple
     autoSetupRemote = true
 [pull]
-    rebase = false
+    rebase = true
+[rebase]
+    autoStash = true
 [init]
     defaultBranch = main
 [alias]
