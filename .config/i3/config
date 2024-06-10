@@ -194,8 +194,8 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # Move focused workspace to display
-bindsym $mod+Control+Left move workspace to output left
-bindsym $mod+Control+Right move workspace to output right
+bindsym $mod+Control+Left move workspace to output prev
+bindsym $mod+Control+Right move workspace to output next
 
 # Force popups, etc to open in floating mode
 for_window [window_role="pop-up"] floating enable
