@@ -22,6 +22,7 @@ yadm \
 
 INSTALLED_PACKAGES=$(pacman -Qq | sort)
 EXPLICIT_PACKAGES=$(pacman -Qqe | sort)
+ORPHANED_PACKAGES=$(pacman -Qqtd | sort)
 DEFINED_PACKAGES=$(echo "$PACKAGES $PKG_PACSTRAP" | xargs -n1 | sort | uniq)
 RETIRED_PACKAGES=$(echo "$PKG_RETIRED" | xargs -n1 | sort | uniq)
 
@@ -49,6 +50,12 @@ fi
 if [ "$RETIRED_STILL_INSTALLED" != '' ]; then
     echo "Packages defined as retired but still installed:"
     echo "$RETIRED_STILL_INSTALLED"
+    echo
+fi
+
+if [ "$ORPHANED_PACKAGES" != '' ]; then
+    echo "Orphaned packages (installed as dependency but not required by any installed packages - uninstall with: 'pacman -Qqdt | sudo pacman -Rs -'):"
+    echo "$ORPHANED_PACKAGES"
     echo
 fi
 
