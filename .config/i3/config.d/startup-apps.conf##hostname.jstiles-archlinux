@@ -10,7 +10,7 @@ exec --no-startup-id i3-msg 'workspace $workspace2; exec wezterm'
 exec --no-startup-id spotify
 
 exec synology-drive
-exec ~/.scripts/PhpStorm
+exec ~/.scripts/phpstorm
 exec --no-startup-id obsidian
 #exec virt-manager --connect qemu:///system --show-domain-console win10
 exec --no-startup-id teams --no-sandbox
