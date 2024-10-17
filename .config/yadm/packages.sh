@@ -192,6 +192,7 @@ PKG_WORK=(
     kubectl
     libvncserver
     minikube
+    navi
     nmap
     php
     postgresql-libs
