@@ -8,12 +8,11 @@ base \
 base-devel \
 linux \
 linux-firmware \
-dhcpcd \
-openresolv \
 inetutils \
 man-db \
 man-pages \
-netctl \
+networkmanager \
+wpa_supplicant \
 openssh \
 vim \
 git \

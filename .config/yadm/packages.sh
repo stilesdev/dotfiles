@@ -116,6 +116,7 @@ PKG_GUI_DE=(
     i3-wm
     lightdm
     lightdm-slick-greeter
+    network-manager-applet
     picom
     polybar
     udiskie
