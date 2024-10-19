@@ -5,6 +5,9 @@ source ~/.config/yadm/packages.sh || exit $?
 echo "Installing packages"
 sudo pacman --noconfirm --needed -S $PACKAGES || exit $?
 
+echo "Configuring NetworkManager"
+sudo systemctl enable --now NetworkManager.service
+
 echo "Configuring cronie"
 sudo systemctl enable --now cronie.service
 
