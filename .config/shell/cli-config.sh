@@ -2,4 +2,5 @@
 tabs -4
 
 # set less pager tab width (used by git diff as well)
-export LESS=Rx4
+# from git-config(1): When the LESS environment variable is unset, Git sets it to FRX
+export LESS=FRXx4
