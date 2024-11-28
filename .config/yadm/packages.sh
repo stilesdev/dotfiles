@@ -14,6 +14,9 @@ arena*)
     GRAPHICS_VENDOR='nvidia'
     IS_DOCKER_HOST=true
     ;;
+builder*)
+    GRAPHICS_VENDOR='none'
+    ;;
 encom*)
     GRAPHICS_VENDOR='none'
     IS_DOCKER_HOST=true
@@ -25,6 +28,9 @@ jstiles-archlinux*)
 pkg*)
     GRAPHICS_VENDOR='none'
     IS_DOCKER_HOST=true
+    ;;
+purgos*)
+    GRAPHICS_VENDOR='none'
     ;;
 esac
 
