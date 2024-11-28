@@ -2,23 +2,29 @@
 
 GRAPHICS_VENDOR=''
 IS_LAPTOP=false
+IS_DOCKER_HOST=false
 
 case $(hostname) in
 arcade*)
     GRAPHICS_VENDOR='intel'
     IS_LAPTOP=true
+    IS_DOCKER_HOST=true
     ;;
 arena*)
     GRAPHICS_VENDOR='nvidia'
+    IS_DOCKER_HOST=true
     ;;
 encom*)
     GRAPHICS_VENDOR='none'
+    IS_DOCKER_HOST=true
     ;;
 jstiles-archlinux*)
     GRAPHICS_VENDOR='amd'
+    IS_DOCKER_HOST=true
     ;;
 pkg*)
     GRAPHICS_VENDOR='none'
+    IS_DOCKER_HOST=true
     ;;
 esac
 
@@ -240,7 +246,11 @@ PKG_RETIRED=(
 )
 
 # Installed on all systems
-PACKAGES=("${PKG_SYSTEM[@]}" "${PKG_UTILS[@]}" "${PKG_DOCKER[@]}" "${PKG_CLI[@]}")
+PACKAGES=("${PKG_SYSTEM[@]}" "${PKG_UTILS[@]}" "${PKG_CLI[@]}")
+
+if ($IS_DOCKER_HOST); then
+    PACKAGES=("${PACKAGES[@]}" "${PKG_DOCKER[@]}")
+fi
 
 if [ "$GRAPHICS_VENDOR" != 'none' ]; then
     # Installed only on GUI systems
@@ -262,4 +272,5 @@ export PACKAGES
 export PKG_RETIRED
 export GRAPHICS_VENDOR
 export IS_LAPTOP
+export IS_DOCKER_HOST
 

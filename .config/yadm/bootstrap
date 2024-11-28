@@ -14,10 +14,12 @@ sudo systemctl enable --now cronie.service
 echo "Configuring sshd"
 sudo systemctl enable sshd.service
 
-echo "Configuring docker"
-sudo systemctl enable --now docker.service
-sudo usermod -a -G docker $USER
-docker buildx install
+if ($IS_DOCKER_HOST); then
+    echo "Configuring docker"
+    sudo systemctl enable --now docker.service
+    sudo usermod -a -G docker $USER
+    docker buildx install
+fi
 
 if ! command -v node > /dev/null 2>&1; then
     echo "Installing nodejs using fnm"
