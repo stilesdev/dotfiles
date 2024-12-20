@@ -31,5 +31,13 @@ config.front_end = 'WebGpu'
 
 config.scrollback_lines = 999999
 
+config.skip_close_confirmation_for_processes_named = {
+    'bash',
+    'sh',
+    'zsh',
+    'tmux',
+    'sessionizer',
+}
+
 -- and finally, return the configuration to wezterm
 return config
