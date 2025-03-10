@@ -135,9 +135,9 @@ PKG_GUI_DE=(
     ulauncher
 )
 PKG_GUI_FILEBROWSER=(
+    7zip
     ark
     ffmpegthumbnailer
-    p7zip
     thunar
     tumbler
     unarchiver
