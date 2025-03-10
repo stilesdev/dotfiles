@@ -155,8 +155,8 @@ PKG_GUI_UTILS=(
     zsa-udev
 )
 PKG_GUI_APPS=(
+    brave-bin
     firefox
-    google-chrome
     onlyoffice-bin
     spotify
     visual-studio-code-bin
@@ -199,6 +199,7 @@ PKG_WORK=(
     evolution-ews
     freerdp
     git-lfs
+    google-chrome
     jetbrains-toolbox
     kcachegrind
     kubectl
