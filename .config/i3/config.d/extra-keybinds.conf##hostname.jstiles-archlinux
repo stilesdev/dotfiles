@@ -1,4 +1,7 @@
 # F13 = Microphone mute
 bindsym XF86Tools exec --no-startup-id pactl set-source-mute alsa_input.usb-C-Media_Electronics_Inc._InnoGear_UC016-00.mono-fallback toggle
 
+# scratchpad for VPN GUI since it can't be minimized to tray
+bindsym $mod+Tab [class="Com.cisco.secureclient.gui"] scratchpad show
+
 # vim:filetype=i3config

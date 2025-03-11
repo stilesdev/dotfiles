@@ -11,11 +11,10 @@ exec --no-startup-id i3-msg 'workspace $workspace2; exec wezterm'
 exec --no-startup-id spotify
 
 exec synology-drive
-exec ~/.scripts/phpstorm
 exec --no-startup-id obsidian
 #exec virt-manager --connect qemu:///system --show-domain-console win10
 exec --no-startup-id teams --no-sandbox
+exec sh -c 'LD_LIBRARY_PATH=/opt/cisco/secureclient/lib:$LD_LIBRARY_PATH /opt/cisco/secureclient/bin/vpnui'
 exec xedgewarp
-exec --no-startup-id bash -c 'sleep 5 && ~/.scripts/cloud-environment-start.sh'
 
 # vim:filetype=i3config

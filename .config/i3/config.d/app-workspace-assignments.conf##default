@@ -3,7 +3,7 @@
 assign [class="Brave-browser"] $workspace1
 assign [class="Code"] $workspace4
 assign [class="obsidian"] $workspace5
-for_window [class="Spotify"] move scratchpad # (for_window instead of assign is a Workaround for Spotify not immediately setting the window class)
+for_window [class="Spotify"] move scratchpad
 
 # Force applications to open in floating mode
 for_window [class="kcalc"] floating enable
