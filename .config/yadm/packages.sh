@@ -63,7 +63,9 @@ fi
 # Installed on all systems
 PKG_SYSTEM=(
     cronie
+    dosfstools
     nohang
+    ntfs-3g
     pacman-contrib
     smbclient
     systemd-boot-pacman-hook
@@ -112,6 +114,7 @@ PKG_CLI=(
 PKG_GUI_XORG=(
     xorg-server
     xorg-xev
+    xorg-xkill
     xorg-xmodmap
     xorg-xrdb
 )
@@ -159,7 +162,6 @@ PKG_GUI_APPS=(
     firefox
     onlyoffice-bin
     spotify
-    visual-studio-code-bin
     vlc
 )
 PKG_AUDIO=(
@@ -183,6 +185,7 @@ PKG_YUBIKEY=(
 )
 PKG_BLUETOOTH=(
     blueman
+    pulseaudio-bluetooth
 )
 
 PKG_LAPTOP=(
@@ -194,6 +197,7 @@ PKG_LAPTOP=(
 
 PKG_WORK=(
     azure-cli
+    cisco-secure-client
     composer
     evolution
     evolution-ews
@@ -214,6 +218,9 @@ PKG_WORK=(
     storageexplorer
     synology-drive
     teams
+    timeshift
+    visual-studio-code-bin
+    xedgewarp-git
 )
 
 PKG_LIBVIRT=(
