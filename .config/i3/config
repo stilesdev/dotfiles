@@ -231,7 +231,7 @@ bindsym $mod+Return exec wezterm
 
 # Start betterlockscreen to lock the system
 #bindsym $mod+shift+x exec ~/Scripts/lock.sh
-bindsym $mod+shift+x exec betterlockscreen --lock dimblur && sleep 1 && autorandr -c && ~/.scripts/restart-picom.sh
+bindsym $mod+shift+x exec bash -c 'sleep 1 && xset dpms force off && betterlockscreen --lock dimblur && sleep 1 && autorandr -c && ~/.scripts/restart-picom.sh'
 
 # Take a screenshot - PrtScr = entire screen, Ctrl+PrtScr = selection, Alt+PrtScr = active window
 bindsym Print exec flameshot full --clipboard --path "$HOME/Pictures/Screenshots" && ~/.scripts/restart-picom.sh
