@@ -18,7 +18,7 @@ x-prop-underscan_vborder 0
 output DisplayPort-0
 crtc 0
 mode 1920x1080
-pos 2160x1097
+pos 2160x1380
 primary
 rate 85.00
 x-prop-max_bpc 8
