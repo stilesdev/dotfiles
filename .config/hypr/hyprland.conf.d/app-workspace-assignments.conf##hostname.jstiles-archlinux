@@ -1,0 +1,16 @@
+windowrulev2 = workspace 1, class:Google-chrome
+windowrulev2 = workspace 3, class:jetbrains-phpstorm
+windowrulev2 = workspace 5, class:obsidian
+windowrulev2 = workspace 7, class:Virt-manager
+windowrulev2 = workspace 8, class:Microsoft Teams - Preview
+
+windowrulev2 = float, class:jetbrains-toolbox
+
+# main window, preferences, connected details
+windowrulev2 = float, class:Com.cisco.secureclient.gui
+# main window only
+windowrulev2 = workspace special:vpn, class:Com.cisco.secureclient.gui, title:^Cisco Secure Client$
+# login dialog
+windowrulev2 = float, class:Cisco Secure Client, title:Cisco Secure Client - Login
+
+# vim:filetype=hyprlang

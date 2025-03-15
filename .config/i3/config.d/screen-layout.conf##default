@@ -1,3 +1,0 @@
-exec --no-startup-id autorandr -c
-
-# vim:filetype=i3config
