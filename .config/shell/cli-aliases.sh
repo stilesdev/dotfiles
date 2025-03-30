@@ -7,7 +7,3 @@ alias ll='ls -lAh'
 
 alias cp='cp -i' # Confirm before overwriting
 
-alias vim='nvim'
-
-alias dc='docker-compose'
-
