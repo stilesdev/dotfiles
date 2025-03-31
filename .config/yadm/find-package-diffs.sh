@@ -1,23 +1,7 @@
 #!/usr/bin/env bash
 
+source /etc/yadm/pre-bootstrap
 source ~/.config/yadm/packages.sh
-
-# Packages used in pacstrap when installing Arch
-PKG_PACSTRAP="\
-base \
-base-devel \
-linux \
-linux-firmware \
-inetutils \
-man-db \
-man-pages \
-networkmanager \
-wpa_supplicant \
-openssh \
-vim \
-git \
-yadm \
-"
 
 INSTALLED_PACKAGES=$(pacman -Qq | sort)
 EXPLICIT_PACKAGES=$(pacman -Qqe | sort)
