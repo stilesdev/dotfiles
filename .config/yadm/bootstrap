@@ -44,31 +44,33 @@ else
     echo "Configuring bluetooth"
     sudo systemctl enable --now bluetooth.service
 
-    if ($IS_LAPTOP); then
-        echo "Configuring thermald"
-        sudo systemctl enable thermald.service
+    # if ($IS_LAPTOP); then
+    #     echo "Configuring thermald"
+    #     sudo systemctl enable thermald.service
 
-        echo "Configuring tlp"
-        sudo systemctl enable tlp.service
-        sudo systemctl mask systemd-rfkill.service
-        sudo systemctl mask systemd-rfkill.socket
-    fi
+    #     echo "Configuring tlp"
+    #     sudo systemctl enable tlp.service
+    #     sudo systemctl mask systemd-rfkill.service
+    #     sudo systemctl mask systemd-rfkill.socket
+    # fi
 
-    echo "Configuring lightdm"
-    sudo systemctl enable lightdm.service
+    echo "Configuring waybar"
+    systemctl --user enable --now waybar.service
+
+    echo "Configuring hyprpolkitagent"
+    systemctl --user enable --now hyprpolkitagent.service
+
+    echo "Configuring hyprpaper"
+    systemctl --user enable --now hyprpaper.service
 
     echo "Configuring thunar as the default file explorer"
     xdg-mime default thunar.desktop inode/directory
 
-    echo "Creating screenshots directory"
-    mkdir -p ~/Pictures/Screenshots
-
-    if ! [ -f "$HOME/.cache/betterlockscreen/current/wall_resize.png" ]; then
-        echo "Setting default wallpaper"
-        betterlockscreen -u $HOME/Pictures/Wallpapers/arch-linux.png
-    fi
+    # echo "Creating screenshots directory"
+    # mkdir -p ~/Pictures/Screenshots
 
     echo "Setting up GPG key"
+    # TODO: unmask and disable if yubikey not detected
     systemctl --user mask --now gpg-agent.service gpg-agent.socket gpg-agent-ssh.socket gpg-agent-extra.socket gpg-agent-browser.socket
     sudo systemctl enable --now pcscd
     if ! gpg --card-status; then

@@ -6,7 +6,7 @@ IS_DOCKER_HOST=false
 
 case $(hostname) in
 arcade*)
-    GRAPHICS_VENDOR='intel'
+    GRAPHICS_VENDOR='nvidia'
     IS_LAPTOP=true
     IS_DOCKER_HOST=true
     ;;
@@ -36,22 +36,24 @@ esac
 
 if [ "$GRAPHICS_VENDOR" = 'intel' ]; then
     PKG_GRAPHICS=(
-        lib32-mesa
-        mesa
-        xf86-video-intel
+        lib32-mesa # 32-bit DRI driver for 3D acceleration
+        lib32-vulkan-intel # 32-bit Vulkan support
+        mesa # DRI driver for 3D acceleration
+        vulkan-intel # Vulkan support
     )
 elif [ "$GRAPHICS_VENDOR" = 'nvidia' ]; then
     PKG_GRAPHICS=(
-        lib32-nvidia-utils
-        nvidia
-        nvidia-utils
+        egl-wayland # NVIDIA Wayland implementation of EGL, required by hyprland
+        lib32-nvidia-utils # 32-bit userspace drivers, for apps like Steam and Wine
+        nvidia # official closed-source driver from NVIDIA
+        nvidia-utils # userspace drivers, including Vulkan support
     )
 elif [ "$GRAPHICS_VENDOR" = 'amd' ]; then
     PKG_GRAPHICS=(
-        lib32-mesa
-        mesa
-        vulkan-radeon
-        xf86-video-amdgpu
+        lib32-mesa # 32-bit DRI driver for 3D acceleration
+        lib32-vulkan-radeon # 32-bit Vulkan support
+        mesa # DRI driver for 3D acceleration
+        vulkan-radeon # Vulkan support
     )
 elif [ "$GRAPHICS_VENDOR" = 'none' ]; then
     PKG_GRAPHICS=()
@@ -62,14 +64,15 @@ fi
 
 # Installed on all systems
 PKG_SYSTEM=(
-    cronie
-    dosfstools
-    nohang
-    ntfs-3g
-    pacman-contrib
-    smbclient
-    systemd-boot-pacman-hook
-    usbutils
+    cronie # cron
+    dosfstools # mkfs.fat
+    lvm2 # LVM utilities
+    nohang # low memory handler
+    ntfs-3g # NTFS support
+    pacman-contrib # paccache, pacdiff
+    smbclient # SAMBA support
+    systemd-boot-pacman-hook # pacman hook to upgrade systemd-boot after systemd upgrades
+    usbutils # lsusb
 )
 PKG_UTILS=(
     autossh
@@ -80,6 +83,7 @@ PKG_UTILS=(
     imagemagick
     jq
     openssh
+    reflector
     rsync
     tig
     unzip
@@ -96,6 +100,7 @@ PKG_CLI=(
     fzf
     go
     jq
+    kitty
     neofetch
     neovim
     ripgrep
@@ -111,66 +116,66 @@ PKG_CLI=(
 )
 
 # GUI Packages
-PKG_GUI_XORG=(
-    xorg-server
-    xorg-xev
-    xorg-xkill
-    xorg-xmodmap
-    xorg-xrdb
-)
-PKG_GUI_THEME=(
-    catppuccin-gtk-theme-mocha
-    gnome-themes-extra
-    papirus-icon-theme
-    qt5-styleplugins
-    xcursor-neutral
-)
+# PKG_GUI_THEME=(
+#     catppuccin-gtk-theme-mocha
+#     gnome-themes-extra
+#     papirus-icon-theme
+#     qt5-styleplugins
+#     xcursor-neutral
+# )
 PKG_GUI_DE=(
-    betterlockscreen
-    dunst
-    i3-wm
-    lightdm
-    lightdm-slick-greeter
-    network-manager-applet
-    picom
-    polybar
-    udiskie
-    ulauncher
+    hyprland # main Wayland compositor
+    hyprlock # screen lock
+    hyprpaper # wallpaper utility
+    hyprpolkitagent # polkit auth daemon (for GUI apps to request elevation)
+    network-manager-applet # tray applet for networkmanager
+    swaync # notification daemon
+    udiskie # tray applet for managing removable disks
+    ulauncher # application launcher
+    uwsm # Wayland session manager (used to start hyprland)
+    waybar # status bar
+    wev # Wayland window debugging tool (similar to xev in X11)
+    xdg-desktop-portal-gtk # fallback xdg-desktop-portal (file picker)
+    xdg-desktop-portal-hyprland # main xdg-desktop-portal (screensharing, global shortcuts, etc)
 )
 PKG_GUI_FILEBROWSER=(
-    7zip
-    ark
-    ffmpegthumbnailer
+    # 7zip
+    # ark
+    # ffmpegthumbnailer
     thunar
-    tumbler
-    unarchiver
+    # tumbler
+    # unarchiver
 )
 PKG_GUI_UTILS=(
-    arandr
-    autorandr
+    # arandr
+    # autorandr
     eog
-    flameshot
-    kcalc
-    numlockx
+    # flameshot
+    # kcalc
+    # numlockx
     seahorse
-    xclip
+    wl-clipboard # terminal clipboard utilities (wl-copy and wl-paste)
     yubico-authenticator-bin
-    zsa-udev
 )
 PKG_GUI_APPS=(
     brave-bin
     firefox
-    onlyoffice-bin
+    obsidian
+    # onlyoffice-bin
     spotify
-    vlc
+    # vlc
 )
 PKG_AUDIO=(
-    alsa-utils
-    pavucontrol
-    playerctl
-    pulseaudio
-    pulseaudio-equalizer-ladspa
-    python-dbus
+    # alsa-utils
+    # pavucontrol
+    pipewire
+    pipewire-alsa
+    pipewire-pulse
+    # playerctl
+    # pulseaudio
+    # pulseaudio-equalizer-ladspa
+    # python-dbus
+    wireplumber
 )
 PKG_FONTS=(
     stilesdev-fonts
@@ -185,14 +190,21 @@ PKG_YUBIKEY=(
 )
 PKG_BLUETOOTH=(
     blueman
-    pulseaudio-bluetooth
+    bluez
+    bluez-utils
 )
 
 PKG_LAPTOP=(
-    thermald
-    tlp
-    xf86-input-libinput
-    xorg-xbacklight
+    brightnessctl
+    # thermald
+    # tlp
+    # xf86-input-libinput
+    # xorg-xbacklight
+)
+
+PKG_NON_WORK=(
+    proton-vpn-gtk-app
+    steam
 )
 
 PKG_WORK=(
@@ -220,7 +232,7 @@ PKG_WORK=(
     teams
     timeshift
     visual-studio-code-bin
-    xedgewarp-git
+    # xedgewarp-git
 )
 
 PKG_LIBVIRT=(
@@ -268,7 +280,7 @@ fi
 
 if [ "$GRAPHICS_VENDOR" != 'none' ]; then
     # Installed only on GUI systems
-    PACKAGES=("${PACKAGES[@]}" "${PKG_GRAPHICS[@]}" "${PKG_GUI_XORG[@]}" "${PKG_GUI_THEME[@]}" "${PKG_GUI_DE[@]}" "${PKG_GUI_FILEBROWSER[@]}" "${PKG_GUI_UTILS[@]}" "${PKG_GUI_APPS[@]}" "${PKG_AUDIO[@]}" "${PKG_FONTS[@]}" "${PKG_YUBIKEY[@]}" "${PKG_BLUETOOTH[@]}")
+    PACKAGES=("${PACKAGES[@]}" "${PKG_GRAPHICS[@]}" "${PKG_GUI_DE[@]}" "${PKG_GUI_FILEBROWSER[@]}" "${PKG_GUI_UTILS[@]}" "${PKG_GUI_APPS[@]}" "${PKG_AUDIO[@]}" "${PKG_FONTS[@]}" "${PKG_YUBIKEY[@]}" "${PKG_BLUETOOTH[@]}")
 
     if ($IS_LAPTOP); then
         PACKAGES=("${PACKAGES[@]}" "${PKG_LAPTOP[@]}")
@@ -276,6 +288,8 @@ if [ "$GRAPHICS_VENDOR" != 'none' ]; then
 
     if [ "$USER" = 'jstiles' ]; then
         PACKAGES=("${PACKAGES[@]}" "${PKG_WORK[@]}" "${PKG_LIBVIRT[@]}")
+    else
+        PACKAGES=("${PACKAGES[@]}" "${PKG_NON_WORK[@]}")
     fi
 fi
 
