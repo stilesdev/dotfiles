@@ -10,7 +10,7 @@ VERSION=$(cat $FILE)
 SLEEP_PID=0
 
 if [[ "$1" = "copy" ]]; then
-    echo -n "$VERSION" | xclip -selection clipboard
+    echo -n "$VERSION" | wl-copy
     exit 0
 fi
 
