@@ -63,6 +63,9 @@ else
     echo "Configuring hyprpaper"
     systemctl --user enable --now hyprpaper.service
 
+    echo "Configuring hypridle"
+    systemctl --user enable --now hypridle.service
+
     echo "Configuring thunar as the default file explorer"
     xdg-mime default thunar.desktop inode/directory
 

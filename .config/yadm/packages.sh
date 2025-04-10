@@ -124,6 +124,7 @@ PKG_CLI=(
 #     xcursor-neutral
 # )
 PKG_GUI_DE=(
+    hypridle # idle management daemon
     hyprland # main Wayland compositor
     hyprlock # screen lock
     hyprpaper # wallpaper utility
