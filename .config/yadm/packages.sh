@@ -197,6 +197,7 @@ PKG_BLUETOOTH=(
 
 PKG_LAPTOP=(
     brightnessctl
+    keyd
     # thermald
     # tlp
     # xf86-input-libinput

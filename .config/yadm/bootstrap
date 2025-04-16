@@ -44,7 +44,9 @@ else
     echo "Configuring bluetooth"
     sudo systemctl enable --now bluetooth.service
 
-    # if ($IS_LAPTOP); then
+    if ($IS_LAPTOP); then
+        echo "Configuring keyd"
+        sudo systemctl enable --now keyd.service
     #     echo "Configuring thermald"
     #     sudo systemctl enable thermald.service
 
@@ -52,7 +54,7 @@ else
     #     sudo systemctl enable tlp.service
     #     sudo systemctl mask systemd-rfkill.service
     #     sudo systemctl mask systemd-rfkill.socket
-    # fi
+    fi
 
     echo "Configuring waybar"
     systemctl --user enable --now waybar.service
