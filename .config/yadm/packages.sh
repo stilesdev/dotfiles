@@ -128,8 +128,11 @@ PKG_GUI_DE=(
     hyprland # main Wayland compositor
     hyprlock # screen lock
     hyprpaper # wallpaper utility
+    hyprpicker # color picker, also used by hyprshot to freeze screen during screenshot
     hyprpolkitagent # polkit auth daemon (for GUI apps to request elevation)
+    hyprshot # screenshot-taking utility
     network-manager-applet # tray applet for networkmanager
+    swappy # screenshot annotation utility
     swaync # notification daemon
     udiskie # tray applet for managing removable disks
     ulauncher # application launcher

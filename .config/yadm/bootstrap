@@ -71,8 +71,8 @@ else
     echo "Configuring thunar as the default file explorer"
     xdg-mime default thunar.desktop inode/directory
 
-    # echo "Creating screenshots directory"
-    # mkdir -p ~/Pictures/Screenshots
+    echo "Creating screenshots directory"
+    mkdir -p ~/Pictures/Screenshots
 
     echo "Setting up GPG key"
     # TODO: unmask and disable if yubikey not detected
