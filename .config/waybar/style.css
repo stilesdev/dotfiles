@@ -36,11 +36,28 @@
     border-radius: 1rem;
 }
 
+#idle_inhibitor,
+#custom-notification {
+    background-color: @surface0;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    font-size: 14px;
+}
+
+#idle_inhibitor {
+    border-radius: 1rem 0px 0px 1rem;
+    margin-left: 1rem;
+}
+
+#custom-notification {
+    border-radius: 0px 1rem 1rem 0px;
+    margin-right: 1rem;
+}
+
 #custom-music,
 #tray,
 #backlight,
 #clock,
-#idle_inhibitor,
 #wireplumber,
 #network,
 #cpu,
@@ -53,11 +70,6 @@
     background-color: @surface0;
     padding: 0.5rem 1rem;
     margin: 0.5rem 0;
-}
-
-#idle_inhibitor {
-    /* TODO: change this to encapsulate other toggles in the same group once added */
-    border-radius: 1rem;
 }
 
 #pulseaudio,
