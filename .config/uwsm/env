@@ -1,0 +1,10 @@
+export XCURSOR_SIZE=24
+
+# Allow electron apps to run in wayland
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+
+# Added according to https://wiki.hyprland.org/Nvidia/#environment-variables
+export LIBVA_DRIVER_NAME=nvidia
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+
+# vim:filetype=sh
