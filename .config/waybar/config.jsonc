@@ -6,14 +6,10 @@
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "hyprland/workspaces",
-        "hyprland/submap",
-        "hyprland/window" // TODO: remove this? or at least add some left margin
+        "hyprland/workspaces"
     ],
     "modules-center": [
-        // "custom/media"
-        "mpd"
-        // TODO: spotify?
+        "mpris"
     ],
     "modules-right": [
         // Group toggles/interactive modules first
@@ -54,51 +50,6 @@
     "hyprland/submap": {
         "format": "<span style=\"italic\">{}</span>"
     },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 5,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "custom/media": {
-        "format": "{icon} {text}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        // "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    },
     "custom/power": {
         "format" : " ⏻ ",
 		"tooltip": false,
@@ -113,12 +64,24 @@
     },
 
 
+    "mpris": {
+        "player": "spotify",
+        "format": "󰝚  {title}     󰠃  {artist}     󰀥  {album}",
+        "format-paused": " "
+    },
 
     // TODO: privacy module (show when screenshare/audio is being captured)
     // TODO: build version tracker
     // TODO: display menu
     // TODO: microphone mute toggle
 
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
     "custom/notification": {
         "tooltip": false,
         "format": "{icon}",

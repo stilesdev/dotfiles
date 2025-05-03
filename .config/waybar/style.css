@@ -36,6 +36,14 @@
     border-radius: 1rem;
 }
 
+#mpris.playing {
+    background-color: @surface0;
+    color: @green;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 1rem;
+}
+
 #idle_inhibitor,
 #custom-notification {
     background-color: @surface0;
@@ -54,7 +62,6 @@
     margin-right: 1rem;
 }
 
-#custom-music,
 #tray,
 #backlight,
 #clock,
