@@ -7,9 +7,9 @@ windowrulev2 = workspace 8, class:Microsoft Teams - Preview
 windowrulev2 = float, class:jetbrains-toolbox
 
 # main window, preferences, connected details
-windowrulev2 = float, class:Com.cisco.secureclient.gui
+windowrulev2 = float, class:com.cisco.secureclient.gui
 # main window only
-windowrulev2 = workspace special:vpn, class:Com.cisco.secureclient.gui, title:^Cisco Secure Client$
+windowrulev2 = workspace special:vpn silent, class:com.cisco.secureclient.gui, title:^Cisco Secure Client$
 # login dialog
 windowrulev2 = float, class:Cisco Secure Client, title:Cisco Secure Client - Login
 

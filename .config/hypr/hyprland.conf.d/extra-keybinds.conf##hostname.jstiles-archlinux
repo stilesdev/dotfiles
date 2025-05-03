@@ -1,5 +1,5 @@
 # TODO: F13 (XF86Tools for i3) = Microphone mute toggle
 
-# TODO: special workspace for VPN GUI - toggled with $mod+Tab - window class: Com.cisco.secureclient.gui
+bind = $mainMod, tab, togglespecialworkspace, vpn
 
 # vim:filetype=hyprlang
