@@ -12,12 +12,41 @@
     margin: 5px 0;
 }
 
-#workspaces {
-    border-radius: 1rem;
-    margin: 5px;
+/* all modules */
+.module {
     background-color: @surface0;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+}
+
+/* left-most modules in a group */
+#workspaces,
+#mpris.playing,
+#idle_inhibitor,
+#wireplumber,
+#tray
+{
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    margin-left: 0.5rem;
+}
+
+/* right-most modules in a group */
+#workspaces,
+#mpris.playing,
+#custom-notification,
+#clock,
+#tray
+{
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    margin-right: 0.5rem;
+}
+
+/* module-specific styling */
+
+#workspaces {
+    padding: 0;
 }
 
 #workspaces button {
@@ -36,54 +65,23 @@
     border-radius: 1rem;
 }
 
+#mpris.paused,
+#mpris.stopped {
+    background: none;
+}
+
 #mpris.playing {
-    background-color: @surface0;
     color: @green;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem 0;
-    border-radius: 1rem;
 }
 
 #idle_inhibitor,
 #custom-notification {
-    background-color: @surface0;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem 0;
     font-size: 14px;
-}
-
-#idle_inhibitor {
-    border-radius: 1rem 0px 0px 1rem;
-    margin-left: 1rem;
-}
-
-#custom-notification {
-    border-radius: 0px 1rem 1rem 0px;
-    margin-right: 1rem;
-}
-
-#tray,
-#backlight,
-#clock,
-#wireplumber,
-#network,
-#cpu,
-#memory,
-#temperature,
-#battery,
-#pulseaudio,
-#custom-lock,
-#custom-power {
-    background-color: @surface0;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem 0;
 }
 
 #pulseaudio,
 #wireplumber {
     color: @green;
-    border-radius: 1rem 0px 0px 1rem;
-    margin-left: 1rem;
 }
 
 #wireplumber.muted {
@@ -128,27 +126,4 @@
 
 #clock {
     color: @blue;
-    border-radius: 0px 1rem 1rem 0px;
-    margin-right: 1rem;
-}
-
-#custom-music {
-    color: @mauve;
-    border-radius: 1rem;
-}
-
-#custom-lock {
-    border-radius: 1rem 0px 0px 1rem;
-    color: @lavender;
-}
-
-#custom-power {
-    margin-right: 1rem;
-    border-radius: 0px 1rem 1rem 0px;
-    color: @red;
-}
-
-#tray {
-    margin-right: 1rem;
-    border-radius: 1rem;
 }
