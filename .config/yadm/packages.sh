@@ -146,6 +146,8 @@ PKG_GUI_FILEBROWSER=(
     # 7zip
     # ark
     # ffmpegthumbnailer
+    gvfs-mtp
+    gvfs-smb
     thunar
     # tumbler
     # unarchiver
@@ -165,9 +167,9 @@ PKG_GUI_APPS=(
     brave-bin
     firefox
     obsidian
-    # onlyoffice-bin
+    onlyoffice-bin
     spotify
-    # vlc
+    vlc
 )
 PKG_AUDIO=(
     # alsa-utils
