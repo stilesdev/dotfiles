@@ -71,10 +71,18 @@
     },
 
     // TODO: privacy module (show when screenshare/audio is being captured)
-    // TODO: build version tracker
     // TODO: display menu
     // TODO: microphone mute toggle
 
+    "custom/build_version_tracker": {
+        "exec": "~/.config/waybar/custom-modules/build-version-tracker.sh",
+        "format": "  {}",
+        "interval": "once",
+        "signal": 1,
+        "on-double-click": "~/.config/waybar/custom-modules/build-version-tracker.sh inc",
+        "on-double-click-right": "~/.config/waybar/custom-modules/build-version-tracker.sh dec",
+        "on-click-middle": "~/.config/waybar/custom-modules/build-version-tracker.sh copy"
+    },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
