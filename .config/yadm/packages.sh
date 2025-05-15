@@ -108,7 +108,7 @@ PKG_CLI=(
     tig
     tmux
     vim
-    wezterm
+    wezterm-git
     zsh
     zsh-autosuggestions
     zsh-history-substring-search
