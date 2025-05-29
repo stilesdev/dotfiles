@@ -13,7 +13,7 @@ exec --no-startup-id spotify
 exec synology-drive
 exec --no-startup-id obsidian
 #exec virt-manager --connect qemu:///system --show-domain-console win10
-exec --no-startup-id teams --no-sandbox
+exec teams-for-linux
 exec sh -c 'LD_LIBRARY_PATH=/opt/cisco/secureclient/lib:$LD_LIBRARY_PATH /opt/cisco/secureclient/bin/vpnui'
 exec xedgewarp
 

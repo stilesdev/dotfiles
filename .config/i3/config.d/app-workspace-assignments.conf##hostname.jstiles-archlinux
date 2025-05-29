@@ -4,7 +4,7 @@ assign [class="Google-chrome"] $workspace1
 assign [class="jetbrains-phpstorm"] $workspace3
 assign [class="obsidian"] $workspace5
 assign [class="Virt-manager"] $workspace7
-assign [class="Microsoft Teams - Preview"] $workspace8
+assign [class="teams-for-linux"] $workspace8
 for_window [class="Spotify"] move scratchpad
 
 # Force applications to open in floating mode
