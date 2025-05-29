@@ -1,9 +1,9 @@
 #!/bin/sh
 
 if [ -z "$1" ]; then
-    mute=$(pacmd list-sources | grep "\* index:" -A 11 | grep "muted")
+    mute=$(pactl get-source-mute @DEFAULT_SOURCE@)
 else
-    mute=$(pacmd list-sources | grep "$1" -A 11 | grep "muted")
+    mute=$(pactl get-source-mute "$1")
 fi
 
 # echo $mute

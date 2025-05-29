@@ -165,12 +165,15 @@ PKG_GUI_APPS=(
     vlc
 )
 PKG_AUDIO=(
-    alsa-utils
-    pavucontrol
+    alsa-utils # includes alsamixer utility
+    pavucontrol # volume control GUI
+    pipewire # audio/video router/processor
+    pipewire-alsa # pipewire alsa configuration
+    pipewire-audio # pipewire audio support (including bluetooth audio support)
+    pipewire-pulse # pipewire as pulseaudio replacement
     playerctl
-    pulseaudio
-    pulseaudio-equalizer-ladspa
-    python-dbus
+    python-dbus # used by ~/.scripts/polybar-modules/spotify-status.py
+    wireplumber # pipewire session/policy manager
 )
 PKG_FONTS=(
     stilesdev-fonts
@@ -185,7 +188,6 @@ PKG_YUBIKEY=(
 )
 PKG_BLUETOOTH=(
     blueman
-    pulseaudio-bluetooth
 )
 
 PKG_LAPTOP=(
