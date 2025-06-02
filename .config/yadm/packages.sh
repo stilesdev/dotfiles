@@ -172,16 +172,14 @@ PKG_GUI_APPS=(
     vlc
 )
 PKG_AUDIO=(
-    # alsa-utils
-    # pavucontrol
-    pipewire
-    pipewire-alsa
-    pipewire-pulse
-    # playerctl
-    # pulseaudio
-    # pulseaudio-equalizer-ladspa
-    # python-dbus
-    wireplumber
+    alsa-utils # includes alsamixer utility
+    pavucontrol # volume control GUI
+    pipewire # audio/video router/processor - required for hyprland screen sharing
+    pipewire-alsa # pipewire alsa configuration
+    pipewire-audio # pipewire audio support (including bluetooth audio support)
+    pipewire-pulse # pipewire as pulseaudio replacement
+    playerctl # used to control audio players via hyprland keybinds
+    wireplumber # pipewire session/policy manager - required for hyprland screen sharing
 )
 PKG_FONTS=(
     stilesdev-fonts
