@@ -168,22 +168,17 @@
     // },
     "battery": {
         "states": {
-            // "good": 95,
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon}  {capacity}%",
-        //"format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{icon}  {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format": "<span font='11' rise='-1200'>{icon}</span> {capacity}%",
+        "format-alt": "<span font='11' rise='-1200'>{icon}</span> {time}",
+        "format-icons": {
+            "discharging": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+            "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+            "full": ["󱐋"]
+        }
     },
-    // "battery#bat2": {
-    //     "bat": "BAT2"
-    // },
     "clock": {
         "interval": 1,
         // "timezone": "America/New_York",
