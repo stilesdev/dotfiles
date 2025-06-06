@@ -232,6 +232,7 @@ PKG_LIBVIRT=(
     libvirt
     qemu-desktop
     samba
+    swtpm # required for emulated TPM 2.0
     virt-manager
 )
 
