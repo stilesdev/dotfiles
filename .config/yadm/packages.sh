@@ -216,6 +216,38 @@ PKG_LAPTOP=(
     xorg-xbacklight
 )
 
+PKG_GAMES=(
+    clonehero
+    gamescope
+    linux-headers # needed for dkms
+    rmg
+    steam
+    xdg-desktop-portal-gtk # needed for file picker in steam
+    xone-dkms-git # kernel module for Xbox One controllers
+    xone-dongle-firmware # firmware for Xbox One controller dongle
+    xpad-noone-git # xone disables the xpad kernel module, this is xpad without xone controller support, to restore usage of other gamepads (like 8bitdo ultimate 2)
+)
+
+PKG_GAMEDEV=(
+    aseprite
+    godot
+    love
+)
+
+PKG_ARENA_ONLY=(
+    betaflight-configurator-bin
+    calibre
+    cura-bin
+    expresslrs-configurator-bin
+    flatpak # for plex desktop app
+    oscar-bin
+    spek # spectrum analyzer for checking actual bitrate of flac files
+)
+
+PKG_NON_WORK=(
+    proton-vpn-gtk-app
+)
+
 PKG_WORK=(
     azure-cli
     cisco-secure-client
@@ -298,7 +330,14 @@ if [ "$GRAPHICS_VENDOR" != 'none' ]; then
 
     if [ "$USER" = 'jstiles' ]; then
         PACKAGES=("${PACKAGES[@]}" "${PKG_WORK[@]}" "${PKG_LIBVIRT[@]}")
+    else
+        PACKAGES=("${PACKAGES[@]}" "${PKG_NON_WORK[@]}")
     fi
+
+    if [ "$(hostname)" = 'arena' ]; then
+        PACKAGES=("${PACKAGES[@]}" "${PKG_GAMES[@]}" "${PKG_GAMEDEV[@]}" "${PKG_ARENA_ONLY[@]}")
+    fi
+
 fi
 
 PACKAGES="${PACKAGES[@]}"
