@@ -44,6 +44,7 @@ elif [ "$GRAPHICS_VENDOR" = 'nvidia' ]; then
     PKG_GRAPHICS=(
         lib32-nvidia-utils
         nvidia
+        nvidia-settings
         nvidia-utils
     )
 elif [ "$GRAPHICS_VENDOR" = 'amd' ]; then
@@ -67,7 +68,9 @@ PKG_SYSTEM=(
     nohang
     ntfs-3g
     pacman-contrib
+    reflector
     smbclient
+    sshfs
     systemd-boot-pacman-hook
     usbutils
 )
@@ -75,12 +78,16 @@ PKG_UTILS=(
     autossh
     bat
     git
+    git-filter-repo
     gnupg
     htop
     imagemagick
     jq
+    ldns # provides drill command
+    nmap
     openssh
     rsync
+    tailscale
     tig
     unzip
     wget
@@ -92,13 +99,16 @@ PKG_DOCKER=(
     docker-compose
 )
 PKG_CLI=(
+    dbmate
     fnm-bin
     fzf
     go
     jq
     neofetch
     neovim
+    postgresql-libs
     ripgrep
+    sqlc
     starship
     tig
     tmux
@@ -127,6 +137,8 @@ PKG_GUI_THEME=(
 )
 PKG_GUI_DE=(
     betterlockscreen
+    cups
+    cups-pdf
     dunst
     i3-wm
     lightdm
@@ -141,6 +153,8 @@ PKG_GUI_FILEBROWSER=(
     7zip
     ark
     ffmpegthumbnailer
+    gvfs-mtp
+    gvfs-smb
     thunar
     tumbler
     unarchiver
@@ -151,6 +165,7 @@ PKG_GUI_UTILS=(
     eog
     flameshot
     kcalc
+    mediainfo-gui
     numlockx
     seahorse
     xclip
@@ -159,9 +174,12 @@ PKG_GUI_UTILS=(
 )
 PKG_GUI_APPS=(
     brave-bin
+    filelight
     firefox
+    obsidian
     onlyoffice-bin
     spotify
+    synology-drive
     vlc
     zen-browser-bin
 )
