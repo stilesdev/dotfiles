@@ -163,6 +163,7 @@ PKG_GUI_APPS=(
     onlyoffice-bin
     spotify
     vlc
+    zen-browser-bin
 )
 PKG_AUDIO=(
     alsa-utils # includes alsamixer utility
