@@ -21,6 +21,7 @@
         // build version tracker
         // display menu
         // microphone mute
+        "custom/microphone",
         "idle_inhibitor",
         "custom/notification",
 
@@ -80,7 +81,19 @@
 
     // TODO: privacy module (show when screenshare/audio is being captured)
     // TODO: display menu
-    // TODO: microphone mute toggle
+
+    "custom/microphone": {
+        "exec": "~/.config/waybar/custom-modules/microphone.sh watch",
+        "return-type": "json",
+        "format": "{icon}",
+        "format-icons": {
+            "disabled": "",
+            "muted": "",
+            "unmuted": ""
+        },
+        "restart-interval": 1,
+        "on-click": "~/.config/waybar/custom-modules/microphone.sh toggle"
+    },
 
     "custom/build_version_tracker": {
         "exec": "~/.config/waybar/custom-modules/build-version-tracker.sh",

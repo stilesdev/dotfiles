@@ -22,7 +22,7 @@
 /* left-most modules in a group */
 #workspaces,
 #mpris.playing,
-#idle_inhibitor,
+#custom-microphone,
 #wireplumber,
 #tray
 {
@@ -74,6 +74,19 @@
     color: @green;
 }
 
+#custom-microphone.disabled {
+    color: @surface2;
+}
+
+#custom-microphone.muted {
+    color: @red;
+}
+
+#custom-microphone.unmuted {
+    color: @green;
+}
+
+#custom-microphone,
 #idle_inhibitor,
 #custom-notification {
     font-size: 14px;
