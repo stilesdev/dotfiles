@@ -155,6 +155,7 @@ PKG_GUI_FILEBROWSER=(
 PKG_GUI_UTILS=(
     # arandr
     # autorandr
+    clipse
     eog
     # flameshot
     # kcalc
