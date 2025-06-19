@@ -55,14 +55,28 @@
     padding: 0.4rem;
 }
 
-#workspaces button.active {
-    color: @sky;
+/* workspace visible but not active (on other monitor) */
+#workspaces button.visible {
+    background-color: @surface1;
     border-radius: 1rem;
+}
+
+#workspaces button.active {
+    color: @green;
+    background-color: @surface2;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    color: @text;
+    background-color: @red;
 }
 
 #workspaces button:hover {
     color: @sapphire;
     border-radius: 1rem;
+    font-weight: bold;
 }
 
 #mpris.paused,
