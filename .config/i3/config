@@ -235,6 +235,8 @@ bindsym Print exec flameshot full --clipboard --path "$HOME/Pictures/Screenshots
 bindsym Control+Print exec flameshot gui --clipboard --path "$HOME/Pictures/Screenshots" && ~/.scripts/restart-picom.sh
 bindsym Mod1+Print exec flameshot screen --clipboard --path "$HOME/Pictures/Screenshots" && ~/.scripts/restart-picom.sh
 
+# Generate a UUID and copy to clipboard
+bindsym $mod+U exec uuidgen | tr -d '[:space:]' | xclip -selection clipboard && notify-send -u low -t 2000 -i clipboard 'uuidgen' 'copied new UUID to clipboard'
 
 # Media and function keys
 # ---------------------------------------------------------
