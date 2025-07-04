@@ -2,15 +2,15 @@ exec-once = google-chrome-stable
 exec-once = [workspace 2 silent] $terminal
 exec-once = spotify
 
-exec-once synology-drive
-exec-once obsidian
-# exec-once virt-manager --connect qemu:///system --show-domain-console win10
-exec-once teams --no-sandbox
-exec-once sh -c 'LD_LIBRARY_PATH=/opt/cisco/secureclient/lib:$LD_LIBRARY_PATH /opt/cisco/secureclient/bin/vpnui'
+exec-once = synology-drive
+exec-once = obsidian
+# exec-once = virt-manager --connect qemu:///system --show-domain-console win10
+exec-once = teams-for-linux
+exec-once = sh -c 'LD_LIBRARY_PATH=/opt/cisco/secureclient/lib:$LD_LIBRARY_PATH /opt/cisco/secureclient/bin/vpnui'
 
 # TODO: is there an option in hyprland or an alterative utility for this?
 #   or will it work better with proper scaling on the side monitor where this won't be needed?
 #   Note about sway - Scaling requires that the position is multiplied by the scaling, and if the screen edges don't align, the mouse won't move between them.
-# exec-once xedgewarp
+# exec-once = xedgewarp
 
 # vim:filetype=hyprlang

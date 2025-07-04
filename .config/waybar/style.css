@@ -22,6 +22,7 @@
 /* left-most modules in a group */
 #workspaces,
 #mpris.playing,
+#custom-build_version_tracker,
 #custom-microphone,
 #wireplumber,
 #tray
@@ -34,6 +35,7 @@
 /* right-most modules in a group */
 #workspaces,
 #mpris.playing,
+#custom-build_version_tracker,
 #custom-notification,
 #clock,
 #tray

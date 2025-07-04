@@ -13,4 +13,10 @@ windowrulev2 = workspace special:vpn silent, class:com.cisco.secureclient.gui, t
 # login dialog
 windowrulev2 = float, class:Cisco Secure Client, title:Cisco Secure Client - Login
 
+# Keeper Chrome Extension dialog
+windowrulev2 = float, class:chrome-bfogiafebfohielmmehodmfbbebbbpei-Default
+
+# Todoist Chrome Extension dialog
+windowrulev2 = float, class:chrome-jldhpllghnbhlbpcmnajkpdmadaolakh-Default
+
 # vim:filetype=hyprlang
