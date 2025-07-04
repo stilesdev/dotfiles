@@ -235,7 +235,7 @@ PKG_WORK=(
     remmina
     storageexplorer
     synology-drive
-    teams
+    teams-for-linux
     timeshift
     visual-studio-code-bin
     # xedgewarp-git
