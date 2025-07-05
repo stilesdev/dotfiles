@@ -251,32 +251,6 @@ PKG_LIBVIRT=(
     virt-manager
 )
 
-# Packages used in the past but no longer needed
-PKG_RETIRED=(
-    arc-gtk-theme
-    arc-icon-theme
-    code
-    faba-icon-theme-git
-    gtk-engine-murrine
-    hplip
-    insomnia
-    insomnia-bin
-    konsole
-    kwalletmanager
-    libreoffice-still
-    libu2f-host
-    moka-icon-theme-git
-    powerline-go
-    rofi
-    scrot
-    subversion
-    superproductivity-bin
-    synergy
-    tk-engine-murrine
-    vcsh
-    yubioath-desktop
-)
-
 # Installed on all systems
 PACKAGES=("${PKG_SYSTEM[@]}" "${PKG_UTILS[@]}" "${PKG_CLI[@]}")
 
@@ -300,10 +274,8 @@ if [ "$GRAPHICS_VENDOR" != 'none' ]; then
 fi
 
 PACKAGES="${PACKAGES[@]}"
-PKG_RETIRED="${PKG_RETIRED[@]}"
 
 export PACKAGES
-export PKG_RETIRED
 export GRAPHICS_VENDOR
 export IS_LAPTOP
 export IS_DOCKER_HOST
