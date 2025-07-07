@@ -116,13 +116,6 @@ PKG_CLI=(
 )
 
 # GUI Packages
-# PKG_GUI_THEME=(
-#     catppuccin-gtk-theme-mocha
-#     gnome-themes-extra
-#     papirus-icon-theme
-#     qt5-styleplugins
-#     xcursor-neutral
-# )
 PKG_GUI_DE=(
     hypridle # idle management daemon
     hyprland # main Wayland compositor
@@ -132,6 +125,7 @@ PKG_GUI_DE=(
     hyprpolkitagent # polkit auth daemon (for GUI apps to request elevation)
     hyprshot # screenshot-taking utility
     network-manager-applet # tray applet for networkmanager
+    nwg-look # GTK settings editor
     swappy # screenshot annotation utility
     swaync # notification daemon
     udiskie # tray applet for managing removable disks
@@ -141,6 +135,15 @@ PKG_GUI_DE=(
     wev # Wayland window debugging tool (similar to xev in X11)
     xdg-desktop-portal-gtk # fallback xdg-desktop-portal (file picker)
     xdg-desktop-portal-hyprland # main xdg-desktop-portal (screensharing, global shortcuts, etc)
+)
+PKG_GUI_THEME=(
+    breeze-hacked-cursor-theme-git # cursor theme
+    candy-icons-git # gtk icon theme
+    gnome-themes-extra # adwaita gtk theme
+#     qt5-styleplugins
+    sweet-folders-icons-git # gtk folder icon theme (inherits other icons from candy-icons)
+    sweet-gtk-theme-dark # gtk theme
+    xcursor-neutral # cursor theme
 )
 PKG_GUI_FILEBROWSER=(
     # 7zip
@@ -260,7 +263,7 @@ fi
 
 if [ "$GRAPHICS_VENDOR" != 'none' ]; then
     # Installed only on GUI systems
-    PACKAGES=("${PACKAGES[@]}" "${PKG_GRAPHICS[@]}" "${PKG_GUI_DE[@]}" "${PKG_GUI_FILEBROWSER[@]}" "${PKG_GUI_UTILS[@]}" "${PKG_GUI_APPS[@]}" "${PKG_AUDIO[@]}" "${PKG_FONTS[@]}" "${PKG_YUBIKEY[@]}" "${PKG_BLUETOOTH[@]}")
+    PACKAGES=("${PACKAGES[@]}" "${PKG_GRAPHICS[@]}" "${PKG_GUI_DE[@]}" "${PKG_GUI_THEME[@]}" "${PKG_GUI_FILEBROWSER[@]}" "${PKG_GUI_UTILS[@]}" "${PKG_GUI_APPS[@]}" "${PKG_AUDIO[@]}" "${PKG_FONTS[@]}" "${PKG_YUBIKEY[@]}" "${PKG_BLUETOOTH[@]}")
 
     if ($IS_LAPTOP); then
         PACKAGES=("${PACKAGES[@]}" "${PKG_LAPTOP[@]}")
