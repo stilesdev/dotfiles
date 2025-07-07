@@ -101,7 +101,7 @@ PKG_CLI=(
     go
     jq
     kitty
-    neofetch
+    # neofetch
     neovim
     ripgrep
     starship
