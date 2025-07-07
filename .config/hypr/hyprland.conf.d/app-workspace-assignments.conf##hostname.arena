@@ -1,5 +1,7 @@
 windowrulev2 = workspace 6, class:Brave-browser, title:.*(Twitch|YouTube).*
+windowrulev2 = workspace 6, class:zen, title:.*(Twitch|YouTube).*
 windowrulev2 = workspace 1, class:Brave-browser
+windowrulev2 = workspace 1, class:zen
 windowrulev2 = workspace 5, class:obsidian
 
 # vim:filetype=hyprlang
