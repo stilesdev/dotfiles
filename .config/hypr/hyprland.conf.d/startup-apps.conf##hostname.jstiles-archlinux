@@ -1,11 +1,13 @@
-exec-once = google-chrome-stable
+# exec-once = google-chrome-stable
+exec-once = zen-browser
 exec-once = [workspace 2 silent] $terminal
 exec-once = spotify
 
-exec-once = synology-drive
-exec-once = obsidian
+# added sleep to make sure waybar is started first, else tray icons never show up
+exec-once = sleep 3 && synology-drive
+exec-once = [workspace 5 silent] obsidian
 # exec-once = virt-manager --connect qemu:///system --show-domain-console win10
-exec-once = [workspace 8 silent] teams-for-linux
+exec-once = [workspace 8 silent] sleep 3 && teams-for-linux
 exec-once = sh -c 'LD_LIBRARY_PATH=/opt/cisco/secureclient/lib:$LD_LIBRARY_PATH /opt/cisco/secureclient/bin/vpnui'
 
 # TODO: is there an option in hyprland or an alterative utility for this?
