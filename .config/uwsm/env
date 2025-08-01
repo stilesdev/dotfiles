@@ -1,4 +1,5 @@
-export XCURSOR_SIZE=24
+export XCURSOR_SIZE=16
+export XCURSOR_THEME=Breeze_Hacked
 
 # Allow electron apps to run in wayland
 export ELECTRON_OZONE_PLATFORM_HINT=auto

@@ -1,5 +1,5 @@
 # this file should only be used for HYPR* and AQ_* variables - everything else should go in `env`
 
-env = HYPRCURSOR_SIZE,24
+env = HYPRCURSOR_SIZE,16
 
 # vim:filetype=sh
