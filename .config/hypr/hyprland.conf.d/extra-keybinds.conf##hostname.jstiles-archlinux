@@ -1,0 +1,5 @@
+bind = , XF86Tools, exec, pactl set-source-mute alsa_input.usb-C-Media_Electronics_Inc._InnoGear_UC016-00.mono-fallback toggle
+
+bind = $mainMod, tab, togglespecialworkspace, vpn
+
+# vim:filetype=hyprlang

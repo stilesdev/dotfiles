@@ -1,0 +1,12 @@
+# See https://wiki.hyprland.org/Configuring/Monitors/
+monitor = DP-1, 2560x1080@85, 0x0, 1
+# monitor = DP-1, 1920x1080@60, 0x0, 1 # no way to pillar-box this in hyprland apparently... (https://github.com/hyprwm/Hyprland/issues/4817, https://github.com/hyprwm/Hyprland/discussions/9902)
+
+# TOP, BOTTOM, LEFT, RIGHT (2560-1920 = 640)
+# monitor = DP-1, addreserved, 0, 0, 0, 640
+
+# monitor = DP-2, 3840x2160@60, auto-center-left, 1.5, transform, 1
+# monitor = DP-2, 3840x2160@60, auto-center-left, 1.3333, transform, 1
+monitor = DP-2, 3840x2160@60, auto-center-left, 1, transform, 1
+
+# vim:filetype=hyprlang

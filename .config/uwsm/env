@@ -1,0 +1,14 @@
+export XCURSOR_SIZE=16
+export XCURSOR_THEME=Breeze_Hacked
+
+# Allow electron apps to run in wayland
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+
+# Added according to https://wiki.hyprland.org/Nvidia/#environment-variables
+export LIBVA_DRIVER_NAME=nvidia
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+
+# Style Qt5 and Qt6 applications using current GTK3 theme
+export QT_QPA_PLATFORMTHEME=gtk3
+
+# vim:filetype=sh

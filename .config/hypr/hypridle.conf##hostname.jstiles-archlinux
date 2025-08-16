@@ -1,0 +1,40 @@
+# $is_locked && <command> = only if screen IS locked
+# $is_locked || <command> = only if screen IS NOT locked
+$is_locked = pidof hyprlock
+$lock_now = hyprctl dispatch exec 'loginctl lock-session'
+
+$display_off = hyprctl dispatch dpms off
+$display_on = hyprctl dispatch dpms on
+
+general {
+    lock_cmd = $is_locked || hyprlock  # avoid starting multiple hyprlock instances.
+    before_sleep_cmd = $lock_now       # lock before suspend.
+    after_sleep_cmd = $display_on      # to avoid having to press a key twice to turn on the display.
+}
+
+# lock screen after 30 minutes
+listener {
+    timeout = 1800
+    on-timeout = $lock_now
+}
+
+# normal screen off timeout, 35 minutes
+listener {
+    timeout = 2100
+    on-timeout = $display_off
+    on-resume = $display_on
+}
+
+# listener {
+#     timeout = 1800                                # 30min
+#     on-timeout = systemctl suspend                # suspend pc
+# }
+
+# while locked, turn screen off after 10 seconds
+listener {
+    timeout = 10
+    on-timeout = $is_locked && $display_off
+    on-resume = $is_locked && $display_on
+}
+
+# vim:filetype=hyprlang

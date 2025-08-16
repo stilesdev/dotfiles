@@ -1,0 +1,162 @@
+@import "mocha.css";
+
+* {
+    font-family: Hasklug Nerd Font;
+    font-size: 12px;
+    min-height: 0;
+}
+
+#waybar {
+    background: transparent;
+    color: @text;
+    margin: 5px 0;
+}
+
+/* all modules */
+.module {
+    background-color: @surface0;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+}
+
+/* left-most modules in a group */
+#workspaces,
+#mpris.playing,
+#custom-build_version_tracker,
+#custom-microphone,
+#wireplumber,
+#tray
+{
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    margin-left: 0.5rem;
+}
+
+/* right-most modules in a group */
+#workspaces,
+#mpris.playing,
+#custom-build_version_tracker,
+#custom-notification,
+#clock,
+#tray
+{
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    margin-right: 0.5rem;
+}
+
+/* module-specific styling */
+
+#workspaces {
+    padding: 0;
+}
+
+#workspaces button {
+    color: @lavender;
+    border-radius: 1rem;
+    padding: 0.4rem;
+}
+
+/* workspace visible but not active (on other monitor) */
+#workspaces button.visible {
+    background-color: @surface1;
+    border-radius: 1rem;
+}
+
+#workspaces button.active {
+    color: @green;
+    background-color: @surface2;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    color: @text;
+    background-color: @red;
+}
+
+#workspaces button:hover {
+    color: @sapphire;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+
+#mpris.paused,
+#mpris.stopped {
+    background: none;
+}
+
+#mpris.playing {
+    color: @green;
+}
+
+#custom-microphone.disabled {
+    color: @surface2;
+}
+
+#custom-microphone.muted {
+    color: @red;
+}
+
+#custom-microphone.unmuted {
+    color: @green;
+}
+
+#custom-microphone,
+#idle_inhibitor,
+#custom-notification {
+    font-size: 14px;
+}
+
+#pulseaudio,
+#wireplumber {
+    color: @green;
+}
+
+#wireplumber.muted {
+    color: @red;
+}
+
+#backlight {
+    color: @yellow;
+}
+
+#memory {
+    color: @teal;
+}
+
+#cpu {
+    color: @peach;
+}
+
+#temperature {
+    color: @rosewater;
+}
+
+#temperature.critical {
+    color: @red;
+}
+
+#network {
+    color: @lavender;
+}
+
+#battery {
+    color: @green;
+}
+
+#battery.charging {
+    color: @green;
+}
+
+#battery.warning:not(.charging) {
+    color: @yellow;
+}
+
+#battery.critical:not(.charging) {
+    color: @red;
+}
+
+#clock {
+    color: @blue;
+}

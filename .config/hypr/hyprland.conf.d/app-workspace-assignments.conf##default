@@ -1,0 +1,4 @@
+windowrulev2 = workspace 1, class:Brave-browser
+windowrulev2 = workspace 5, class:obsidian
+
+# vim:filetype=hyprlang

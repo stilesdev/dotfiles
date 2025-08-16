@@ -1,23 +1,28 @@
 #!/usr/bin/env bash
 
+source /etc/yadm/pre-bootstrap || exit $?
 source ~/.config/yadm/packages.sh || exit $?
+source ~/.config/yadm/bootstrap-utils.sh || exit $?
 
-echo "Installing packages"
-sudo pacman --noconfirm --needed -S $PACKAGES || exit $?
+INSTALLED_PACKAGES=$(pacman -Qq | sort)
+DEFINED_PACKAGES=$(echo "$PACKAGES $PKG_PACSTRAP" | xargs -n1 | sort | uniq)
+PACKAGES_NOT_INSTALLED=$(comm -13 <(echo "$INSTALLED_PACKAGES") <(echo "$DEFINED_PACKAGES"))
 
-echo "Configuring NetworkManager"
-sudo systemctl enable --now NetworkManager.service
+if [ "$PACKAGES_NOT_INSTALLED" != '' ]; then
+    echo "Installing missing packages:"
+    echo "$PACKAGES_NOT_INSTALLED"
+    sudo pacman --noconfirm -S $PACKAGES_NOT_INSTALLED || exit $?
+fi
 
-echo "Configuring cronie"
-sudo systemctl enable --now cronie.service
+enable_and_start_service NetworkManager.service
 
-echo "Configuring sshd"
-sudo systemctl enable sshd.service
+enable_and_start_service cronie.service
+
+enable_and_start_service sshd.service
 
 if ($IS_DOCKER_HOST); then
-    echo "Configuring docker"
-    sudo systemctl enable --now docker.service
-    sudo usermod -a -G docker $USER
+    enable_and_start_service docker.service
+    add_user_to_group $USER docker
     docker buildx install
 fi
 
@@ -28,69 +33,63 @@ if ! command -v node > /dev/null 2>&1 || [ $(node --version | cut -d '.' -f 1) !
     fnm default "v$NODE_VERSION"
 fi
 
-echo "Installing sessionizer"
-go install github.com/stilesdev/sessionizer@latest
+if ! command -v sessionizer > /dev/null 2>&1; then
+    echo "Installing sessionizer"
+    go install github.com/stilesdev/sessionizer@latest
+fi
 
-echo "Setting shell to zsh"
-sudo chsh -s /usr/bin/zsh $USER
+if ! grep "$USER" /etc/passwd | grep "/usr/bin/zsh" > /dev/null; then
+    echo "Setting shell to zsh"
+    sudo chsh -s /usr/bin/zsh $USER
+fi
 
 if [ "$GRAPHICS_VENDOR" = 'none' ]; then
-    echo "Configuring nohang"
-    sudo systemctl enable --now nohang.service
+    enable_and_start_service nohang.service
 else
-    echo "Configuring nohang"
-    sudo systemctl enable --now nohang-desktop.service
+    enable_and_start_service nohang-desktop.service
 
-    echo "Configuring bluetooth"
-    sudo systemctl enable --now bluetooth.service
+    enable_and_start_service bluetooth.service
 
     if ($IS_LAPTOP); then
-        echo "Configuring thermald"
-        sudo systemctl enable thermald.service
+        enable_and_start_service keyd.service
 
-        echo "Configuring tlp"
-        sudo systemctl enable tlp.service
-        sudo systemctl mask systemd-rfkill.service
-        sudo systemctl mask systemd-rfkill.socket
+        # TODO: are thermald and tlp still relevant?
+        # enable_and_start_service thermald.service
+        # enable_and_start_service tlp.service
+        # mask_service systemd-rfkill.service
+        # mask_service systemd-rfkill.socket
     fi
 
-    echo "Configuring lightdm"
-    sudo systemctl enable lightdm.service
+    enable_and_start_user_service waybar.service
 
-    echo "Configuring thunar as the default file explorer"
-    xdg-mime default thunar.desktop inode/directory
+    enable_and_start_user_service hyprpolkitagent.service
 
-    echo "Creating screenshots directory"
-    mkdir -p ~/Pictures/Screenshots
+    enable_and_start_user_service hyprpaper.service
 
-    if ! [ -f "$HOME/.cache/betterlockscreen/current/wall_resize.png" ]; then
-        echo "Setting default wallpaper"
-        betterlockscreen -u $HOME/Pictures/Wallpapers/arch-linux.png
+    enable_and_start_user_service hypridle.service
+
+    if [ $(xdg-mime query default inode/directory) != "thunar.desktop" ]; then
+        echo "Configuring thunar as the default file explorer"
+        xdg-mime default thunar.desktop inode/directory
     fi
 
-    echo "Setting up GPG key"
-    systemctl --user mask --now gpg-agent.service gpg-agent.socket gpg-agent-ssh.socket gpg-agent-extra.socket gpg-agent-browser.socket
-    sudo systemctl enable --now pcscd
-    if ! gpg --card-status; then
-        echo "Failed to detect YubiKey. Plug in the YubiKey and try running the bootstrap script again"
-        #elif ! gpg --keyserver keys.gnupg.net --recv C0AC1B5B; then
-    elif ! bash -c 'curl https://github.com/stilesdev.gpg | gpg --import -'; then
-        echo "Failed to retrieve key from keyserver. Check internet connectivity and try running the bootstrap script again"
-    else
-        echo "Trusting gpg key"
-        gpg --list-keys --fingerprint C0AC1B5B | gawk 'NR==2 {gsub(/ /, ""); printf("%s:6:\n", $0)}' | gpg --import-ownertrust
-        # echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key C0AC1B5B trust
+    if [[ ! -d "$HOME/Pictures/Screenshots" ]]; then
+        echo "Creating screenshots directory"
+        mkdir -p "$HOME/Pictures/Screenshots"
     fi
+
+    gpg_setup "C0AC1B5B" "https://github.com/stilesdev.gpg"
 
     if [ "$USER" = 'jstiles' ]; then
-        echo "Configuring libvirt"
-        sudo systemctl enable libvirtd.service
-        sudo systemctl start libvirtd.service virtlogd.service
-        sudo usermod --append --groups libvirt "$USER"
-        sudo virsh net-start default
+        enable_and_start_service libvirtd.service
+        add_user_to_group $USER libvirt
+        # sudo virsh net-start default # TODO: is there a way to check for this without a sudo prompt?
     fi
 fi
 
-echo "Updating the yadm repo origin URL"
-yadm remote set-url origin "git@github.com:stilesdev/dotfiles.git"
+DOTFILES_ORIGIN="git@github.com:stilesdev/dotfiles.git"
+if [ $(yadm remote get-url origin) != "$DOTFILES_ORIGIN" ]; then
+    echo "Updating the yadm repo origin URL"
+    yadm remote set-url origin "$DOTFILES_ORIGIN"
+fi
 

@@ -6,7 +6,7 @@ IS_DOCKER_HOST=false
 
 case $(hostname) in
 arcade*)
-    GRAPHICS_VENDOR='intel'
+    GRAPHICS_VENDOR='nvidia'
     IS_LAPTOP=true
     IS_DOCKER_HOST=true
     ;;
@@ -36,23 +36,24 @@ esac
 
 if [ "$GRAPHICS_VENDOR" = 'intel' ]; then
     PKG_GRAPHICS=(
-        lib32-mesa
-        mesa
-        xf86-video-intel
+        lib32-mesa # 32-bit DRI driver for 3D acceleration
+        lib32-vulkan-intel # 32-bit Vulkan support
+        mesa # DRI driver for 3D acceleration
+        vulkan-intel # Vulkan support
     )
 elif [ "$GRAPHICS_VENDOR" = 'nvidia' ]; then
     PKG_GRAPHICS=(
-        lib32-nvidia-utils
-        nvidia
-        nvidia-settings
-        nvidia-utils
+        egl-wayland # NVIDIA Wayland implementation of EGL, required by hyprland
+        lib32-nvidia-utils # 32-bit userspace drivers, for apps like Steam and Wine
+        nvidia # official closed-source driver from NVIDIA
+        nvidia-utils # userspace drivers, including Vulkan support
     )
 elif [ "$GRAPHICS_VENDOR" = 'amd' ]; then
     PKG_GRAPHICS=(
-        lib32-mesa
-        mesa
-        vulkan-radeon
-        xf86-video-amdgpu
+        lib32-mesa # 32-bit DRI driver for 3D acceleration
+        lib32-vulkan-radeon # 32-bit Vulkan support
+        mesa # DRI driver for 3D acceleration
+        vulkan-radeon # Vulkan support
     )
 elif [ "$GRAPHICS_VENDOR" = 'none' ]; then
     PKG_GRAPHICS=()
@@ -63,16 +64,15 @@ fi
 
 # Installed on all systems
 PKG_SYSTEM=(
-    cronie
-    dosfstools
-    nohang
-    ntfs-3g
-    pacman-contrib
-    reflector
-    smbclient
-    sshfs
-    systemd-boot-pacman-hook
-    usbutils
+    cronie # cron
+    dosfstools # mkfs.fat
+    lvm2 # LVM utilities
+    nohang # low memory handler
+    ntfs-3g # NTFS support
+    pacman-contrib # paccache, pacdiff
+    smbclient # SAMBA support
+    systemd-boot-pacman-hook # pacman hook to upgrade systemd-boot after systemd upgrades
+    usbutils # lsusb
 )
 PKG_UTILS=(
     autossh
@@ -86,6 +86,7 @@ PKG_UTILS=(
     ldns # provides drill command
     nmap
     openssh
+    reflector
     rsync
     tailscale
     tig
@@ -104,7 +105,8 @@ PKG_CLI=(
     fzf
     go
     jq
-    neofetch
+    kitty
+    # neofetch
     neovim
     postgresql-libs
     ripgrep
@@ -113,7 +115,7 @@ PKG_CLI=(
     tig
     tmux
     vim
-    wezterm
+    wezterm-git
     zsh
     zsh-autosuggestions
     zsh-history-substring-search
@@ -121,56 +123,56 @@ PKG_CLI=(
 )
 
 # GUI Packages
-PKG_GUI_XORG=(
-    xorg-server
-    xorg-xev
-    xorg-xkill
-    xorg-xmodmap
-    xorg-xrdb
+PKG_GUI_DE=(
+    hypridle # idle management daemon
+    hyprland # main Wayland compositor
+    hyprlock # screen lock
+    hyprpaper # wallpaper utility
+    hyprpicker # color picker, also used by hyprshot to freeze screen during screenshot
+    hyprpolkitagent # polkit auth daemon (for GUI apps to request elevation)
+    hyprshot # screenshot-taking utility
+    network-manager-applet # tray applet for networkmanager
+    nwg-look # GTK settings editor
+    swappy # screenshot annotation utility
+    swaync # notification daemon
+    udiskie # tray applet for managing removable disks
+    ulauncher # application launcher
+    uwsm # Wayland session manager (used to start hyprland)
+    waybar # status bar
+    wev # Wayland window debugging tool (similar to xev in X11)
+    xdg-desktop-portal-gtk # fallback xdg-desktop-portal (file picker)
+    xdg-desktop-portal-hyprland # main xdg-desktop-portal (screensharing, global shortcuts, etc)
 )
 PKG_GUI_THEME=(
-    catppuccin-gtk-theme-mocha
-    gnome-themes-extra
-    papirus-icon-theme
-    qt5-styleplugins
-    xcursor-neutral
-)
-PKG_GUI_DE=(
-    betterlockscreen
-    cups
-    cups-pdf
-    dunst
-    i3-wm
-    lightdm
-    lightdm-slick-greeter
-    network-manager-applet
-    picom
-    polybar
-    udiskie
-    ulauncher
+    breeze-hacked-cursor-theme-git # cursor theme
+    candy-icons-git # gtk icon theme
+    gnome-themes-extra # adwaita gtk theme
+#     qt5-styleplugins
+    sweet-folders-icons-git # gtk folder icon theme (inherits other icons from candy-icons)
+    sweet-gtk-theme-dark # gtk theme
+    xcursor-neutral # cursor theme
 )
 PKG_GUI_FILEBROWSER=(
-    7zip
-    ark
-    ffmpegthumbnailer
+    # 7zip
+    # ark
+    # ffmpegthumbnailer
     gvfs-mtp
     gvfs-smb
     thunar
-    tumbler
-    unarchiver
+    # tumbler
+    # unarchiver
 )
 PKG_GUI_UTILS=(
-    arandr
-    autorandr
+    # arandr
+    # autorandr
+    clipse
     eog
-    flameshot
-    kcalc
-    mediainfo-gui
-    numlockx
+    # flameshot
+    # kcalc
+    # numlockx
     seahorse
-    xclip
+    wl-clipboard # terminal clipboard utilities (wl-copy and wl-paste)
     yubico-authenticator-bin
-    zsa-udev
 )
 PKG_GUI_APPS=(
     brave-bin
@@ -186,13 +188,12 @@ PKG_GUI_APPS=(
 PKG_AUDIO=(
     alsa-utils # includes alsamixer utility
     pavucontrol # volume control GUI
-    pipewire # audio/video router/processor
+    pipewire # audio/video router/processor - required for hyprland screen sharing
     pipewire-alsa # pipewire alsa configuration
     pipewire-audio # pipewire audio support (including bluetooth audio support)
     pipewire-pulse # pipewire as pulseaudio replacement
-    playerctl
-    python-dbus # used by ~/.scripts/polybar-modules/spotify-status.py
-    wireplumber # pipewire session/policy manager
+    playerctl # used to control audio players via hyprland keybinds
+    wireplumber # pipewire session/policy manager - required for hyprland screen sharing
 )
 PKG_FONTS=(
     stilesdev-fonts
@@ -207,13 +208,22 @@ PKG_YUBIKEY=(
 )
 PKG_BLUETOOTH=(
     blueman
+    bluez
+    bluez-utils
 )
 
 PKG_LAPTOP=(
-    thermald
-    tlp
-    xf86-input-libinput
-    xorg-xbacklight
+    brightnessctl
+    keyd
+    # thermald
+    # tlp
+    # xf86-input-libinput
+    # xorg-xbacklight
+)
+
+PKG_NON_WORK=(
+    proton-vpn-gtk-app
+    steam
 )
 
 PKG_GAMES=(
@@ -273,7 +283,7 @@ PKG_WORK=(
     teams-for-linux
     timeshift
     visual-studio-code-bin
-    xedgewarp-git
+    # xedgewarp-git
 )
 
 PKG_LIBVIRT=(
@@ -287,32 +297,6 @@ PKG_LIBVIRT=(
     virt-manager
 )
 
-# Packages used in the past but no longer needed
-PKG_RETIRED=(
-    arc-gtk-theme
-    arc-icon-theme
-    code
-    faba-icon-theme-git
-    gtk-engine-murrine
-    hplip
-    insomnia
-    insomnia-bin
-    konsole
-    kwalletmanager
-    libreoffice-still
-    libu2f-host
-    moka-icon-theme-git
-    powerline-go
-    rofi
-    scrot
-    subversion
-    superproductivity-bin
-    synergy
-    tk-engine-murrine
-    vcsh
-    yubioath-desktop
-)
-
 # Installed on all systems
 PACKAGES=("${PKG_SYSTEM[@]}" "${PKG_UTILS[@]}" "${PKG_CLI[@]}")
 
@@ -322,7 +306,7 @@ fi
 
 if [ "$GRAPHICS_VENDOR" != 'none' ]; then
     # Installed only on GUI systems
-    PACKAGES=("${PACKAGES[@]}" "${PKG_GRAPHICS[@]}" "${PKG_GUI_XORG[@]}" "${PKG_GUI_THEME[@]}" "${PKG_GUI_DE[@]}" "${PKG_GUI_FILEBROWSER[@]}" "${PKG_GUI_UTILS[@]}" "${PKG_GUI_APPS[@]}" "${PKG_AUDIO[@]}" "${PKG_FONTS[@]}" "${PKG_YUBIKEY[@]}" "${PKG_BLUETOOTH[@]}")
+    PACKAGES=("${PACKAGES[@]}" "${PKG_GRAPHICS[@]}" "${PKG_GUI_DE[@]}" "${PKG_GUI_THEME[@]}" "${PKG_GUI_FILEBROWSER[@]}" "${PKG_GUI_UTILS[@]}" "${PKG_GUI_APPS[@]}" "${PKG_AUDIO[@]}" "${PKG_FONTS[@]}" "${PKG_YUBIKEY[@]}" "${PKG_BLUETOOTH[@]}")
 
     if ($IS_LAPTOP); then
         PACKAGES=("${PACKAGES[@]}" "${PKG_LAPTOP[@]}")
@@ -341,10 +325,8 @@ if [ "$GRAPHICS_VENDOR" != 'none' ]; then
 fi
 
 PACKAGES="${PACKAGES[@]}"
-PKG_RETIRED="${PKG_RETIRED[@]}"
 
 export PACKAGES
-export PKG_RETIRED
 export GRAPHICS_VENDOR
 export IS_LAPTOP
 export IS_DOCKER_HOST
