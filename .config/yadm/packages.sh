@@ -2,6 +2,7 @@
 
 GRAPHICS_VENDOR=''
 IS_LAPTOP=false
+IS_VPS=false
 IS_DOCKER_HOST=false
 
 case $(hostname) in
@@ -27,6 +28,7 @@ jstiles-archlinux*)
     ;;
 pkg*)
     GRAPHICS_VENDOR='none'
+    IS_VPS=true
     IS_DOCKER_HOST=true
     ;;
 purgos*)
@@ -297,6 +299,16 @@ PKG_LIBVIRT=(
     virt-manager
 )
 
+# Packages installed by default in the arch-boxes images, used to install Arch on a VPS
+PKG_VPS=(
+    btrfs-progs
+    cloud-guest-utils
+    cloud-init
+    dosfstools
+    efibootmgr
+    grub
+)
+
 # Installed on all systems
 PACKAGES=("${PKG_SYSTEM[@]}" "${PKG_UTILS[@]}" "${PKG_CLI[@]}")
 
@@ -324,10 +336,15 @@ if [ "$GRAPHICS_VENDOR" != 'none' ]; then
 
 fi
 
+if ($IS_VPS); then
+    PACKAGES=("${PACKAGES[@]}" "${PKG_VPS[@]}")
+fi
+
 PACKAGES="${PACKAGES[@]}"
 
 export PACKAGES
 export GRAPHICS_VENDOR
 export IS_LAPTOP
+export IS_VPS
 export IS_DOCKER_HOST
 

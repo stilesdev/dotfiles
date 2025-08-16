@@ -14,7 +14,9 @@ if [ "$PACKAGES_NOT_INSTALLED" != '' ]; then
     sudo pacman --noconfirm -S $PACKAGES_NOT_INSTALLED || exit $?
 fi
 
-enable_and_start_service NetworkManager.service
+if ! ($IS_VPS); then
+    enable_and_start_service NetworkManager.service
+fi
 
 enable_and_start_service cronie.service
 
