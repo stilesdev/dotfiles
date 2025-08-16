@@ -26,13 +26,20 @@ jstiles-archlinux*)
     GRAPHICS_VENDOR='amd'
     IS_DOCKER_HOST=true
     ;;
-pkg*)
+outlands*)
     GRAPHICS_VENDOR='none'
     IS_VPS=true
     IS_DOCKER_HOST=true
     ;;
+portal*)
+    GRAPHICS_VENDOR='none'
+    ;;
 purgos*)
     GRAPHICS_VENDOR='none'
+    ;;
+test*)
+    GRAPHICS_VENDOR='none'
+    IS_DOCKER_HOST=true
     ;;
 esac
 
