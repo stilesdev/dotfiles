@@ -80,23 +80,28 @@ PKG_SYSTEM=(
     ntfs-3g # NTFS support
     pacman-contrib # paccache, pacdiff
     smbclient # SAMBA support
+    sshfs # mount remote filesystems using SSH
     systemd-boot-pacman-hook # pacman hook to upgrade systemd-boot after systemd upgrades
     usbutils # lsusb
 )
 PKG_UTILS=(
     autossh
     bat
+    cloc
     git
     git-filter-repo
     gnupg
     htop
+    iftop
     imagemagick
     jq
     ldns # provides drill command
+    lostfiles
     nmap
     openssh
     reflector
     rsync
+    smartmontools
     tailscale
     tig
     unzip
@@ -110,12 +115,12 @@ PKG_DOCKER=(
 )
 PKG_CLI=(
     dbmate
+    fastfetch
     fnm-bin
     fzf
     go
     jq
     kitty
-    # neofetch
     neovim
     postgresql-libs
     ripgrep
@@ -133,6 +138,8 @@ PKG_CLI=(
 
 # GUI Packages
 PKG_GUI_DE=(
+    cups # printer daemon
+    cups-pdf # print to PDF
     hypridle # idle management daemon
     hyprland # main Wayland compositor
     hyprlock # screen lock
@@ -162,14 +169,14 @@ PKG_GUI_THEME=(
     xcursor-neutral # cursor theme
 )
 PKG_GUI_FILEBROWSER=(
-    # 7zip
-    # ark
-    # ffmpegthumbnailer
+    7zip
+    ark
+    ffmpegthumbnailer
     gvfs-mtp
     gvfs-smb
     thunar
-    # tumbler
-    # unarchiver
+    tumbler
+    unarchiver
 )
 PKG_GUI_UTILS=(
     # arandr
@@ -178,15 +185,16 @@ PKG_GUI_UTILS=(
     eog
     # flameshot
     # kcalc
+    mediainfo-gui
     # numlockx
     seahorse
     wl-clipboard # terminal clipboard utilities (wl-copy and wl-paste)
     yubico-authenticator-bin
 )
 PKG_GUI_APPS=(
-    brave-bin
     filelight
     firefox
+    gimp
     obsidian
     onlyoffice-bin
     spotify
@@ -231,6 +239,7 @@ PKG_LAPTOP=(
 )
 
 PKG_NON_WORK=(
+    brave-bin
     proton-vpn-gtk-app
     steam
 )
@@ -275,17 +284,22 @@ PKG_WORK=(
     evolution-ews
     freerdp
     git-lfs
+    github-cli
     google-chrome
+    insomnium-bin # HTTP client
     jetbrains-toolbox
     kcachegrind
     kubectl
+    k9s # k8s management TUI
     libvncserver
+    miller # command-line csv processing
     minikube
     navi
     nmap
     php
     postgresql-libs
     postman-bin
+    powerpanel # UPS monitoring
     remmina
     storageexplorer
     synology-drive
@@ -293,6 +307,7 @@ PKG_WORK=(
     timeshift
     visual-studio-code-bin
     # xedgewarp-git
+    xorg-xhost # required to run timeshift GUI on wayland
 )
 
 PKG_LIBVIRT=(
