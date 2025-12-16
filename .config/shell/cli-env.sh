@@ -9,6 +9,8 @@ export PATH="$GOBIN:$PATH"
 export GPG_TTY=`tty`
 export GPG_AGENT_INFO=/run/user/$(id -u)/gnupg/S.gpg-agent::
 export SSH_AUTH_SOCK=/run/user/$(id -u)/gnupg/S.gpg-agent.ssh
+# check card status to make sure Yubikey is loaded
+gpg --card-status >/dev/null 2>&1
 
 eval "$(fnm env --corepack-enabled)"
 
