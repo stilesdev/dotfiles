@@ -150,11 +150,13 @@
     },
     // TODO: filesystem?
     "memory": {
-        "format": " {}%"
+        "format": " {}%",
+        "interval": 5
     },
     "cpu": {
         "format": " {usage}%",
-        "tooltip": false
+        "tooltip": false,
+        "interval": 2
     },
     "temperature": {
         // "thermal-zone": 2,
