@@ -1,7 +1,5 @@
-windowrule = workspace 6, class:Brave-browser, title:.*(Twitch|YouTube).*
-windowrule = workspace 6, class:zen, title:.*(Twitch|YouTube).*
-windowrule = workspace 1, class:Brave-browser
 windowrule = workspace 1, class:zen
 windowrule = workspace 5, class:obsidian
+windowrule = workspace 6, class:firefox
 
 # vim:filetype=hyprlang
