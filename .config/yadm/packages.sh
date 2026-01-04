@@ -83,6 +83,7 @@ PKG_SYSTEM=(
     sshfs # mount remote filesystems using SSH
     systemd-boot-pacman-hook # pacman hook to upgrade systemd-boot after systemd upgrades
     usbutils # lsusb
+    zram-generator # automatic setup of zram as swap
 )
 PKG_UTILS=(
     autossh
