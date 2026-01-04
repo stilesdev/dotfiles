@@ -1,20 +1,20 @@
-windowrule = workspace 1, class:Google-chrome
-windowrule = workspace 3, class:jetbrains-phpstorm
-windowrule = workspace 5, class:obsidian
-windowrule = workspace 7, class:Virt-manager
-windowrule = workspace 8, class:teams-for-linux
+windowrule = workspace 1, match:class Google-chrome
+windowrule = workspace 3, match:class jetbrains-phpstorm
+windowrule = workspace 5, match:class obsidian
+windowrule = workspace 7, match:class Virt-manager
+windowrule = workspace 8, match:class teams-for-linux
 
-windowrule = float, class:jetbrains-toolbox
+windowrule = float on, match:class jetbrains-toolbox
 
 # main window, preferences, connected details
-windowrule = workspace special:vpn silent, float, center, class:com.cisco.secureclient.gui
+windowrule = workspace special:vpn silent, float on, center on, match:class com.cisco.secureclient.gui
 # login dialog
-windowrule = workspace special:vpn silent, float, center, class:Cisco Secure Client
+windowrule = workspace special:vpn silent, float on, center on, match:class Cisco Secure Client
 
 # Keeper Chrome Extension dialog
-windowrule = float, class:chrome-bfogiafebfohielmmehodmfbbebbbpei-Default
+windowrule = float on, match:class chrome-bfogiafebfohielmmehodmfbbebbbpei-Default
 
 # Todoist Chrome Extension dialog
-windowrule = float, class:chrome-jldhpllghnbhlbpcmnajkpdmadaolakh-Default
+windowrule = float on, match:class chrome-jldhpllghnbhlbpcmnajkpdmadaolakh-Default
 
 # vim:filetype=hyprlang

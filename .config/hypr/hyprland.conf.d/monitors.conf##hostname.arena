@@ -3,7 +3,7 @@
 # HDR:
 # monitor = DP-2, 3440x1440@165, 0x0, 1, bitdepth, 10, cm, hdr, sdrbrightness, 1.15, sdrsaturation, 1.3, vrr, 2
 # monitor = DP-2, 3440x1440@165, 0x0, 1, bitdepth, 10, cm, hdr, sdrbrightness, 1.15, sdrsaturation, 1.3
-experimental:xx_color_management_v4 = true
+# experimental:xx_color_management_v4 = true
 
 # SDR:
 # monitor = DP-2, 3440x1440@165, 0x0, 1, bitdepth, 10, vrr, 2

@@ -1,4 +1,4 @@
-windowrule = workspace 1, class:Brave-browser
-windowrule = workspace 5, class:obsidian
+windowrule = workspace 1, match:class Brave-browser
+windowrule = workspace 5, match:class obsidian
 
 # vim:filetype=hyprlang

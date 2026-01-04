@@ -1,5 +1,5 @@
-windowrule = workspace 1, class:zen
-windowrule = workspace 5, class:obsidian
-windowrule = workspace 6, class:firefox
+windowrule = workspace 1, match:class zen
+windowrule = workspace 5, match:class obsidian
+windowrule = workspace 6, match:class firefox
 
 # vim:filetype=hyprlang
