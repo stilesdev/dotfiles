@@ -17,6 +17,7 @@ arena*)
     ;;
 builder*)
     GRAPHICS_VENDOR='none'
+    IS_DOCKER_HOST=true
     ;;
 encom*)
     GRAPHICS_VENDOR='none'
