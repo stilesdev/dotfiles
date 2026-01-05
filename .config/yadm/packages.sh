@@ -7,7 +7,7 @@ IS_DOCKER_HOST=false
 
 case $(hostname) in
 arcade*)
-    GRAPHICS_VENDOR='nvidia'
+    GRAPHICS_VENDOR='nvidia-580xx'
     IS_LAPTOP=true
     IS_DOCKER_HOST=true
     ;;
@@ -55,8 +55,16 @@ elif [ "$GRAPHICS_VENDOR" = 'nvidia' ]; then
     PKG_GRAPHICS=(
         egl-wayland # NVIDIA Wayland implementation of EGL, required by hyprland
         lib32-nvidia-utils # 32-bit userspace drivers, for apps like Steam and Wine
-        nvidia # official closed-source driver from NVIDIA
+        nvidia-open # official open-source kernel modules from NVIDIA
         nvidia-utils # userspace drivers, including Vulkan support
+    )
+elif [ "$GRAPHICS_VENDOR" = 'nvidia-580xx' ]; then
+    PKG_GRAPHICS=(
+        egl-wayland # NVIDIA Wayland implementation of EGL, required by hyprland
+        lib32-nvidia-580xx-utils # 32-bit userspace drivers, for apps like Steam and Wine
+        linux-headers # needed for dkms
+        nvidia-580xx-dkms # official closed-source driver from NVIDIA
+        nvidia-580xx-utils # userspace drivers, including Vulkan support
     )
 elif [ "$GRAPHICS_VENDOR" = 'amd' ]; then
     PKG_GRAPHICS=(
