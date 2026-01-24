@@ -41,8 +41,8 @@ unsetopt autocd beep nomatch
 bindkey "^H" backward-delete-word    # Ctrl+Backspace
 bindkey "^[[3~" delete-char          # Del
 bindkey "^[[3;5~" delete-word        # Ctrl+Del
-bindkey "^[[H" beginning-of-line     # Home
-bindkey "^[[F" end-of-line           # End
+bindkey "^[[1~" beginning-of-line    # Home
+bindkey "^[[4~" end-of-line          # End
 bindkey "^[[5~" beginning-of-history # PgUp
 bindkey "^[[6~" end-of-history       # PgDown
 bindkey "^[[1;5C" forward-word       # Ctrl+Right
