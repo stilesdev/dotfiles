@@ -35,7 +35,14 @@ setopt notify
 
 unsetopt autocd beep nomatch
 
+# Edit current command line in $EDITOR
+autoload -z edit-command-line
+zle -N edit-command-line
+
 function set_my_keybinds() {
+    # Edit current command line in $EDITOR
+    bindkey "^Xe" edit-command-line
+
     bindkey "^H" backward-delete-word    # Ctrl+Backspace
     bindkey "^[[3~" delete-char          # Del
     bindkey "^[[3;5~" delete-word        # Ctrl+Del
