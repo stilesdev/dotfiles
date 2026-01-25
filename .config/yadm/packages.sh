@@ -144,6 +144,7 @@ PKG_CLI=(
     zsh-autosuggestions
     zsh-history-substring-search
     zsh-syntax-highlighting
+    zsh-vi-mode
 )
 
 # GUI Packages

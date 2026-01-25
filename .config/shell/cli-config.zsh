@@ -21,9 +21,6 @@ zstyle ':completion:*' rehash true
 # Highlight menu selection
 zstyle ':completion:*' menu select
 
-# Use vi mode
-bindkey -v
-
 # Append session history list to history file rather than replace it, and do so incrementally instead of waiting until the shell exits
 setopt inc_append_history
 
@@ -38,15 +35,20 @@ setopt notify
 
 unsetopt autocd beep nomatch
 
-bindkey "^H" backward-delete-word    # Ctrl+Backspace
-bindkey "^[[3~" delete-char          # Del
-bindkey "^[[3;5~" delete-word        # Ctrl+Del
-bindkey "^[[1~" beginning-of-line    # Home
-bindkey "^[[4~" end-of-line          # End
-bindkey "^[[5~" beginning-of-history # PgUp
-bindkey "^[[6~" end-of-history       # PgDown
-bindkey "^[[1;5C" forward-word       # Ctrl+Right
-bindkey "^[[1;5D" backward-word      # Ctrl+Left
+function set_my_keybinds() {
+    bindkey "^H" backward-delete-word    # Ctrl+Backspace
+    bindkey "^[[3~" delete-char          # Del
+    bindkey "^[[3;5~" delete-word        # Ctrl+Del
+    bindkey "^[[1~" beginning-of-line    # Home
+    bindkey "^[[4~" end-of-line          # End
+    bindkey "^[[5~" beginning-of-history # PgUp
+    bindkey "^[[6~" end-of-history       # PgDown
+    bindkey "^[[1;5C" forward-word       # Ctrl+Right
+    bindkey "^[[1;5D" backward-word      # Ctrl+Left
 
-# Same tmux-sessionizer keybind as tmux config
-bindkey -s ^p "sessionizer\n"
+    # Same tmux-sessionizer keybind as tmux config
+    bindkey -s ^p "sessionizer\n"
+}
+set_my_keybinds
+# need to re-bind keys after zsh-vi-mode init
+zvm_after_init_commands+=(set_my_keybinds)
