@@ -291,9 +291,6 @@ PKG_WORK=(
     azure-cli
     cisco-secure-client
     composer
-    evolution
-    evolution-ews
-    freerdp
     git-lfs
     github-cli
     google-chrome
@@ -302,16 +299,13 @@ PKG_WORK=(
     kcachegrind
     kubectl
     k9s # k8s management TUI
-    libvncserver
     miller # command-line csv processing
     minikube
     navi
     nmap
     php
     postgresql-libs
-    postman-bin
     powerpanel # UPS monitoring
-    remmina
     storageexplorer
     synology-drive
     teams-for-linux
