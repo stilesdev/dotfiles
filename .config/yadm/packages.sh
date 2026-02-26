@@ -23,6 +23,11 @@ encom*)
     GRAPHICS_VENDOR='none'
     IS_DOCKER_HOST=true
     ;;
+gallium*)
+    GRAPHICS_VENDOR='amd'
+    IS_LAPTOP=true
+    IS_DOCKER_HOST=true
+    ;;
 jstiles-archlinux*)
     GRAPHICS_VENDOR='amd'
     IS_DOCKER_HOST=true
