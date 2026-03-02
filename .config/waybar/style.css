@@ -12,6 +12,7 @@
     margin: 5px 0;
 }
 
+#privacy, /* privacy module doesn't have the .module class - https://github.com/Alexays/Waybar/issues/4034 */
 /* all modules */
 .module {
     background-color: @surface0;
@@ -154,6 +155,10 @@
 }
 
 #battery.critical:not(.charging) {
+    color: @red;
+}
+
+#privacy {
     color: @red;
 }
 
