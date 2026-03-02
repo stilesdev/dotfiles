@@ -1,6 +1,7 @@
 # exec-once = google-chrome-stable
 exec-once = zen-browser
 exec-once = [workspace 2 silent] $terminal
+exec-once = [workspace 4] $terminal
 exec-once = spotify
 
 # added sleep to make sure waybar is started first, else tray icons never show up
