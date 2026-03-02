@@ -255,7 +255,6 @@ PKG_LAPTOP=(
 )
 
 PKG_NON_WORK=(
-    brave-bin
     proton-vpn-gtk-app
     steam
 )

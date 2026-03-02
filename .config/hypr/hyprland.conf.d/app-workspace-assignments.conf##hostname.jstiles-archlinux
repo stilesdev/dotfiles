@@ -1,4 +1,4 @@
-windowrule = workspace 1, match:class Google-chrome
+windowrule = workspace 1, match:class zen
 windowrule = workspace 3, match:class jetbrains-phpstorm
 windowrule = workspace 5, match:class obsidian
 windowrule = workspace 7, match:class Virt-manager
