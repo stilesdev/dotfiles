@@ -322,7 +322,7 @@ PKG_WORK=(
 PKG_LIBVIRT=(
     dmidecode
     dnsmasq
-    iptables-nft
+    iptables
     libvirt
     qemu-desktop
     samba
