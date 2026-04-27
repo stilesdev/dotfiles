@@ -28,7 +28,7 @@ if ($IS_DOCKER_HOST); then
     docker buildx install
 fi
 
-NODE_VERSION=22
+NODE_VERSION=24
 if ! command -v node > /dev/null 2>&1 || [ $(node --version | cut -d '.' -f 1) != "v$NODE_VERSION" ]; then
     echo "Installing nodejs using fnm"
     fnm install "v$NODE_VERSION"
