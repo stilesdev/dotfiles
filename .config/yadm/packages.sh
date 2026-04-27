@@ -143,6 +143,7 @@ PKG_CLI=(
     starship
     tig
     tmux
+    tree-sitter-cli # for neovim
     vim
     wezterm-git
     zsh
