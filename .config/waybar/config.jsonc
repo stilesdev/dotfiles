@@ -174,7 +174,7 @@
     },
     // TODO: filesystem?
     "memory": {
-        "format": " {}%",
+        "format": " {percentage}%    {swapPercentage}%",
         "interval": 5
     },
     "cpu": {
