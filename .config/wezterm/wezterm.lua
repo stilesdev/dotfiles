@@ -31,6 +31,9 @@ config.front_end = 'WebGpu'
 
 config.scrollback_lines = 999999
 
+-- don't show desktop notification when encountering characters which don't exist in any fonts
+config.warn_about_missing_glyphs = false
+
 config.skip_close_confirmation_for_processes_named = {
     'bash',
     'sh',
