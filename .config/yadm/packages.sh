@@ -87,6 +87,7 @@ fi
 
 # Installed on all systems
 PKG_SYSTEM=(
+    beszel-agent-bin # system monitoring tool
     cronie # cron
     dosfstools # mkfs.fat
     lvm2 # LVM utilities
@@ -213,7 +214,7 @@ PKG_GUI_APPS=(
     firefox
     gimp
     obsidian
-    onlyoffice-bin
+    onlyoffice-bin-no-ai # custom package with AI features removed
     spotify
     synology-drive
     vlc
