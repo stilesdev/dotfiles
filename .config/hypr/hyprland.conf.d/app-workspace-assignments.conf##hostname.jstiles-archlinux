@@ -7,9 +7,9 @@ windowrule = workspace 8, match:class teams-for-linux
 windowrule = float on, match:class jetbrains-toolbox
 
 # main window, preferences, connected details
-windowrule = workspace special:vpn silent, float on, center on, match:class com.cisco.secureclient.gui
+windowrule = workspace special:vpn silent, float on, center on, dim_around on, match:class com.cisco.secureclient.gui
 # login dialog
-windowrule = workspace special:vpn silent, float on, center on, match:class Cisco Secure Client
+windowrule = workspace special:vpn silent, float on, center on, dim_around on, match:class Cisco Secure Client
 
 # Keeper Chrome Extension dialog
 windowrule = float on, match:class chrome-bfogiafebfohielmmehodmfbbebbbpei-Default
