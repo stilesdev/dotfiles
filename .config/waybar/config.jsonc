@@ -18,9 +18,7 @@
     ],
     "modules-right": [
         // Group toggles/interactive modules first
-        // build version tracker
-        // display menu
-        // microphone mute
+        "custom/build_version_tracker",
         "custom/microphone",
         "privacy",
         "idle_inhibitor",
@@ -39,7 +37,7 @@
 
 
         "network",
-        // "network#cisco",
+        "network#cisco",
         "battery",
         "clock",
         "tray"
@@ -122,6 +120,7 @@
     "custom/build_version_tracker": {
         "exec": "~/.config/waybar/custom-modules/build-version-tracker.sh",
         "format": "  {}",
+        "hide-empty-text": true,
         "interval": "once",
         "signal": 1,
         "on-double-click": "~/.config/waybar/custom-modules/build-version-tracker.sh inc",
