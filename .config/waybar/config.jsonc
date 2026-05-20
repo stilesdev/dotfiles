@@ -205,6 +205,7 @@
     "network#cisco": {
         "interface": "cscotun0",
         "format": "󰌘 {ipaddr}",
+        "format-disabled": "",
         "format-disconnected": ""
     },
     "battery": {
