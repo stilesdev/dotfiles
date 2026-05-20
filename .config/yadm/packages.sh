@@ -12,7 +12,7 @@ arcade*)
     IS_DOCKER_HOST=true
     ;;
 arena*)
-    GRAPHICS_VENDOR='nvidia'
+    GRAPHICS_VENDOR='amd'
     IS_DOCKER_HOST=true
     ;;
 builder*)

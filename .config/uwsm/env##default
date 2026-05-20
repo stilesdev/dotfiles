@@ -1,0 +1,10 @@
+export XCURSOR_SIZE=16
+export XCURSOR_THEME=Breeze_Hacked
+
+# Allow electron apps to run in wayland
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+
+# Style Qt5 and Qt6 applications using current GTK3 theme
+export QT_QPA_PLATFORMTHEME=gtk3
+
+# vim:filetype=sh
