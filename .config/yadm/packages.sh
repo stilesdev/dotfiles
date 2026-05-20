@@ -264,13 +264,9 @@ PKG_NON_WORK=(
 PKG_GAMES=(
     clonehero
     gamescope
-    linux-headers # needed for dkms
     rmg
     steam
     xdg-desktop-portal-gtk # needed for file picker in steam
-    xone-dkms-git # kernel module for Xbox One controllers
-    xone-dongle-firmware # firmware for Xbox One controller dongle
-    xpad-noone-git # xone disables the xpad kernel module, this is xpad without xone controller support, to restore usage of other gamepads (like 8bitdo ultimate 2)
 )
 
 PKG_GAMEDEV=(
