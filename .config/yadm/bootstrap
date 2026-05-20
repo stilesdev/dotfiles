@@ -48,7 +48,9 @@ fi
 if [ "$GRAPHICS_VENDOR" = 'none' ]; then
     enable_and_start_service nohang.service
 else
-    enable_and_start_service nohang-desktop.service
+    if [ "$(hostname)" != 'arena' ]; then
+        enable_and_start_service nohang-desktop.service
+    fi
 
     enable_and_start_service bluetooth.service
 
@@ -79,6 +81,8 @@ else
         echo "Creating screenshots directory"
         mkdir -p "$HOME/Pictures/Screenshots"
     fi
+
+    add_user_to_group $USER uucp # for flashing various microcontroller-based devices
 
     gpg_setup "C0AC1B5B" "https://github.com/stilesdev.gpg"
 

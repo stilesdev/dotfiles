@@ -90,6 +90,7 @@ PKG_SYSTEM=(
     beszel-agent-bin # system monitoring tool
     cronie # cron
     dosfstools # mkfs.fat
+    exfatprogs # exfat support
     lvm2 # LVM utilities
     nohang # low memory handler
     ntfs-3g # NTFS support
@@ -112,6 +113,7 @@ PKG_UTILS=(
     imagemagick
     jq
     ldns # provides drill command
+    libwebp-utils # webp conversion (dwebp command)
     lostfiles
     nmap
     openssh
@@ -193,18 +195,16 @@ PKG_GUI_FILEBROWSER=(
     gvfs-mtp
     gvfs-smb
     thunar
+    thunar-archive-plugin # add extract/compress actions to Thunar context menus
+    thunar-media-tags-plugin # add special features to Thunar for media files
     tumbler
     unarchiver
 )
 PKG_GUI_UTILS=(
-    # arandr
-    # autorandr
     clipse
-    eog
-    # flameshot
-    # kcalc
-    mediainfo-gui
-    # numlockx
+    eog # image viewer
+    mediainfo-gui # media metadata viewer
+    okular # document viewer
     seahorse
     wl-clipboard # terminal clipboard utilities (wl-copy and wl-paste)
     yubico-authenticator-bin
@@ -214,14 +214,18 @@ PKG_GUI_APPS=(
     firefox
     gimp
     obsidian
-    onlyoffice-bin-no-ai # custom package with AI features removed
+    onlyoffice-bin
     spotify
     synology-drive
     vlc
+    vlc-plugin-ffmpeg # h264/h265 support
+    vlc-plugin-smb # support media over mounted SMB share
     zen-browser-bin
 )
 PKG_AUDIO=(
     alsa-utils # includes alsamixer utility
+    easyeffects # audio effects
+    lsp-plugins-lv2 # plugins for easyeffects: equalizer, compressor, delay, loudness
     pavucontrol # volume control GUI
     pipewire # audio/video router/processor - required for hyprland screen sharing
     pipewire-alsa # pipewire alsa configuration
@@ -250,10 +254,6 @@ PKG_BLUETOOTH=(
 PKG_LAPTOP=(
     brightnessctl
     keyd
-    # thermald
-    # tlp
-    # xf86-input-libinput
-    # xorg-xbacklight
 )
 
 PKG_NON_WORK=(
@@ -263,6 +263,7 @@ PKG_NON_WORK=(
 
 PKG_GAMES=(
     clonehero
+    dolphin-emu-primehack-git
     gamescope
     rmg
     steam
@@ -275,14 +276,24 @@ PKG_GAMEDEV=(
     love
 )
 
+PKG_MUSIC=(
+    chromaprint # fingerprinting for picard
+    picard # audio library management
+    spek # spectrum analyzer for checking actual bitrate of flac files
+    whipper # audio CD ripper
+)
+
 PKG_ARENA_ONLY=(
     betaflight-configurator-bin
     calibre
     cura-bin
     expresslrs-configurator-bin
     flatpak # for plex desktop app
+    i2c-tools # openrgb support for motherboard and RAM
+    jre8-openjdk # for makemkv
+    makemkv
+    openrgb # RGB control
     oscar-bin
-    spek # spectrum analyzer for checking actual bitrate of flac files
 )
 
 PKG_NON_WORK=(
@@ -360,7 +371,7 @@ if [ "$GRAPHICS_VENDOR" != 'none' ]; then
     fi
 
     if [ "$(hostname)" = 'arena' ]; then
-        PACKAGES=("${PACKAGES[@]}" "${PKG_GAMES[@]}" "${PKG_GAMEDEV[@]}" "${PKG_ARENA_ONLY[@]}")
+        PACKAGES=("${PACKAGES[@]}" "${PKG_GAMES[@]}" "${PKG_GAMEDEV[@]}" "${PKG_MUSIC[@]}" "${PKG_ARENA_ONLY[@]}")
     fi
 
 fi
