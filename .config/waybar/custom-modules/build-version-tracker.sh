@@ -10,7 +10,7 @@ fi
 VERSION=$(cat $FILE)
 
 if [[ "$1" = "copy" ]]; then
-    echo -n "$VERSION" | wl-copy
+    echo -n "$(cat $FILE | cut -d ' ' -f2)" | wl-copy
     exit 0
 fi
 
