@@ -1,0 +1,20 @@
+:root[zen-single-toolbar="true"] #zen-appcontent-navbar-wrapper {
+  max-height: var(--zen-element-separation) !important;
+  margin-top: 0px;
+}
+
+:root[zen-single-toolbar="true"] #zen-appcontent-navbar-container,
+:root[inDOMFullscreen="true"] #zen-appcontent-navbar-container {
+  display: none !important;
+}
+/*
+#customization-panelWrapper {
+  --panel-arrow-offset: 0px !important;
+}*/
+
+/* prevent the browser content from sliding up when hovering over toolbar */
+.browserSidebarContainer:is(.deck-selected, [zen-split='true']) .browserContainer {
+  #tabbrowser-tabpanels[has-toolbar-hovered] & {
+    margin-top: 0 !important;
+  }
+}
