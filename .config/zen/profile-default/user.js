@@ -12,3 +12,9 @@ user_pref("zen.view.show-clear-tabs-button", false);
 
 // each workspace has its own essentials section
 user_pref("zen.workspaces.separate-essentials", true);
+
+// don't show warning when opening about:config
+user_pref("browser.aboutConfig.showWarning", false);
+
+// always show full URLs in URL bar
+user_pref("browser.urlbar.trimURLs", false);
