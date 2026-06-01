@@ -18,3 +18,6 @@ user_pref("browser.aboutConfig.showWarning", false);
 
 // always show full URLs in URL bar
 user_pref("browser.urlbar.trimURLs", false);
+
+// move extensions from url bar back to actual toolbar (https://github.com/zen-browser/desktop/issues/13831)
+user_pref("zen.view.overflow-webext-toolbar", false);
