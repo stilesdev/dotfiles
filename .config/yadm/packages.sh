@@ -167,6 +167,7 @@ PKG_GUI_DE=(
     hyprpicker # color picker, also used by hyprshot to freeze screen during screenshot
     hyprpolkitagent # polkit auth daemon (for GUI apps to request elevation)
     hyprshot # screenshot-taking utility
+    hyprshutdown # graceful shutdown utility
     network-manager-applet # tray applet for networkmanager
     nwg-look # GTK settings editor
     swappy # screenshot annotation utility

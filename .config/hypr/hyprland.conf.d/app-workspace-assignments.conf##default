@@ -1,4 +1,0 @@
-windowrule = workspace 1, match:class zen
-windowrule = workspace 5, match:class obsidian
-
-# vim:filetype=hyprlang

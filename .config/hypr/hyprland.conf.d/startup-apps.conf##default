@@ -1,5 +1,0 @@
-exec-once = zen-browser
-exec-once = [workspace 2 silent] $terminal
-exec-once = spotify
-
-# vim:filetype=hyprlang
