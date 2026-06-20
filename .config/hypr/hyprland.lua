@@ -6,7 +6,7 @@ TERM_PROGRAM = "wezterm"
 
 HOSTNAME = os.getenv("HOST")
     or os.getenv("HOSTNAME")
-    or function()
+    or (function()
         local f = io.popen("/bin/hostname")
         if f == nil then
             return ""
@@ -15,7 +15,7 @@ HOSTNAME = os.getenv("HOST")
         f:close()
         hostname = string.gsub(hostname, "\n$", "")
         return hostname
-    end
+    end)()
 
 require("modules.monitors")
 require("modules.startup-apps")
