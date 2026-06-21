@@ -1,10 +1,10 @@
 # $is_locked && <command> = only if screen IS locked
 # $is_locked || <command> = only if screen IS NOT locked
 $is_locked = pidof hyprlock
-$lock_now = hyprctl dispatch exec 'loginctl lock-session'
+$lock_now = hyprctl dispatch 'hl.dsp.exec_cmd("loginctl lock-session")'
 
-$display_off = hyprctl dispatch dpms off
-$display_on = hyprctl dispatch dpms on
+$display_off = hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })'
+$display_on = hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })'
 $display_dim = brightnessctl -s set 10
 $display_restore = brightnessctl -r
 
