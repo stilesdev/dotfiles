@@ -2,8 +2,8 @@
 
 hl.config({
     general = {
-        gaps_in          = 8,
-        gaps_out         = { 12, 16, 16, 16 },
+        gaps_in          = 4,
+        gaps_out         = 6,
 
         border_size      = 2,
 
@@ -62,7 +62,9 @@ hl.curve("almostLinear", { type = "bezier", points = { { 0.5, 0.5 }, { 0.75, 1 }
 hl.curve("quick", { type = "bezier", points = { { 0.15, 0 }, { 0.1, 1 } } })
 
 -- Default springs
-hl.curve("easy", { type = "spring", mass = 1, stiffness = 71.2633, dampening = 15.8273644 })
+-- hl.curve("easy", { type = "spring", mass = 1, stiffness = 238.1191, dampening = 24.21279333 })
+-- Closer to original springs before algorithm changed
+hl.curve("easy", { type = "spring", mass = 1, stiffness = 878.5, dampening = 59.29 })
 
 hl.animation({ leaf = "global", enabled = true, speed = 10, bezier = "default" })
 hl.animation({ leaf = "border", enabled = true, speed = 5.39, bezier = "easeOutQuint" })
