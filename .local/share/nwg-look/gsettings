@@ -2,8 +2,8 @@
 gtk-theme=Sweet-Dark
 icon-theme=Sweet-Blue
 font-name=NotoSans Nerd Font 10
-cursor-theme=Breeze_Hacked
-cursor-size=16
+cursor-theme=future-cursors-cyan
+cursor-size=24
 toolbar-style=both-horiz
 toolbar-icons-size=large
 font-hinting=slight

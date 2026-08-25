@@ -183,6 +183,7 @@ PKG_GUI_DE=(
 PKG_GUI_THEME=(
     breeze-hacked-cursor-theme-git # cursor theme
     candy-icons-git # gtk icon theme
+    future-cursors-cyan-git # cursor theme
     gnome-themes-extra # adwaita gtk theme
 #     qt5-styleplugins
     sweet-folders-icons-git # gtk folder icon theme (inherits other icons from candy-icons)

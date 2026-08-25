@@ -9,7 +9,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("nwg-look -a")
 
     -- set mouse cursor https://wiki.hypr.land/FAQ/#how-do-i-change-me-mouse-cursor
-    hl.exec_cmd("hyprctl setcursor 'Breeze_Hacked' 16")
+    hl.exec_cmd("hyprctl setcursor 'future-cursors-cyan' 24")
 
     -- tray apps
     hl.exec_cmd("nm-applet")
