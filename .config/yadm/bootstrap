@@ -7,11 +7,19 @@ source ~/.config/yadm/bootstrap-utils.sh || exit $?
 INSTALLED_PACKAGES=$(pacman -Qq | sort)
 DEFINED_PACKAGES=$(echo "$PACKAGES $PKG_PACSTRAP" | xargs -n1 | sort | uniq)
 PACKAGES_NOT_INSTALLED=$(comm -13 <(echo "$INSTALLED_PACKAGES") <(echo "$DEFINED_PACKAGES"))
+ORPHANED_PACKAGES=$(pacman -Qqtd | sort)
 
 if [ "$PACKAGES_NOT_INSTALLED" != '' ]; then
     echo "Installing missing packages:"
     echo "$PACKAGES_NOT_INSTALLED"
     sudo pacman --noconfirm -S $PACKAGES_NOT_INSTALLED || exit $?
+fi
+
+if [ "$ORPHANED_PACKAGES" != '' ]; then
+    echo "Uninstalling orphaned packages:"
+    echo "$ORPHANED_PACKAGES"
+    sudo pacman --noconfirm -Rs $ORPHANED_PACKAGES || exit $?
+    echo
 fi
 
 if ! ($IS_VPS); then
