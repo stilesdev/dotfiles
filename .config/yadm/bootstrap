@@ -33,7 +33,6 @@ enable_and_start_service sshd.service
 if ($IS_DOCKER_HOST); then
     enable_and_start_service docker.service
     add_user_to_group $USER docker
-    docker buildx install
 fi
 
 NODE_VERSION=24
@@ -60,12 +59,6 @@ if [ "$GRAPHICS_VENDOR" != 'none' ]; then
 
     if ($IS_LAPTOP); then
         enable_and_start_service keyd.service
-
-        # TODO: are thermald and tlp still relevant?
-        # enable_and_start_service thermald.service
-        # enable_and_start_service tlp.service
-        # mask_service systemd-rfkill.service
-        # mask_service systemd-rfkill.socket
     fi
 
     enable_and_start_user_service waybar.service
