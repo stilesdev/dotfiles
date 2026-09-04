@@ -53,12 +53,8 @@ if ! grep "$USER" /etc/passwd | grep "/usr/bin/zsh" > /dev/null; then
     sudo chsh -s /usr/bin/zsh $USER
 fi
 
-if [ "$GRAPHICS_VENDOR" = 'none' ]; then
-    enable_and_start_service nohang.service
-else
-    if [ "$(hostname)" != 'arena' ]; then
-        enable_and_start_service nohang-desktop.service
-    fi
+if [ "$GRAPHICS_VENDOR" != 'none' ]; then
+    enable_and_start_service systemd-oomd.service
 
     enable_and_start_service bluetooth.service
 

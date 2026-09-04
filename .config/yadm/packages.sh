@@ -92,7 +92,6 @@ PKG_SYSTEM=(
     dosfstools # mkfs.fat
     exfatprogs # exfat support
     lvm2 # LVM utilities
-    nohang # low memory handler
     ntfs-3g # NTFS support
     pacman-contrib # paccache, pacdiff
     smbclient # SAMBA support
