@@ -1,6 +1,20 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 
+-- TODO: remove these manual start/stop commands once Hyprland releases >0.56.2 which handles this directly
+-- (also remove the file ~/.config/systemd/user/hyprland-session.target and commit the delete to yadm)
+--      (.config/systemd/user/hyprland-session.target.d/override.conf should remain as an override to enable .desktop file autostart capabilities)
+
 hl.on("hyprland.start", function()
+    hl.exec_cmd("systemctl --user start hyprland-session.target")
+end)
+hl.on("hyprland.shutdown", function()
+    os.execute("systemctl --user stop hyprland-session.target && sleep 0.1")
+end)
+
+hl.on("hyprland.start", function()
+    -- Set -1000 oom score to prevent Hyprland from being killed early when system runs out of memory
+    hl.exec_cmd("sudo choom -n -1000 -p $PPID")
+
     -- from https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580
     -- make sure that xdg-desktop-portal-hyprland can get the required variables on startup (for screen sharing)
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")

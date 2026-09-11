@@ -17,6 +17,7 @@ HOSTNAME = os.getenv("HOST")
         return hostname
     end)()
 
+require("modules.env")
 require("modules.monitors")
 require("modules.startup-apps")
 require("modules.appearance")

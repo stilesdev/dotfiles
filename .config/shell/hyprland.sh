@@ -1,4 +1,5 @@
-# if uwsm check may-start && uwsm select; then
-if command -v uwsm > /dev/null 2>&1 && uwsm check may-start -q; then
-	exec uwsm start default
+if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+    if command -v start-hyprland > /dev/null 2>&1; then
+        exec start-hyprland
+    fi
 fi

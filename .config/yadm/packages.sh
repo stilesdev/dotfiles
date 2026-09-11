@@ -173,7 +173,6 @@ PKG_GUI_DE=(
     swaync # notification daemon
     udiskie # tray applet for managing removable disks
     ulauncher # application launcher
-    uwsm # Wayland session manager (used to start hyprland)
     waybar # status bar
     wev # Wayland window debugging tool (similar to xev in X11)
     xdg-desktop-portal-gtk # fallback xdg-desktop-portal (file picker)
