@@ -14,6 +14,22 @@ enable_and_start_service() {
     fi
 }
 
+disable_and_stop_service() {
+    local service="$1"
+    if systemctl is-enabled "$service" > /dev/null; then
+        echo "Disabling $service"
+        sudo systemctl disable "$service"
+    # else
+    #     echo "$service already disabled"
+    fi
+    if systemctl is-active "$service" > /dev/null; then
+        echo "Stopping $service"
+        sudo systemctl stop "$service"
+    # else
+    #     echo "$service already stopped"
+    fi
+}
+
 enable_and_start_user_service() {
     local service="$1"
     if ! systemctl --user is-enabled "$service" > /dev/null; then
@@ -27,6 +43,22 @@ enable_and_start_user_service() {
         systemctl --user start "$service"
     # else
     #     echo "$service already running"
+    fi
+}
+
+disable_and_stop_user_service() {
+    local service="$1"
+    if systemctl --user is-enabled "$service" > /dev/null; then
+        echo "Disabling $service"
+        systemctl --user disable "$service"
+    # else
+    #     echo "$service already disabled"
+    fi
+    if systemctl --user is-active "$service" > /dev/null; then
+        echo "Stopping $service"
+        systemctl --user stop "$service"
+    # else
+    #     echo "$service already stopped"
     fi
 }
 
@@ -47,6 +79,13 @@ mask_user_service() {
         systemctl --user mask "$service"
     # else
     #     echo "$service already masked"
+    fi
+}
+
+remove_package_if_installed() {
+    local package="$1"
+    if pacman -Qi "$package" > /dev/null 2>&1; then
+        sudo pacman -Rs --noconfirm "$package"
     fi
 }
 

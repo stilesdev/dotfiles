@@ -96,3 +96,10 @@ if [ $(yadm remote get-url origin) != "$DOTFILES_ORIGIN" ]; then
     yadm remote set-url origin "$DOTFILES_ORIGIN"
 fi
 
+
+# Cleanup steps to ensure retired packages/services get cleaned up - can be removed once applied to all machines
+
+# nohang removed 2026-09-03
+disable_and_stop_service nohang.service
+disable_and_stop_service nohang-desktop.service
+remove_package_if_installed nohang
