@@ -53,8 +53,6 @@ if ! grep "$USER" /etc/passwd | grep "/usr/bin/zsh" > /dev/null; then
 fi
 
 if [ "$GRAPHICS_VENDOR" != 'none' ]; then
-    enable_and_start_service systemd-oomd.service
-
     enable_and_start_service bluetooth.service
 
     if ($IS_LAPTOP); then
@@ -103,3 +101,7 @@ fi
 disable_and_stop_service nohang.service
 disable_and_stop_service nohang-desktop.service
 remove_package_if_installed nohang
+
+# systemd-oomd disabled 2026-09-10
+disable_and_stop_service systemd-oomd.socket
+disable_and_stop_service systemd-oomd.service
