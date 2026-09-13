@@ -8,5 +8,45 @@
         "is_default_search": false,
         "run_without_argument": true,
         "added": 1646433276.505401
+    },
+    "feec94f0-23cd-4dfd-a1d7-b4358467100b": {
+        "id": "feec94f0-23cd-4dfd-a1d7-b4358467100b",
+        "name": "Zen Browser",
+        "keyword": "zen",
+        "cmd": "zen-browser",
+        "icon": "/usr/share/icons/hicolor/128x128/apps/zen-browser.png",
+        "is_default_search": false,
+        "run_without_argument": true,
+        "added": 1789268251.5022593
+    },
+    "f440bb33-6700-4fae-8f37-94649fcbeca0": {
+        "id": "f440bb33-6700-4fae-8f37-94649fcbeca0",
+        "name": "Firefox",
+        "keyword": "firefox",
+        "cmd": "firefox",
+        "icon": "/usr/share/icons/candy-icons/apps/scalable/firefox.svg",
+        "is_default_search": false,
+        "run_without_argument": true,
+        "added": 1789298488.8181036
+    },
+    "9ab359ae-b106-4758-b667-86526e4b7c8c": {
+        "id": "9ab359ae-b106-4758-b667-86526e4b7c8c",
+        "name": "chromium",
+        "keyword": "chromium",
+        "cmd": "chromium",
+        "icon": "/usr/share/icons/candy-icons/apps/scalable/chromium.svg",
+        "is_default_search": false,
+        "run_without_argument": true,
+        "added": 1789298575.4403992
+    },
+    "3c227bf9-48e2-4405-b9c5-79de2f4e6013": {
+        "id": "3c227bf9-48e2-4405-b9c5-79de2f4e6013",
+        "name": "spotify",
+        "keyword": "spotify",
+        "cmd": "spotify",
+        "icon": "/usr/share/icons/candy-icons/apps/scalable/spotify-client.svg",
+        "is_default_search": false,
+        "run_without_argument": true,
+        "added": 1789298628.0684497
     }
 }

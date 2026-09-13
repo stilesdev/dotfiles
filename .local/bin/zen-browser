@@ -1,0 +1,19 @@
+#!/bin/sh
+case $(hostname) in
+    arena*)
+        HIGH="16G"
+        MAX="18G"
+        SWAP="2G"
+        ;;
+    *)
+        HIGH="7G"
+        MAX="8G"
+        SWAP="1G"
+        ;;
+esac
+
+exec systemd-run --user --scope --same-dir --unit=app-zen \
+    -p "MemoryHigh=$HIGH" \
+    -p "MemoryMax=$MAX" \
+    -p "MemorySwapMax=$SWAP" \
+    /usr/bin/zen-browser "$@"

@@ -1,0 +1,6 @@
+#!/bin/sh
+exec systemd-run --user --scope --same-dir --unit=app-chromium \
+    -p "MemoryHigh=4G" \
+    -p "MemoryMax=6G" \
+    -p "MemorySwapMax=1G" \
+    /usr/bin/chromium "$@"

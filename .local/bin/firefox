@@ -1,0 +1,19 @@
+#!/bin/sh
+case $(hostname) in
+    arena*)
+        HIGH="6G"
+        MAX="8G"
+        SWAP="1G"
+        ;;
+    *)
+        HIGH="4G"
+        MAX="6G"
+        SWAP="1G"
+        ;;
+esac
+
+exec systemd-run --user --scope --same-dir --unit=app-firefox \
+    -p "MemoryHigh=$HIGH" \
+    -p "MemoryMax=$MAX" \
+    -p "MemorySwapMax=$SWAP" \
+    /usr/bin/firefox "$@"

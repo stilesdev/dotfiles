@@ -6,6 +6,8 @@ export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$GOBIN:$PATH"
 
+export PATH="$HOME/.local/bin:$PATH"
+
 export GPG_TTY=`tty`
 export GPG_AGENT_INFO=/run/user/$(id -u)/gnupg/S.gpg-agent::
 export SSH_AUTH_SOCK=/run/user/$(id -u)/gnupg/S.gpg-agent.ssh
