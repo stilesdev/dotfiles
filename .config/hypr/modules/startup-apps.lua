@@ -29,9 +29,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("nm-applet")
     hl.exec_cmd("udiskie")
 
-    -- launcher
-    hl.exec_cmd("ulauncher --hide-window --no-window-shadow")
-
     -- clipboard history daemon
     hl.exec_cmd("clipse -listen")
 

@@ -61,6 +61,8 @@ if [ "$GRAPHICS_VENDOR" != 'none' ]; then
 
     enable_and_start_user_service waybar.service
 
+    enable_and_start_user_service ulauncher.service
+
     enable_and_start_user_service hyprpolkitagent.service
 
     enable_and_start_user_service hyprpaper.service
