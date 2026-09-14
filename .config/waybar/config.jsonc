@@ -73,7 +73,7 @@
 
 
     "mpris": {
-        "player": "spotify",
+        "player": "spotify_player",
         "format": "󰝚  {title}     󰠃  {artist}     󰀥  {album}",
         "format-paused": " "
     },

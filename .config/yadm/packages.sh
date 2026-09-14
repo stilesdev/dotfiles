@@ -215,7 +215,7 @@ PKG_GUI_APPS=(
     gimp
     obsidian
     onlyoffice-bin
-    spotify
+    spotify-player
     synology-drive
     vlc
     vlc-plugin-ffmpeg # h264/h265 support

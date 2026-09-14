@@ -1,6 +1,2 @@
 #!/bin/sh
-exec systemd-run --user --scope --same-dir --unit=app-spotify \
-    -p "MemoryHigh=2G" \
-    -p "MemoryMax=3G" \
-    -p "MemorySwapMax=512M" \
-    /usr/bin/spotify "$@"
+wezterm start --class spotify-player -- spotify_player -o "device.name='$(hostname)'"

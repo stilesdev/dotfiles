@@ -110,3 +110,6 @@ disable_and_stop_service systemd-oomd.service
 
 # uwsm removed 2026-09-11
 remove_package_if_installed uwsm
+
+# spotify removed 2026-09-13
+remove_package_if_installed spotify
