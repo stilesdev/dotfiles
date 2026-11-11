@@ -5,8 +5,9 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -- Style Qt5 and Qt6 applications using current GTK3 theme
 hl.env("QT_QPA_PLATFORMTHEME", "gtk3")
 
--- Allow electron apps to run in wayland
-hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+hl.env("XDG_SESSION_TYPE", "wayland")
+hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 
 if HOSTNAME == "arcade" then
     -- Added according to https://wiki.hypr.land/Nvidia/#environment-variables
