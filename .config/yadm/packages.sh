@@ -3,6 +3,7 @@
 GRAPHICS_VENDOR=''
 IS_LAPTOP=false
 IS_VPS=false
+IS_PROXMOX_VM=false
 IS_DOCKER_HOST=false
 
 case $(hostname) in
@@ -17,10 +18,12 @@ arena*)
     ;;
 builder*)
     GRAPHICS_VENDOR='none'
+    IS_PROXMOX_VM=true
     IS_DOCKER_HOST=true
     ;;
 encom*)
     GRAPHICS_VENDOR='none'
+    IS_PROXMOX_VM=true
     IS_DOCKER_HOST=true
     ;;
 gallium*)
@@ -39,9 +42,11 @@ outlands*)
     ;;
 purgos*)
     GRAPHICS_VENDOR='none'
+    IS_PROXMOX_VM=true
     ;;
 runner*)
     GRAPHICS_VENDOR='none'
+    IS_PROXMOX_VM=true
     IS_DOCKER_HOST=true
     ;;
 esac
@@ -346,6 +351,10 @@ PKG_VPS=(
     grub
 )
 
+PKG_PROXMOX_VM=(
+    qemu-guest-agent
+)
+
 # Installed on all systems
 PACKAGES=("${PKG_SYSTEM[@]}" "${PKG_UTILS[@]}" "${PKG_CLI[@]}")
 
@@ -375,6 +384,10 @@ fi
 
 if ($IS_VPS); then
     PACKAGES=("${PACKAGES[@]}" "${PKG_VPS[@]}")
+fi
+
+if ($IS_PROXMOX_VM); then
+    PACKAGES=("${PACKAGES[@]}" "${PKG_PROXMOX_VM[@]}")
 fi
 
 PACKAGES="${PACKAGES[@]}"
