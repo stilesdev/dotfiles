@@ -30,6 +30,8 @@ enable_and_start_service cronie.service
 
 enable_and_start_service sshd.service
 
+enable_and_start_service fstrim.timer
+
 if ($IS_DOCKER_HOST); then
     enable_and_start_service docker.service
     add_user_to_group $USER docker
