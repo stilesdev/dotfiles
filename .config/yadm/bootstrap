@@ -37,7 +37,7 @@ if ($IS_DOCKER_HOST); then
     add_user_to_group $USER docker
 fi
 
-NODE_VERSION=24
+NODE_VERSION=26
 if ! command -v node > /dev/null 2>&1 || [ $(node --version | cut -d '.' -f 1) != "v$NODE_VERSION" ]; then
     echo "Installing nodejs using fnm"
     fnm install "v$NODE_VERSION"
