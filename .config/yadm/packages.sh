@@ -37,17 +37,10 @@ outlands*)
     IS_VPS=true
     IS_DOCKER_HOST=true
     ;;
-portal*)
-    GRAPHICS_VENDOR='none'
-    ;;
 purgos*)
     GRAPHICS_VENDOR='none'
     ;;
 runner*)
-    GRAPHICS_VENDOR='none'
-    IS_DOCKER_HOST=true
-    ;;
-test*)
     GRAPHICS_VENDOR='none'
     IS_DOCKER_HOST=true
     ;;
